@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+import '../src/index.css'
+import { useTranslation } from 'react-i18next';
+import Header from './Components/Header/Header';
+import Router from './Router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+
+  const { t , i18n } = useTranslation()
+  document.body.dir = i18n.dir();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Router />
+      <ToastContainer
+        position={i18n.dir() === "ltr" ? "top-right" : "top-left"}
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }
