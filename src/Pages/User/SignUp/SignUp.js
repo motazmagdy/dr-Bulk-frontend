@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link , useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Field, Formik } from "formik";
 import  axios from "axios"
 import { UserSignUpSchema } from "../../../Schemas/UserSignUpSchema";
@@ -16,15 +16,25 @@ const UserSignUp = () => {
   const [signupErrMsg,setSignupErrMsg]=useState("")
 
   const signupUser = (userData) =>{
-    axios.post(`${serverApi}api/users/signup`,userData)
+    // console.log("Signing up user");
+    // console.log(`${serverApi}/api/users/signup`);
+    axios.post(`${serverApi}/api/users/signup`,userData)
     .then(response=>{
+      // console.log(response);
       if(response.status === 201){
       toast.success(t("Signed Up Successfully ! "))
       setIsSubmitting(false)
       }
     })
     .catch(err=>{
-      toast.error(t(err.response.data.message))
+      // console.log(err);
+      if(err.response.data.message){
+        toast.error(t(err.response.data.message))
+      } else {
+        err.response.data.errors.forEach(err=>{
+          toast.error(t(err.msg))
+        })
+      }
       setSignupErrMsg(err.response.data.message)
       setIsSubmitting(false)
     })
@@ -53,7 +63,7 @@ const UserSignUp = () => {
           <h3 className="text-center">{t("Sign Up")}</h3>
           <form 
           onSubmit={props.handleSubmit} 
-          className={i18n.dir() == "ltr" ? "form" : "form ar-form"}  
+          className={i18n.dir() === "ltr" ? "form" : "form ar-form"}  
           autoComplete="off">
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
@@ -185,9 +195,9 @@ const UserSignUp = () => {
               <button
                 disabled={isSubmitting}
                 type="submit"
-                className="btn btn-primary submit-btn"
+                className="btn btn-primary submit-btn bulk-btn"
               >
-                {t("Sign Up")}
+                <b>{t("Sign Up")}</b>
               </button>
               {isSubmitting ? (
                 <>

@@ -4,12 +4,12 @@ import '../src/index.css'
 import { useTranslation } from 'react-i18next';
 import Header from './Components/Header/Header';
 import Router from './Router';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
-  const { t , i18n } = useTranslation()
+  const {  i18n } = useTranslation()
   document.body.dir = i18n.dir();
 
   return (

@@ -1,60 +1,67 @@
 import React, { useState } from "react";
-import { Link , useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Field, Formik } from "formik";
-import  axios from "axios"
+import axios from "axios";
 import { UserLoginSchema } from "../../../Schemas/UserLoginSchema";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import "./Login.css";
 const serverApi = process.env.REACT_APP_DR_BULK_API;
 
 const UserLogin = () => {
-
-const [ t , i18n] = useTranslation()
-const navigate = useNavigate()
+  const [t, i18n] = useTranslation();
+  const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loginErrMsg , setLoginErrMsg] = useState("")
+  const [loginErrMsg, setLoginErrMsg] = useState("");
 
-  const loginUser = (userData) =>{
-    axios.post(`${serverApi}api/users/login`,userData)
-    .then(response=>{
-      if(response.status == 201){
-      toast.success(t("Logged In Successfully ! "))
-      localStorage.setItem('Token',response.data.token)
-      localStorage.setItem('Role',"user")
-      setIsSubmitting(false)
-      setLoginErrMsg(null)
-      navigate('/users/home')
-    }
-    })
-    .catch(err=>{
-      toast.error(t(err.response.data.message))
-      setIsSubmitting(false)
-      setLoginErrMsg(err.response.data.message)
-    })
-  }
+  const loginUser = (userData) => {
+    axios
+      .post(`${serverApi}/api/users/login`, userData)
+      .then((response) => {
+        if (response.status === 201) {
+          toast.success(t("Logged In Successfully ! "));
+          localStorage.setItem("Token", response.data.token);
+          localStorage.setItem("Role", "user");
+          setIsSubmitting(false);
+          setLoginErrMsg(null);
+          navigate("/users/home");
+        }
+      })
+      .catch((err) => {
+        if (err.response.data.message) {
+          toast.error(t(err.response.data.message));
+        } else {
+          err.response.data.errors.forEach((err) => {
+            toast.error(t(err.msg));
+          });
+        }
+        setIsSubmitting(false);
+        setLoginErrMsg(err.response.data.message);
+      });
+  };
 
   return (
     <Formik
       initialValues={{
         email: "",
-        password: ""
+        password: "",
       }}
       onSubmit={(values, actions) => {
         setIsSubmitting(true);
-        loginUser(values)
-        actions.resetForm()
+        loginUser(values);
+        actions.resetForm();
       }}
       validationSchema={UserLoginSchema}
     >
       {(props) => (
         <div className="container mt-5 ">
           <h3 className="text-center">{t("Login")}</h3>
-          <form 
-          onSubmit={props.handleSubmit} 
-          className={i18n.dir() === "ltr" ? "form" : "form ar-form"} 
-          autoComplete="off">
+          <form
+            onSubmit={props.handleSubmit}
+            className={i18n.dir() === "ltr" ? "form" : "form ar-form"}
+            autoComplete="off"
+          >
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
                 {t("Email")}
@@ -93,14 +100,17 @@ const navigate = useNavigate()
                 <p className="input-err-msg">{t(props.errors.password)}</p>
               ) : null}
             </div>
-            <p className='redirect-user'>{t("Dont' have an account .")}<Link to='/users/signup'>{t("Sign up Here")} </Link> </p>
+            <p className="redirect-user">
+              {t("Dont' have an account .")}
+              <Link to="/users/signup">{t("Sign up Here")} </Link>{" "}
+            </p>
             <div className="form-btns">
               <button
                 disabled={isSubmitting}
                 type="submit"
-                className="btn btn-primary submit-btn"
+                className="btn btn-primary submit-btn bulk-btn"
               >
-                {t("Login")}
+                <b>{t("Login")}</b>
               </button>
               {isSubmitting ? (
                 <>
@@ -112,7 +122,9 @@ const navigate = useNavigate()
                 </>
               ) : null}
             </div>
-            {loginErrMsg ? <p className="input-err-msg"> {t(loginErrMsg)}</p> : null }
+            {loginErrMsg ? (
+              <p className="input-err-msg"> {t(loginErrMsg)}</p>
+            ) : null}
           </form>
         </div>
       )}

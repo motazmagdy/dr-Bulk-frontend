@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./Header.css";
-
+import B from "../../Assets/Png Logo/B-only.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,24 +19,23 @@ const Header = () => {
     document.body.dir = i18n.dir();
   };
 
-
   const [isLoggedIn, setIsLogged] = useState(localStorage.getItem("Token"));
   const [role, setRole] = useState(localStorage.getItem("Role"));
 
   const handleLogout = () => {
     localStorage.removeItem("Token");
     localStorage.removeItem("Role");
-    navigate("/users/login");
+    navigate("/users/home");
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-dark">
-      <div className="container">
-        <Link className="navbar-brand text-light" to="/">
+    <nav className="navbar navbar-expand-lg navbar-light bg-dark">  
+        <img src={B} onClick={() => navigate("/users/home")} />
+        {/* <Link className="navbar-brand text-light" to="/">
           Dr BULK
-        </Link>
+        </Link> */}
         <button
-          className="navbar-toggler bg-light"
+          className="navbar-toggler bg-light header-btn"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -46,76 +45,87 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+      <div className="container">
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/users/home">
-                {t("Home")}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/users/plans-pricing">
-                {t("Plans & Pricing")}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/users/instructors">
-                {t("Instructors")}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/users/eat-smart">
-                {t("Eat Smart")}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/users/apparel">
-                {t("Apparel")}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/users/contactus">
-                {t("Contact us")}
-              </Link>
-            </li>
-            {!isLoggedIn ? (
+            <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/users/login">
-                  {" "}
-                  {t("Login")}
-                </Link>{" "}
+                <Link className="nav-link" to="/users/home">
+                  {t("Home")}
+                </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/users/plans-pricing">
+                  {t("Plans & Pricing")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/users/instructors">
+                  {t("Instructors")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/users/eat-smart">
+                  {t("Eat Smart")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/users/apparel">
+                  {t("Apparel")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/users/contactus">
+                  {t("Contact us")}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link language-btn"
+                  value={"ar"}
+                  onClick={changeLanguage}
+                >
+                  {t("ChangeLangauge")}
+                </Link>
+              </li>
+            <div className="user-action">
+        {!isLoggedIn ? (
+              <button className="login-item btn">
+                <Link to="/users/login">
+                  {" "}
+                  <b>{t("Login")}</b>
+                </Link>{" "}
+              </button>
             ) : null}
             {!isLoggedIn ? (
-              <li className="nav-item">
-                <Link className="nav-link" to="/users/signup">
+              <button className="signup-item btn">
+                <Link to="/users/signup">
                   {" "}
-                  {t("Signup")}
+                  <b>{t("Signup")}</b>
                 </Link>{" "}
-              </li>
+              </button>
             ) : null}
             {isLoggedIn && role === "admin" ? (
-              <li className="nav-item">
-                <Link className="nav-link" to="/admin/change-password">
+              <li className="signup-item btn">
+                <Link className="" to="/admin/change-password">
                   {" "}
                   {t("Change password")}
                 </Link>{" "}
               </li>
             ) : null}
             {isLoggedIn ? (
-              <li className="nav-item">
-                <a className="nav-link logout" onClick={handleLogout}>
+              <li className="signup-item btn">
+                <Link className="logout" onClick={handleLogout}>
                   {" "}
                   {t("Logout")}
-                </a>{" "}
+                </Link>{" "}
               </li>
             ) : null}
-          </ul>
-        </div>
-        <span className="language-btn" value={"ar"} onClick={changeLanguage}>
-          {t("ChangeLangauge")}
-        </span>
       </div>
+            
+            </ul>
+          </div>
+      </div>
+      
     </nav>
   );
 };

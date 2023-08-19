@@ -17,14 +17,13 @@ const ChangePassword = () => {
   const [loginErrMsg , setLoginErrMsg] = useState("")
 
   const changePassword = (userData) =>{
-
-    axios.post(`${serverApi}api/admins/change-password`,userData
+    axios.post(`${serverApi}/api/admins/change-password`,userData
     , { headers: {
           Authorization: `Bearer ${localStorage.getItem('Token')}`
         }})
     .then(response=>{
       console.log(response);
-      if(response.status == 200){
+      if(response.status === 200){
       toast.success(t("Password Changed Successfully ! "))
       localStorage.setItem('Token',response.data.token)
       navigate('/admin/home')
@@ -119,9 +118,9 @@ const ChangePassword = () => {
               <button
                 disabled={isSubmitting}
                 type="submit"
-                className="btn btn-primary submit-btn"
+                className="btn btn-primary submit-btn bulk-btn"
               >
-                {t("Change password")}
+                <b>{t("Change password")}</b>
               </button>
               {isSubmitting ? (
                 <>
