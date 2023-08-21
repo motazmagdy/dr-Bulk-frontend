@@ -1,0 +1,15 @@
+.socialIcons{
+    display: flex;
+    flex-wrap: wrap;
+    }
+    
+    .iconContainer{
+        background-color: #7E8285;
+        border-radius: 2rem;
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .iconContainer:hover{
+        background-color: #7E8285
+    }

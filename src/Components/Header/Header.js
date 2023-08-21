@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import useAuthContext from "../../Hooks/AuthContextHook";
 import "./Header.css";
 import B from "../../Assets/Png Logo/B-only.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookF , faXTwitter , faTwitter ,faYoutube ,faInstagram} from "@fortawesome/free-brands-svg-icons";
+import "../../Ui/SocialIcons/SocialIcons.css";
+import useLogout from "../../Hooks/useLogout";
 
 const Header = () => {
+
   const navigate = useNavigate();
-  const [t, i18n] = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { logout } = useLogout()
+  const { state } = useAuthContext()
 
   const changeLanguage = (e) => {
     if (i18n.dir() === "rtl") {
@@ -19,23 +27,15 @@ const Header = () => {
     document.body.dir = i18n.dir();
   };
 
-  const [isLoggedIn, setIsLogged] = useState(localStorage.getItem("Token"));
-  const [role, setRole] = useState(localStorage.getItem("Role"));
-
   const handleLogout = () => {
-    localStorage.removeItem("Token");
-    localStorage.removeItem("Role");
-    navigate("/users/home");
+    logout()
   };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">  
-        <img src={B} onClick={() => navigate("/users/home")} />
-        {/* <Link className="navbar-brand text-light" to="/">
-          Dr BULK
-        </Link> */}
+        <img src={B} className="logoImg" onClick={() => navigate("/users/home")} alt="logoImg"/>
         <button
-          className="navbar-toggler bg-light header-btn"
+          className={`navbar-toggler bg-light header-btn ${i18n.dir() === "rtl" ? "btnAr" : "btnEn" }`}
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -45,7 +45,7 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-      <div className="container">
+      <div className="container noMargin">
         <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
@@ -88,7 +88,7 @@ const Header = () => {
                 </Link>
               </li>
             <div className="user-action">
-        {!isLoggedIn ? (
+        {!state.userRole ? (
               <button className="login-item btn">
                 <Link to="/users/login">
                   {" "}
@@ -96,7 +96,7 @@ const Header = () => {
                 </Link>{" "}
               </button>
             ) : null}
-            {!isLoggedIn ? (
+            {!state.userRole ? (
               <button className="signup-item btn">
                 <Link to="/users/signup">
                   {" "}
@@ -104,7 +104,7 @@ const Header = () => {
                 </Link>{" "}
               </button>
             ) : null}
-            {isLoggedIn && role === "admin" ? (
+            {state.userRole && state.userRole === "admin" ? (
               <li className="signup-item btn">
                 <Link className="" to="/admin/change-password">
                   {" "}
@@ -112,7 +112,7 @@ const Header = () => {
                 </Link>{" "}
               </li>
             ) : null}
-            {isLoggedIn ? (
+            {state.userRole ? (
               <li className="signup-item btn">
                 <Link className="logout" onClick={handleLogout}>
                   {" "}
@@ -121,8 +121,42 @@ const Header = () => {
               </li>
             ) : null}
       </div>
-            
-            </ul>
+      <li className="mb-1">
+                <Link href="#!">
+                  <button className="btn iconContainerHeader">
+                    <FontAwesomeIcon icon={faFacebookF} size="sm" />
+                  </button>
+                </Link>
+              </li>
+              <li className="mb-1">
+                <Link href="#!">
+                  <button className="btn iconContainerHeader">
+                  <FontAwesomeIcon icon={faXTwitter} size="sm" />
+                  </button>
+                </Link>
+              </li>
+              <li className="mb-1">
+                <Link href="#!">
+                  <button className="btn iconContainerHeader">
+                  <FontAwesomeIcon icon={faTwitter} size="sm" />
+                  </button>
+                </Link>
+              </li>
+              <li className="mb-1">
+                <Link href="#!">
+                  <button className="btn iconContainerHeader">
+                  <FontAwesomeIcon icon={faYoutube} size="sm" />
+                  </button>
+                </Link>
+              </li>
+              <li className="mb-1">
+                <Link href="#!">
+                  <button className="btn iconContainerHeader">
+                  <FontAwesomeIcon icon={faInstagram} size="sm" />
+                  </button>
+                </Link>
+              </li>
+      </ul>
           </div>
       </div>
       

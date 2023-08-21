@@ -1,10 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import './Home.css'
+import SectionsSlider from '../../../Components/SectionsSlider/SectionsSlider';
 
 const Home = () => {
     return (
         <div>
-            <h3>Home works</h3>
+            <SectionsSlider />
         </div>
     );
 };

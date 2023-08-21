@@ -1,43 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from 'react-router-dom'
 import { Field, Formik } from "formik";
-import  axios from "axios"
 import { UserSignUpSchema } from "../../../Schemas/UserSignUpSchema";
-import { toast } from 'react-toastify';
 import "./SignUp.css";
 import { useTranslation } from "react-i18next";
-const serverApi = process.env.REACT_APP_DR_BULK_API;
+import useSignup  from '../../../Hooks/useSignup'
 
 const UserSignUp = () => {
   
+  const { signup , isSubmitting , signupErrMsg , setIsSubmitting } = useSignup()
   const [ t , i18n] = useTranslation()
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [signupErrMsg,setSignupErrMsg]=useState("")
-
   const signupUser = (userData) =>{
-    // console.log("Signing up user");
-    // console.log(`${serverApi}/api/users/signup`);
-    axios.post(`${serverApi}/api/users/signup`,userData)
-    .then(response=>{
-      // console.log(response);
-      if(response.status === 201){
-      toast.success(t("Signed Up Successfully ! "))
-      setIsSubmitting(false)
-      }
-    })
-    .catch(err=>{
-      // console.log(err);
-      if(err.response.data.message){
-        toast.error(t(err.response.data.message))
-      } else {
-        err.response.data.errors.forEach(err=>{
-          toast.error(t(err.msg))
-        })
-      }
-      setSignupErrMsg(err.response.data.message)
-      setIsSubmitting(false)
-    })
+    signup(userData)
   }
 
   return (

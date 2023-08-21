@@ -6,16 +6,23 @@ import Header from './Components/Header/Header';
 import Router from './Router';
 import { ToastContainer  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './Components/Footer/Footer';
+import { AuthContext } from './Context/AuthContext';
+import { useContext } from 'react';
 
-function App() {
+const App = () => {
+
+  const { state } = useContext(AuthContext)
 
   const {  i18n } = useTranslation()
   document.body.dir = i18n.dir();
 
+
   return (
     <div className="App">
-      <Header />
+      {state.userRole !== "admin" ? <Header /> : null}
       <Router />
+      {state.userRole !== "admin" ? <Footer />: null}
       <ToastContainer
         position={i18n.dir() === "ltr" ? "top-right" : "top-left"}
         autoClose={3000}

@@ -21,9 +21,9 @@ const Router = ()=>{
                 <Route path="/users/login" element={<UserLogin />} />
                 <Route path="/users/signup" element={<UserSignUp />} />
                 <Route path="/users/home" element={<UserHome />} />
-                <Route path="/admin/login" element={<AdminLogin /> }/>
-                <Route path="/admin/change-password" element={<ChangePassword />}/>
-                <Route path="/admin/home" element={<AdminHome />} />
+                <Route path="/admins/login" element={<AdminLogin /> }/>
+                <Route path="/admins/change-password" element={<ChangePassword />}/>
+                <Route path="/admins/home" element={<AdminHome />} />
                 <Route path="/users/plans-pricing" element={<PlansPricing />} />
                 <Route path="/users/instructors" element={<Instructors />} />
                 <Route path="/users/eat-smart" element={<EatSmart />} />

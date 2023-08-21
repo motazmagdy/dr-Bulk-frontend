@@ -1,9 +1,11 @@
 import React from 'react';
+import './UserHome.css'
+import SectionsSlider from '../../../Components/SectionsSlider/SectionsSlider';
 
 const UserHome = () => {
     return (
         <div>
-            <h1>User Home</h1>
+            <SectionsSlider />
         </div>
     );
 };
