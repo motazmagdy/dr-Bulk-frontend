@@ -43,9 +43,9 @@ const Footer = () => {
                     <div className=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div className="footer-widget">
                             <h3 className="footer-title">payment methods</h3>
-                            <div class="pay-with">
+                            <div className="pay-with">
                                 <a href=""><img src="./images/mastercard_icon.png" alt="" /></a>
-                                <a href=""><img src="./images/visa_icon.png" alt="" class="ms-0" /></a>
+                                <a href=""><img src="./images/visa_icon.png" alt="" className="ms-0" /></a>
                             </div>
                         </div>
                     </div>

@@ -52,10 +52,14 @@ const Header = () => {
                     {t("Home")}
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item has-sub">
                   <NavLink className="nav-link" to="/plans-pricing">
                     {t("Plans & Pricing")}
                   </NavLink>
+                  <ul>
+                    <li><a href="#" title="Gym Membership">Gym Membership</a></li>
+                    <li><a href="#" title="Private Training">Private Training</a></li>
+                  </ul>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/instructors">
@@ -67,14 +71,10 @@ const Header = () => {
                     {t("Eat Smart")}
                   </NavLink>
                 </li>
-                <li className="nav-item has-sub">
+                <li className="nav-item">
                   <NavLink className="nav-link" to="/apparel">
                     {t("Apparel")}
                   </NavLink>
-                  <ul>
-                    <li><a href="blog-default.html" title="Blog">Blog Default</a></li>
-                    <li><a href="blog-single.html" title="Blog Single ">Blog Single</a></li>
-                  </ul>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/contactus">
