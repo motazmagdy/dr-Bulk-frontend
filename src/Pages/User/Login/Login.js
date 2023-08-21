@@ -25,7 +25,7 @@ const UserLogin = () => {
           localStorage.setItem("Role", "user");
           setIsSubmitting(false);
           setLoginErrMsg(null);
-          navigate("/users/home");
+          navigate("/");
         }
       })
       .catch((err) => {
@@ -75,7 +75,7 @@ const UserLogin = () => {
                 }
                 type="email"
                 id="email"
-                placeholder={t("Enter Your Email")}
+              // placeholder={t("Enter Your Email")}
               />
               {props.errors.email && props.touched.email ? (
                 <p className="input-err-msg">{t(props.errors.email)}</p>
@@ -94,7 +94,7 @@ const UserLogin = () => {
                 }
                 type="password"
                 id="password"
-                placeholder={t("Enter Your Password")}
+              // placeholder={t("Enter Your Password")}
               />
               {props.errors.password && props.touched.password ? (
                 <p className="input-err-msg">{t(props.errors.password)}</p>
@@ -102,7 +102,7 @@ const UserLogin = () => {
             </div>
             <p className="redirect-user">
               {t("Dont' have an account .")}
-              <Link to="/users/signup">{t("Sign up Here")} </Link>{" "}
+              <Link to="/signup">{t("Sign up Here")} </Link>{" "}
             </p>
             <div className="form-btns">
               <button

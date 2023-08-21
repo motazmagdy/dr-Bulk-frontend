@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import { Field, Formik } from "formik";
-import  axios from "axios"
+import axios from "axios"
 import { UserSignUpSchema } from "../../../Schemas/UserSignUpSchema";
 import { toast } from 'react-toastify';
 import "./SignUp.css";
@@ -9,35 +9,35 @@ import { useTranslation } from "react-i18next";
 const serverApi = process.env.REACT_APP_DR_BULK_API;
 
 const UserSignUp = () => {
-  
-  const [ t , i18n] = useTranslation()
+
+  const [t, i18n] = useTranslation()
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [signupErrMsg,setSignupErrMsg]=useState("")
+  const [signupErrMsg, setSignupErrMsg] = useState("")
 
-  const signupUser = (userData) =>{
+  const signupUser = (userData) => {
     // console.log("Signing up user");
     // console.log(`${serverApi}/api/users/signup`);
-    axios.post(`${serverApi}/api/users/signup`,userData)
-    .then(response=>{
-      // console.log(response);
-      if(response.status === 201){
-      toast.success(t("Signed Up Successfully ! "))
-      setIsSubmitting(false)
-      }
-    })
-    .catch(err=>{
-      // console.log(err);
-      if(err.response.data.message){
-        toast.error(t(err.response.data.message))
-      } else {
-        err.response.data.errors.forEach(err=>{
-          toast.error(t(err.msg))
-        })
-      }
-      setSignupErrMsg(err.response.data.message)
-      setIsSubmitting(false)
-    })
+    axios.post(`${serverApi}/api/users/signup`, userData)
+      .then(response => {
+        // console.log(response);
+        if (response.status === 201) {
+          toast.success(t("Signed Up Successfully ! "))
+          setIsSubmitting(false)
+        }
+      })
+      .catch(err => {
+        // console.log(err);
+        if (err.response.data.message) {
+          toast.error(t(err.response.data.message))
+        } else {
+          err.response.data.errors.forEach(err => {
+            toast.error(t(err.msg))
+          })
+        }
+        setSignupErrMsg(err.response.data.message)
+        setIsSubmitting(false)
+      })
   }
 
   return (
@@ -52,7 +52,7 @@ const UserSignUp = () => {
       }}
       onSubmit={(values, actions) => {
         setIsSubmitting(true);
-        const {confirmPassword , ...signupData } = values
+        const { confirmPassword, ...signupData } = values
         signupUser(signupData)
         actions.resetForm()
       }}
@@ -61,16 +61,16 @@ const UserSignUp = () => {
       {(props) => (
         <div className="container mt-5 ">
           <h3 className="text-center">{t("Sign Up")}</h3>
-          <form 
-          onSubmit={props.handleSubmit} 
-          className={i18n.dir() === "ltr" ? "form" : "form ar-form"}  
-          autoComplete="off">
+          <form
+            onSubmit={props.handleSubmit}
+            className={i18n.dir() === "ltr" ? "form" : "form ar-form"}
+            autoComplete="off">
             <div className="mb-3">
               <label htmlFor="name" className="form-label">
                 {t("Name")}
               </label>
-              <Field 
-                name = "name"
+              <Field
+                name="name"
                 type="text"
                 className={
                   props.errors.name && props.touched.name
@@ -78,7 +78,8 @@ const UserSignUp = () => {
                     : "form-control"
                 }
                 id="name"
-                placeholder={t("Enter Your Name")} />
+                // placeholder={t("Enter Your Name")}
+                 />
               {props.errors.name && props.touched.name ? (
                 <p className="input-err-msg">{t(props.errors.name)}</p>
               ) : null}
@@ -96,7 +97,7 @@ const UserSignUp = () => {
                 }
                 type="email"
                 id="email"
-                placeholder={t("Enter Your Email")}
+                // placeholder={t("Enter Your Email")}
               />
               {props.errors.email && props.touched.email ? (
                 <p className="input-err-msg">{t(props.errors.email)}</p>
@@ -115,7 +116,7 @@ const UserSignUp = () => {
                 }
                 type="password"
                 id="password"
-                placeholder={t("Enter Your Password")}
+                // placeholder={t("Enter Your Password")}
               />
               {props.errors.password && props.touched.password ? (
                 <p className="input-err-msg">{t(props.errors.password)}</p>
@@ -134,7 +135,7 @@ const UserSignUp = () => {
                 }
                 type="password"
                 id="confirmPassword"
-                placeholder={t("Enter Your Password Again")}
+                // placeholder={t("Enter Your Password Again")}
               />
               {props.errors.confirmPassword && props.touched.confirmPassword ? (
                 <p className="input-err-msg">{t(props.errors.confirmPassword)}</p>
@@ -184,13 +185,13 @@ const UserSignUp = () => {
                 }
                 type="tel"
                 id="phoneNumber"
-                placeholder={t("Enter Your Phone number")}
+                // placeholder={t("Enter Your Phone number")}
               />
               {props.errors.phoneNumber && props.touched.phoneNumber ? (
                 <p className="input-err-msg">{t(props.errors.phoneNumber)}</p>
               ) : null}
             </div>
-            <p className='redirect-user'>{t("Already have an account .")}<Link to='/users/login'>{t("Login Here")} </Link> </p>
+            <p className='redirect-user'>{t("Already have an account .")}<Link to='/login'>{t("Login Here")} </Link> </p>
             <div className="form-btns">
               <button
                 disabled={isSubmitting}
@@ -209,7 +210,7 @@ const UserSignUp = () => {
                 </>
               ) : null}
             </div>
-            {signupErrMsg ? <p className="input-err-msg">{t(signupErrMsg)}</p> : null }
+            {signupErrMsg ? <p className="input-err-msg">{t(signupErrMsg)}</p> : null}
 
           </form>
         </div>
