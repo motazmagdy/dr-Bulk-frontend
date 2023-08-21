@@ -1,17 +1,17 @@
 @font-face {
   font-family: 'Gotham';
-  src: url('../public/fonts/Gotham-Medium\(1\).ttf') format('truetype'),
-    url('../public/fonts/GothamBold.ttf') format('truetype'),
-    url('../public/fonts/GothamBoldItalic.ttf') format('truetype'),
-    url('../public/fonts/GothamBook.ttf') format('truetype'),
-    url('../public/fonts/GothamBookItalic.ttf') format('truetype'),
-    url('../public/fonts/GothamLight.ttf') format('truetype'),
-    url('../public/fonts/GothamLightItalic.ttf') format('truetype'),
-    url('../public/fonts/GothamMedium.ttf') format('truetype'),
-    url('../public/fonts/Gotham-Black.otf') format('opentype'),
-    url('../public/fonts/Gotham-Thin.otf') format('opentype'),
-    url('../public/fonts/Gotham-ThinItalic.otf') format('opentype'),
-    url('../public/fonts/Gotham-UltraItalic.otf') format('opentype'),
+  src: url('../public/fontsbulk/Gotham-Medium\(1\).ttf') format('truetype'),
+    url('../public/fontsbulk/GothamBold.ttf') format('truetype'),
+    url('../public/fontsbulk/GothamBoldItalic.ttf') format('truetype'),
+    url('../public/fontsbulk/GothamBook.ttf') format('truetype'),
+    url('../public/fontsbulk/GothamBookItalic.ttf') format('truetype'),
+    url('../public/fontsbulk/GothamLight.ttf') format('truetype'),
+    url('../public/fontsbulk/GothamLightItalic.ttf') format('truetype'),
+    url('../public/fontsbulk/GothamMedium.ttf') format('truetype'),
+    url('../public/fontsbulk/Gotham-Black.otf') format('opentype'),
+    url('../public/fontsbulk/Gotham-Thin.otf') format('opentype'),
+    url('../public/fontsbulk/Gotham-ThinItalic.otf') format('opentype'),
+    url('../public/fontsbulk/Gotham-UltraItalic.otf') format('opentype'),
 }
 
 body {
