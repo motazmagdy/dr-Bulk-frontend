@@ -1620,12 +1620,9 @@ img {
 .slider-captions {
     position: absolute;
     bottom: 150px;
-    width: 100%;
+    /* width: 100%; */
+    width: 40%;
     color: #fff;
-}
-
-.slider-captions {
-    width: 100%;
 }
 
 .slider-title {
