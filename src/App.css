@@ -1,0 +1,51 @@
+.ar-form{
+  text-align: right !important;
+}
+
+.bulk-btn{
+  background-color: #FFE315;
+  border-color: #FFE315;
+  color:#333
+}
+
+.bulk-btn:hover{
+  background-color: #333;
+  border-color: #333;
+  color:#FFE315
+}
+
+.bulk-btn:disabled{
+  background-color: #333;
+  border-color: #333;
+  color:#FFE315
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
