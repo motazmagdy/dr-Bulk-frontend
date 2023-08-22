@@ -17,6 +17,7 @@ const Router = () => {
     return (
         <Suspense fallback={<RoutesSpinner />}>
             <Routes>
+                <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/plans-pricing" element={<PlansPricing />} />
                 <Route path="/instructors" element={<Instructors />} />
