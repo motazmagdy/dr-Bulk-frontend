@@ -13,6 +13,7 @@
 
 .brand-icon {
   width: 100px;
+  height: 45px;
   margin: 0.5rem 2rem;
 }
 
@@ -149,12 +150,12 @@ li:hover a {
     top: 1rem
   }
 
-  .show ul {
+  /* .show ul {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     height: 10rem;
-  }
+  } */
 
   .user-action {
     display: flex;
@@ -190,6 +191,23 @@ li:hover a {
 .navbar-nav .nav-link.active {
   color: #f1c40f !important;
 }
+
+@media only screen and (max-width:620px) {
+  .lang {
+    width: 120px !important;
+    margin: 20px 0 0 0;
+  }
+
+  .btn {
+    padding: 5px 8px;
+  }
+
+  .login-item,
+  .signup-item {
+    min-width: 90px;
+  }
+}
+
 
 :root {
   --custom-white: #ededed;
