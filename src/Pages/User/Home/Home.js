@@ -1,53 +1,70 @@
 import React from 'react';
-
-// import OwlCarousel from 'react-owl-carousel';
-// import 'owl.carousel/dist/assets/owl.carousel.css';
-// import 'owl.carousel/dist/assets/owl.theme.default.css';
-
+import OwlCarousel from 'react-owl-carousel2';
 
 const Home = () => {
+    const options1 = {
+        items: 1,
+        nav: false,
+        rewind: true,
+        autoplay: true,
+        loop: true,
+        // responsive: {
+        //     0: {
+        //         items: 1
+        //     },
+        //     400: {
+        //         items: 2
+        //     },
+        //     600: {
+        //         items: 3
+        //     }
+        // }
+    };
+    const options2 = {
+        items: 1,
+        nav: false,
+        rewind: true,
+        autoplay: true,
+        loop: true
+    };
+
     return (
         <>
-            <div className="slider">
-                {/* <div className="owl-carousel slider"> */}
-                {/* <OwlCarousel
-                    className="owl-theme slider"
-                    loop
-                    margin={0}
-                    nav
-                > */}
-                <div className="item">
-                    <div className="slider-img"> <img src="./images/slider-1.jpg" alt="" /></div>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-7 col-md-7 col-sm-12  col-xs-12">
-                                <div className="slider-profile">
-                                    <div className="back-pic"></div>
-                                    <div className="profile"><img src="./images/profile.jpg" alt="" className="img-responsive" /></div>
-                                </div>
-                            </div>
-                            <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                                <div className="slider-captions">
-                                    {/* <h1 className="slider-title">Dr Bulk Gym</h1> */}
-                                    <h1 className="slider-title">Dr Bulk Gym</h1>
-                                    <p className="slider-text hidden-xs">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                                    {/* <a href="#" className="btn btn-default btn-lg hidden-sm hidden-xs">About Nutirionist</a> */}
+            <div className="custom-slider">
+                <OwlCarousel options={options1} >
+                    <div className="item">
+                        <div className="custom-slider-img"> <img src="./images/slider-1.jpg" alt="" /></div>
+                        <div className="container">
+                            <div className="row">
+                                {/* <div className="col-lg-7 col-md-7 col-sm-12  col-xs-12">
+                                    <div className="custom-slider-profile">
+                                        <div className="back-pic"></div>
+                                        <div className="profile"><img src="./images/profile.jpg" alt="" className="img-responsive" /></div>
+                                    </div>
+                                </div> */}
+                                <div className="col-12">
+                                    {/* <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12"> */}
+                                    <div className="custom-slider-captions">
+                                        <h1 className="custom-slider-title">Dr Bulk Gym</h1>
+                                        <p className="custom-slider-text hidden-xs">Personal coach | Healthy habits | Track progress </p>
+                                        <a href="#" className="btn btn-default btn-lg hidden-sm hidden-xs">About Nutirionist</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                {/* <div className="item">
-                        <div className="slider-img"><img src="./images/slider-2.jpg" alt="" /></div>
+                    <div className="item">
+                        <div className="custom-slider-img"><img src="./images/slider-2.jpg" alt="" /></div>
                         <div className="container">
                             <div className="row">
-                                <div className="col-lg-7 col-md-7 col-sm-12  col-xs-12"></div>
-                                <div className="col-lg-5 col-md-5 col-sm-12  col-xs-12">
-                                    <div className="slider-captions">
-                                        <h1 className="slider-title">Create Lean &amp;
+                                {/* <div className="col-lg-7 col-md-7 col-sm-12  col-xs-12"></div> */}
+                                <div className="col-12">
+                                    {/* <div className="col-lg-5 col-md-5 col-sm-12  col-xs-12"> */}
+                                    <div className="custom-slider-captions">
+                                        <h1 className="custom-slider-title">Create Lean &amp;
                                             Healthy Body
                                             For Life</h1>
-                                        <p className="slider-text hidden-xs">Create Lean | Healthy Body | Healthy Life</p>
+                                        <p className="custom-slider-text hidden-xs">Create Lean | Healthy Body | Healthy Life</p>
                                         <a href="#" className="btn btn-default btn-lg hidden-sm hidden-xs">View My Services</a>
                                     </div>
                                 </div>
@@ -55,25 +72,25 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="item">
-                        <div className="slider-img"><img src="./images/slider-3.jpg" alt="" /></div>
+                        <div className="custom-slider-img"><img src="./images/slider-3.jpg" alt="" /></div>
                         <div className="container">
                             <div className="row">
-                                <div className="col-lg-7 col-md-7 col-sm-12  col-xs-12"></div>
-                                <div className="col-lg-5 col-md-5 col-sm-12  col-xs-12">
-                                    <div className="slider-captions">
-                                        <h1 className="slider-title">LET'S BEGIN YOUR
+                                {/* <div className="col-lg-7 col-md-7 col-sm-12  col-xs-12"></div> */}
+                                <div className="col-12">
+                                    {/* <div className="col-lg-5 col-md-5 col-sm-12  col-xs-12"> */}
+                                    <div className="custom-slider-captions">
+                                        <h1 className="custom-slider-title">LET'S BEGIN YOUR
                                             HEALTHIEST JOURNEY
                                             TOGETHER</h1>
-                                        <p className="slider-text hidden-xs">Lets Begin | Healthiest Journey | Together </p>
-                                        <a href="#" className="btn btn-default btn-lg  hidden-sm hidden-xs">Get started Now</a> 
+                                        <p className="custom-slider-text hidden-xs">Lets Begin | Healthiest Journey | Together </p>
+                                        <a href="#" className="btn btn-default btn-lg  hidden-sm hidden-xs">Get started Now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div> */}
-                {/* </OwlCarousel> */}
-                {/* </div> */}
-            </div >
+                    </div>
+                </OwlCarousel>
+            </div>
             <div className="space-medium bg-light">
                 <div className="container">
                     <div className="row">
@@ -253,7 +270,8 @@ const Home = () => {
             <div className="space-medium bg-light">
                 <div className="container">
                     <div className="testimonial-carousel">
-                        <div className="owl-carousel slider">
+                        {/* <div className="owl-carousel slider"> */}
+                        <OwlCarousel options={options2} >
                             <div className="item">
                                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
                                     <div className="">
@@ -329,7 +347,8 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </OwlCarousel>
+                        {/* </div> */}
                     </div>
                 </div>
             </div>
