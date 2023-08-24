@@ -1613,6 +1613,11 @@ body {
     height: 100vh;
 }
 
+.custom-slider .owl-carousel {
+    position: relative;
+    top: -16px;
+}
+
 @media only screen and (max-width:992px) {
 
     .custom-slider .owl-carousel,
