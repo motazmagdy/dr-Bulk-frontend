@@ -1211,6 +1211,11 @@ img {
  top: 23px;
  height: 0;
 }*/
+
+body {
+    overflow: hidden;
+}
+
 #navigation ul ul {
     position: absolute;
     left: -9999px;
