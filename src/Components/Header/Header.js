@@ -46,93 +46,99 @@ const Header = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="container ps-5">
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <div id="navigation">
-                <ul className="navbar-nav ml-auto">
-                  <li className="nav-item">
-                    <NavLink className="nav-link" to="/">
-                      {t("Home")}
-                    </NavLink>
-                  </li>
-                  <li className="nav-item has-sub">
-                    <NavLink className="nav-link" to="/plans-pricing">
-                      {t("Plans & Pricing")}
-                    </NavLink>
-                    <ul>
-                      <li><a href="#" title="Gym Membership">Gym Membership</a></li>
-                      <li><a href="#" title="Private Training">Private Training</a></li>
-                    </ul>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link" to="/instructors">
-                      {t("Instructors")}
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link" to="/eat-smart">
-                      {t("Eat Smart")}
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link" to="/apparel">
-                      {t("Apparel")}
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink className="nav-link" to="/contactus">
-                      {t("Contact us")}
-                    </NavLink>
-                  </li>
-                </ul>
-              </div>
+          {/* <div className="container ps-5"> */}
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <div id="navigation">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/">
+                    {t("Home")}
+                  </NavLink>
+                </li>
+                <li className="nav-item has-sub">
+                  <NavLink className="nav-link" to="/plans-pricing">
+                    {t("Plans & Pricing")}
+                  </NavLink>
+                  <ul>
+                    <li><a href="#" title="Gym Membership">Gym Membership</a></li>
+                    <li><a href="#" title="Private Training">Private Training</a></li>
+                  </ul>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/instructors">
+                    {t("Instructors")}
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/eat-smart">
+                    {t("Eat Smart")}
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/apparel">
+                    {t("Apparel")}
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/contactus">
+                    {t("Contact us")}
+                  </NavLink>
+                </li>
+
+                <li className="btns">
+                  <div className="lang">
+                    <button
+                      className="btn btn-dark language-btn"
+                      value={"ar"}
+                      onClick={changeLanguage}
+                    >
+                      {t("ChangeLangauge")}
+                    </button>
+                  </div>
+                  <div className="user-action">
+                    {!isLoggedIn ? (
+                      <button className="login-item btn">
+                        <NavLink to="/login">
+                          {" "}
+                          <b>{t("Login")}</b>
+                        </NavLink>{" "}
+                      </button>
+                    ) : null}
+                  </div>
+                  <div className="user-action">
+                    {!isLoggedIn ? (
+                      <button className="signup-item btn">
+                        <NavLink to="/signup">
+                          {" "}
+                          <b>{t("Signup")}</b>
+                        </NavLink>{" "}
+                      </button>
+                    ) : null}
+                    {isLoggedIn && role === "admin" ? (
+                      <li className="signup-item btn">
+                        <NavLink className="" to="/admin/change-password">
+                          {" "}
+                          {t("Change password")}
+                        </NavLink>{" "}
+                      </li>
+                    ) : null}
+                    {isLoggedIn ? (
+                      <li className="signup-item btn">
+                        <NavLink className="logout" onClick={handleLogout}>
+                          {" "}
+                          {t("Logout")}
+                        </NavLink>{" "}
+                      </li>
+                    ) : null}
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
-          <div className="lang">
-            <button
-              className="btn btn-dark language-btn"
-              value={"ar"}
-              onClick={changeLanguage}
-            >
-              {t("ChangeLangauge")}
-            </button>
-          </div>
-          <div className="user-action">
-            {!isLoggedIn ? (
-              <button className="login-item btn">
-                <NavLink to="/login">
-                  {" "}
-                  <b>{t("Login")}</b>
-                </NavLink>{" "}
-              </button>
-            ) : null}
-          </div>
-          <div className="user-action">
-            {!isLoggedIn ? (
-              <button className="signup-item btn">
-                <NavLink to="/signup">
-                  {" "}
-                  <b>{t("Signup")}</b>
-                </NavLink>{" "}
-              </button>
-            ) : null}
-            {isLoggedIn && role === "admin" ? (
-              <li className="signup-item btn">
-                <NavLink className="" to="/admin/change-password">
-                  {" "}
-                  {t("Change password")}
-                </NavLink>{" "}
-              </li>
-            ) : null}
-            {isLoggedIn ? (
-              <li className="signup-item btn">
-                <NavLink className="logout" onClick={handleLogout}>
-                  {" "}
-                  {t("Logout")}
-                </NavLink>{" "}
-              </li>
-            ) : null}
-          </div>
+
+
+          {/* </div> */}
+
         </nav>
       </div>
     </>

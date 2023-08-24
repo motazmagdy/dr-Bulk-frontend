@@ -30,7 +30,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="custom-slider">
+            <div className="custom-slider m-0 p-0">
                 <OwlCarousel options={options1} >
                     <div className="item">
                         <div className="custom-slider-img"> <img src="./images/slider-1.jpg" alt="" /></div>
