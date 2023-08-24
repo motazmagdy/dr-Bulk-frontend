@@ -3346,11 +3346,6 @@ a:active {
     background-color: var(--custom-yellow);
 }
 
-#navigation ul li.btns {
-    padding-left: 50px;
-    display: flex;
-}
-
 
 :root {
     --custom-white: #ededed;

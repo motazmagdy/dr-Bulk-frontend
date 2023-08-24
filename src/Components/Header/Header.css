@@ -112,8 +112,12 @@ li.nav-link:hover a {
   cursor: pointer;
 }
 
+#navigation ul li.btns {
+  display: flex;
+}
 
 .lang {
+  margin-left: 40px;
   margin-right: 40px;
 }
 
@@ -189,6 +193,10 @@ li.nav-link:hover a {
 
 .navbar-nav .nav-link.active {
   color: #f1c40f !important;
+}
+
+.btn {
+  padding: 8px 10px;
 }
 
 @media only screen and (max-width:992px) {
