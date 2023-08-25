@@ -246,7 +246,7 @@ li.nav-link:hover a {
 
   .login-item,
   .signup-item {
-    min-width: 90px;
+    min-width: 80px;
   }
 
   #navigation ul ul {
