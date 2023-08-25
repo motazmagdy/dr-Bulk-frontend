@@ -383,20 +383,21 @@ a img.aligncenter {
     white-space: normal !important;
 }
 
-.btn-primary {
+.btn-warning {
     background-color: transparent;
     border: 2px solid var(--custom-yellow);
     color: var(--custom-yellow);
 }
 
-.btn-primary:hover {
+.btn-warning:hover {
     background-color: var(--custom-yellow);
     border: 2px solid var(--custom-yellow);
     color: #fff;
 }
 
-.btn-primary.focus,
-.btn-primary:focus {
+.btn-warning.focus,
+.btn-warning:focus,
+.btn-warning:active {
     background-color: var(--custom-yellow);
     border: 2px solid var(--custom-yellow);
     color: #fff;
@@ -1219,6 +1220,7 @@ body {
 #navigation ul ul {
     position: absolute;
     left: -9999px;
+    z-index: 3;
 }
 
 #navigation.align-right ul ul {

@@ -15,13 +15,6 @@
   margin: 0.5rem 2rem;
 }
 
-/* 
-.user-action,
-.lang {
-  display: flex;
-  justify-content: flex-end;
-} */
-
 li {
   margin: 0 0.4rem;
 }
@@ -195,26 +188,38 @@ li.nav-link:hover a {
   color: #f1c40f !important;
 }
 
-.btn {
+.lang .btn,
+.user-action .btn {
   padding: 8px 10px;
 }
 
-@media only screen and (max-width:992px) {
+@media only screen and (max-width:1255px)and (min-width:1170px) {
+  #navigation {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .lang {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width:1170px) and (min-width:992px) {
   #navigation {
     padding-left: 30px;
   }
 
-  .navbar-nav {
-    align-items: flex-start;
+  .lang {
+    margin-left: 0;
   }
 
-  .header-wrapper .owl-carousel,
-  .header-wrapper .owl-carousel .item {
-    height: 500px;
+  #navigation ul ul {
+    top: -5px;
   }
 }
 
-@media only screen and (max-width:620px) {
+@media only screen and (max-width:992px) {
   #navigation {
     padding-left: 30px;
   }
@@ -228,13 +233,33 @@ li.nav-link:hover a {
     margin: 20px 0 0 0;
   }
 
-  .btn {
+  .user-action {
+    margin: 20px 0 0 0;
+  }
+
+  .lang .btn,
+  .user-action .btn {
     padding: 5px 8px;
   }
 
   .login-item,
   .signup-item {
     min-width: 90px;
+  }
+
+  #navigation ul ul {
+    top: -7px;
+  }
+
+  /* .navbar a:has(.brand-icon) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-center;
+  } */
+
+  .brand-icon {
+    display: inline-block;
+    margin-right: 200px;
   }
 }
 
