@@ -189,7 +189,7 @@ const Home = () => {
                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 mt20">
                                         <h3>GETTING STARTED</h3>
                                         <p>Sed accumsan libero quis lectus fermentum ac faucibus tempusn enimroin elementum.</p>
-                                        <a href="#" className="btn btn-primary">get-started</a>
+                                        <a href="#" className="btn btn-warning">get-started</a>
                                     </div>
                                 </div>
                             </div>
