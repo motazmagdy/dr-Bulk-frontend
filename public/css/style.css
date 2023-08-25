@@ -3334,11 +3334,6 @@ a:active {
         margin-top: 20px;
     }
 
-    #navigation ul ul {
-        position: relative;
-        top: -30px;
-    }
-
     .footer-widget .pay-with img {
         width: 50px !important;
         height: 50px !important;
