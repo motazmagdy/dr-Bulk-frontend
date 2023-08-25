@@ -258,11 +258,6 @@ li.nav-link:hover a {
     display: flex;
     justify-content: flex-center;
   } */
-
-  .brand-icon {
-    display: inline-block;
-    margin-right: 200px;
-  }
 }
 
 @media only screen and (max-width:620px) {
