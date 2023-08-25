@@ -269,6 +269,10 @@ li.nav-link:hover a {
   #navigation {
     padding-left: 0px;
   }
+
+  .brand-icon {
+    margin-left: 10px;
+  }
 }
 
 
