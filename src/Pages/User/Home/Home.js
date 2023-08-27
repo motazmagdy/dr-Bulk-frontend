@@ -1,6 +1,8 @@
 import React from 'react';
 import OwlCarousel from 'react-owl-carousel2';
 
+import './Home.css'
+
 const Home = () => {
     const options1 = {
         items: 1,

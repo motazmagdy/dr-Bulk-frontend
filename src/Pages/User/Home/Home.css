@@ -1,0 +1,37 @@
+.testimonial-carousel .item {
+    display: flex;
+    justify-content: center;
+}
+
+.testimonial-carousel .owl-dots .owl-dot span {
+    width: 10px;
+    height: 10px;
+    margin: 5px 4px;
+    background: transparent;
+    border-radius: 0px;
+    border: 2px solid #b3b3b3;
+    display: block;
+    -webkit-backface-visibility: visible;
+    transition: opacity 200ms ease;
+}
+
+.testimonial-carousel .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+    background-color: transparent;
+    border: 2px solid #555555;
+}
+
+@media only screen and (max-width:620px) {
+    .custom-slider-img {
+        display: none;
+    }
+}
+
+:root {
+    --custom-white: #ededed;
+    --custom-black: #181c18;
+    --custom-gray: #383e38;
+    --custom-light-gray: #f9f9f9;
+    /* --custom-yellow: #ffe315; */
+    --custom-yellow: #efd510;
+}

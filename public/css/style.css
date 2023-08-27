@@ -1213,15 +1213,6 @@ img {
  height: 0;
 }*/
 
-/* body {
-    overflow-x: hidden;
-} */
-
-#navigation ul ul {
-    position: absolute;
-    left: -9999px;
-    z-index: 3;
-}
 
 #navigation.align-right ul ul {
     text-align: right;
@@ -1613,7 +1604,7 @@ img {
 .custom-slider .owl-carousel,
 .custom-slider .owl-carousel .item {
     height: 90vh;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
 }
 
 .custom-slider .owl-carousel {
@@ -3269,91 +3260,6 @@ a:active {
         margin-top: 120px;
         left: 10px;
     }
-}
-
-
-
-/* edits */
-.navbar {
-    background-color: var(--custom-black) !important;
-}
-
-.navbar a {
-    color: var(--custom-white) !important;
-}
-
-/* footer */
-.footer-widget .pay-with {
-    width: 100%;
-}
-
-.footer-widget .pay-with img {
-    width: 60px !important;
-    height: 60px !important;
-
-    margin-left: 20px !important;
-}
-
-/* reviews carousel */
-.testimonial-carousel .item {
-    display: flex;
-    justify-content: center;
-}
-
-.testimonial-carousel .owl-dots .owl-dot span {
-    width: 10px;
-    height: 10px;
-    margin: 5px 4px;
-    background: transparent;
-    border-radius: 0px;
-    border: 2px solid #b3b3b3;
-    display: block;
-    -webkit-backface-visibility: visible;
-    transition: opacity 200ms ease;
-}
-
-.testimonial-carousel .owl-dots .owl-dot.active span,
-.owl-theme .owl-dots .owl-dot:hover span {
-    background-color: transparent;
-    border: 2px solid #555555;
-}
-
-/* header */
-#navigation ul li.has-sub {
-    position: relative;
-    top: 0;
-}
-
-#navigation ul ul {
-    position: absolute;
-    top: 16px;
-
-    display: none;
-}
-
-#navigation ul li.has-sub:hover ul {
-    display: block;
-}
-
-@media only screen and (max-width:620px) {
-    .user-action {
-        margin-top: 20px;
-    }
-
-    .footer-widget .pay-with img {
-        width: 50px !important;
-        height: 50px !important;
-        margin-left: 10px !important;
-    }
-
-
-    .custom-slider-img {
-        display: none;
-    }
-}
-
-.navbar-toggler {
-    background-color: var(--custom-yellow);
 }
 
 
