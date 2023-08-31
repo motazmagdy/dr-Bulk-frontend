@@ -1,3 +1,45 @@
+body {
+    overflow-x: hidden;
+}
+
+/* first slider animation */
+/* custom-slider-text */
+.custom-slider .owl-item.active :is(.custom-slider-title, .custom-slider-text, .btn-default) {
+    position: relative;
+
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+
+    animation: slide-in 2.5s forwards;
+    -webkit-animation: slide-in 2.5s forwards;
+
+    opacity: 0;
+}
+
+@keyframes slide-in {
+    50% {
+        transform: translateX(5%);
+        opacity: .5;
+    }
+
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes slide-in {
+    50% {
+        transform: translateX(5%);
+        opacity: .5;
+    }
+
+    100% {
+        -webkit-transform: translateX(0%);
+    }
+}
+
+/* last slider */
 .testimonial-carousel .item {
     display: flex;
     justify-content: center;

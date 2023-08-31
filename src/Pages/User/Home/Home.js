@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import OwlCarousel from 'react-owl-carousel2';
-
 import './Home.css'
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const Home = () => {
-    const options1 = {
+    useEffect(() => {
+        AOS.init({ duration: 2000 });
+    }, [])
+
+    const options = {
         items: 1,
         nav: false,
         rewind: true,
@@ -22,18 +28,11 @@ const Home = () => {
         //     }
         // }
     };
-    const options2 = {
-        items: 1,
-        nav: false,
-        rewind: true,
-        autoplay: true,
-        loop: true
-    };
 
     return (
         <>
             <div className="custom-slider m-0 p-0">
-                <OwlCarousel options={options1} >
+                <OwlCarousel options={options} >
                     <div className="item">
                         <div className="custom-slider-img"> <img src="./images/slider-1.jpg" alt="" /></div>
                         <div className="container">
@@ -93,7 +92,7 @@ const Home = () => {
                     </div>
                 </OwlCarousel>
             </div>
-            <div className="space-medium bg-light">
+            <div className="space-medium bg-light" data-aos="fade-left">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -127,7 +126,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="space-medium">
+            <div className="space-medium" data-aos="fade-right">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -147,7 +146,7 @@ const Home = () => {
                                 <div className="plan-content">
                                     <ul className="angle angle-right">
                                         <li>8 lifestyle-based meal plans </li>
-                                        <li>Nutritional data to support macro-nutrient</li>
+                                        <li>Nutritional data to srightport macro-nutrient</li>
                                         <li>Access to over 1000+ healthy recipes</li>
                                         <li>A choice of calorie-levels (1200-1500)</li>
                                     </ul>
@@ -164,7 +163,7 @@ const Home = () => {
                                 <div className="plan-content">
                                     <ul className="angle angle-right">
                                         <li>12 lifestyle-based meal plans </li>
-                                        <li>Nutritional data to support calorie counting</li>
+                                        <li>Nutritional data to srightport calorie counting</li>
                                         <li>Swap to suit your personal taste and lifestyle</li>
                                         <li>3 skill level-based exercise plans </li>
                                     </ul>
@@ -175,7 +174,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="space-medium bg-light">
+            <div className="space-medium bg-light" data-aos="fade-left">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6  col-md-6 col-sm-12 col-xs-12">
@@ -204,7 +203,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="space-medium">
+            <div className="space-medium" data-aos="fade-right">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -260,7 +259,7 @@ const Home = () => {
                                         <span className="meta-categories"><a href="#">Health Care </a></span>
                                         <span className="meta-date">28 July, 2020</span>
                                     </div>
-                                    <h4><a href="#" className="title">Habits, health &amp; fitness news catchup</a></h4>
+                                    <h4><a href="#" className="title">Habits, health &amp; fitness news catchright</a></h4>
                                     <p>Aliquet metus semper vehiculase juonecin dolor sederate....</p>
                                     <a href="#" className="btn-link">read more</a>
                                 </div>
@@ -269,18 +268,18 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className="space-medium bg-light">
+            <div className="space-medium bg-light" data-aos="fade-left">
                 <div className="container">
                     <div className="testimonial-carousel">
                         {/* <div className="owl-carousel slider"> */}
-                        <OwlCarousel options={options2} >
+                        <OwlCarousel options={options} >
                             <div className="item">
                                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
                                     <div className="">
                                         <div className="testimonial-content">
-                                            <div className="testimonial-icon">
+                                            {/* <div className="testimonial-icon">
                                                 <img src="./images/quote.png" alt="" />
-                                            </div>
+                                            </div> */}
                                             <div className="">
                                                 <ul>
                                                     <li><i className="fa fa-star"></i></li>
@@ -303,9 +302,9 @@ const Home = () => {
                                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
                                     <div className="">
                                         <div className="testimonial-content">
-                                            <div className="testimonial-icon">
+                                            {/* <div className="testimonial-icon">
                                                 <img src="./images/quote.png" alt="" />
-                                            </div>
+                                            </div> */}
                                             <div className="">
                                                 <ul>
                                                     <li><i className="fa fa-star"></i></li>
@@ -328,9 +327,9 @@ const Home = () => {
                                 <div className="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
                                     <div className="">
                                         <div className="testimonial-content">
-                                            <div className="testimonial-icon">
+                                            {/* <div className="testimonial-icon">
                                                 <img src="./images/quote.png" alt="" />
-                                            </div>
+                                            </div> */}
                                             <div className="">
                                                 <ul>
                                                     <li><i className="fa fa-star"></i></li>
@@ -342,7 +341,7 @@ const Home = () => {
                                             </div>
                                             <h2>Help for a better food and
                                                 body fit</h2>
-                                            <p className="testimonial-text">“I’m very grateful. Her supportive manner has made this task easy. A couple more kilos and I’ll be fitting into my wedding dress, She made me feel confident in her ability to help with my specific health concerns.”</p>
+                                            <p className="testimonial-text">“I’m very grateful. Her srightportive manner has made this task easy. A corightle more kilos and I’ll be fitting into my wedding dress, She made me feel confident in her ability to help with my specific health concerns.”</p>
                                             <div className="testimonial-meta">
                                                 <span>-Brock Lambrick</span> </div>
                                         </div>
