@@ -9,7 +9,7 @@ const ChangePassword = lazy(() => import("./Pages/Admin/ChangePassword/ChangePas
 const AdminHome = lazy(() => import("./Pages/Admin/AdminHome/AdminHome"))
 const Home = lazy(() => import("./Pages/User/Home/Home"))
 const Shop = lazy(() => import('./Pages/User/Shop/Shop'))
-const ProductDetails = lazy(() => import('./Pages/User/Shop/ProductDetails'))
+const ProductDetails = lazy(() => import('./Pages/User/Shop/ProductDetails/ProductDetails'))
 const Instructors = lazy(() => import('./Pages/User/Instructors/Instructors'))
 const EatSmart = lazy(() => import('./Pages/User/EatSmart/EatSmart'))
 const ContactUs = lazy(() => import('./Pages/User/ContactUs/ContactUs'))

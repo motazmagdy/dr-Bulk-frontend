@@ -72,7 +72,7 @@ body {
     font-weight: 400;
     line-height: 26px;
 
-    background-color: var(--custom-light-gray) !important;
+    background-color: var(--custom-body-background) !important;
 }
 
 h1,
@@ -1865,7 +1865,7 @@ img {
 }
 
 .footer-social a span:hover {
-    color: #a5d897;
+    color: var(--custom-yellow-shadow);
 }
 
 /*-------------- tiny footer ------------*/
@@ -3265,9 +3265,11 @@ a:active {
 
 :root {
     --custom-white: #ededed;
+    --custom-body-background: #f9f9f9;
     --custom-black: #181c18;
     --custom-gray: #383e38;
-    --custom-light-gray: #f9f9f9;
-    /* --custom-yellow: #ffe315; */
+    --custom-light-gray: #f2f2f2;
     --custom-yellow: #efd510;
+    --custom-dark-yellow: #cfba1a;
+    --custom-yellow-shadow: rgb(234, 220, 108);
 }
