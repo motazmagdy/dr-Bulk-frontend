@@ -1,27 +1,29 @@
-import { Suspense } from "react"
+import { lazy, Suspense } from "react"
 import { Routes, Route } from "react-router-dom"
 import RoutesSpinner from "./Components/Spinners/RoutesSpinner"
-import UserSignUp from "./Pages/User/SignUp/SignUp"
-import UserLogin from "./Pages/User/Login/Login"
-import AdminLogin from "./Pages/Admin/Login/Login"
-import ChangePassword from "./Pages/Admin/ChangePassword/ChangePassword"
-import AdminHome from "./Pages/Admin/AdminHome/AdminHome"
-import Home from "./Pages/User/Home/Home"
-import PlansPricing from './Pages/User/PlansPricing/PlansPricing'
-import Instructors from './Pages/User/Instructors/Instructors'
-import EatSmart from './Pages/User/EatSmart/EatSmart'
-import Apparel from './Pages/User/Apparel/Apparel'
-import ContactUs from './Pages/User/ContactUs/ContactUs'
+
+const UserSignUp = lazy(() => import("./Pages/User/SignUp/SignUp"))
+const UserLogin = lazy(() => import("./Pages/User/Login/Login"))
+const AdminLogin = lazy(() => import("./Pages/Admin/Login/Login"))
+const ChangePassword = lazy(() => import("./Pages/Admin/ChangePassword/ChangePassword"))
+const AdminHome = lazy(() => import("./Pages/Admin/AdminHome/AdminHome"))
+const Home = lazy(() => import("./Pages/User/Home/Home"))
+const Shop = lazy(() => import('./Pages/User/Shop/Shop'))
+const ProductDetails = lazy(() => import('./Pages/User/Shop/ProductDetails'))
+const Instructors = lazy(() => import('./Pages/User/Instructors/Instructors'))
+const EatSmart = lazy(() => import('./Pages/User/EatSmart/EatSmart'))
+const ContactUs = lazy(() => import('./Pages/User/ContactUs/ContactUs'))
 
 const Router = () => {
     return (
         <Suspense fallback={<RoutesSpinner />}>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/plans-pricing" element={<PlansPricing />} />
                 <Route path="/instructors" element={<Instructors />} />
                 <Route path="/eat-smart" element={<EatSmart />} />
-                <Route path="/apparel" element={<Apparel />} />
+                <Route path="/shop" element={<Shop />} >
+                    <Route path="product-details/:id" element={<ProductDetails />} />
+                </Route>
                 <Route path="/contactus" element={<ContactUs />} />
 
                 <Route path="/login" element={<UserLogin />} />
