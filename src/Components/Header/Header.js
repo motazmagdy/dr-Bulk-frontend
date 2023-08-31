@@ -56,12 +56,12 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li className="nav-item has-sub">
-                  <NavLink className="nav-link" to="/plans-pricing">
+                  <Link className="nav-link" to='/plans-pricing' onClick={e => e.preventDefault()}>
                     {t("Plans & Pricing")}
-                  </NavLink>
+                  </Link>
                   <ul>
-                    <li><a href="#" title="Gym Membership">Gym Membership</a></li>
-                    <li><a href="#" title="Private Training">Private Training</a></li>
+                    <li><Link to='/plans-pricing/gym-membership' title="Gym Membership">Gym Membership</Link></li>
+                    <li><Link to='/plans-pricing/private-training' title="Private Training">Private Training</Link></li>
                   </ul>
                 </li>
                 <li className="nav-item">
@@ -74,10 +74,13 @@ const Header = () => {
                     {t("Eat Smart")}
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/apparel">
+                <li className="nav-item has-sub">
+                  <NavLink className="nav-link" to='/apparel' onClick={e => e.preventDefault()}>
                     {t("Apparel")}
                   </NavLink>
+                  <ul>
+                    <li><Link to='/shop' title="shop">Shop</Link></li>
+                  </ul>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/contactus">
