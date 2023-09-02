@@ -25,10 +25,9 @@ const Router = () => {
                 <AdminHome />
               </ThemeProvider>
             </ColorModeContext.Provider>
-  <Route path="/*" element={<UserRouter />} /> 
           }
         />
-        
+        <Route path="/*" element={<UserRouter />} /> 
       </Routes>
     </>
   );
