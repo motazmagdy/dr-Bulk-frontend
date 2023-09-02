@@ -14,8 +14,9 @@ const Router = () => {
     <>
       <Routes>
         {/* <Route path="/*" element={<UserRouter />} />  */}
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route
-          path="/admin/*"
+          path="/admin"
           element={
             <ColorModeContext.Provider value={colorMode}>
               <ThemeProvider theme={theme}>
@@ -25,7 +26,6 @@ const Router = () => {
             </ColorModeContext.Provider>
           }
         />
-        <Route path="/admin/login" element={<AdminLogin />} />
         
       </Routes>
     </>
