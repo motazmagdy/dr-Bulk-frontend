@@ -13,8 +13,9 @@ const Router = () => {
   return (
     <>
       <Routes>
-        <Route path="/*" element={<UserRouter />} /> 
-        <Route path="/admin/login" element={<AdminLogin />} />
+    <Route path="/admin/login" element={<AdminLogin />} />
+        
+        
         <Route
           path="/admin/*"
           element={
@@ -24,6 +25,7 @@ const Router = () => {
                 <AdminHome />
               </ThemeProvider>
             </ColorModeContext.Provider>
+  <Route path="/*" element={<UserRouter />} /> 
           }
         />
         
