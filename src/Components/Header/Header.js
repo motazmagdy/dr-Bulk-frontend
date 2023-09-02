@@ -108,14 +108,6 @@ const Header = () => {
               </NavLink>{" "}
             </button>
           ) : null}
-          {state.userRole && state.userRole === "admin" ? (
-            <li className="signup-item btn">
-              <NavLink className="" to="/admin/change-password">
-                {" "}
-                {t("Change password")}
-              </NavLink>{" "}
-            </li>
-          ) : null}
           {state.userRole ? (
             <li className="signup-item btn">
               <NavLink className="logout" onClick={handleLogout}>
