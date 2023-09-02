@@ -13,7 +13,7 @@ const Router = () => {
   return (
     <>
       <Routes>
-        <Route path="/*" element={<UserRouter />} /> 
+        {/* <Route path="/*" element={<UserRouter />} />  */}
         <Route
           path="/admin/*"
           element={
