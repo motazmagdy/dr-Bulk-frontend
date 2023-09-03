@@ -8,7 +8,7 @@ const Footer = () => {
     const [t, i18n] = useTranslation();
 
     return (
-        <div className="footer">
+        <div className="footer" dir="ltr">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">

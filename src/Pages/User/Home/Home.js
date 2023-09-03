@@ -32,7 +32,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="slider m-0 p-0">
+            <div className="slider m-0 p-0" dir="ltr">
                 <OwlCarousel options={options} >
                     <div className="item">
                         <div className="slider-img">
@@ -99,6 +99,7 @@ const Home = () => {
                     </div>
                 </OwlCarousel>
             </div>
+
             <div className="space-medium bg-light" data-aos="fade-left">
                 <div className="container">
                     <div className="row">
@@ -283,7 +284,7 @@ const Home = () => {
                 </div>
             </div> */}
 
-            <div className="space-medium bg-light" data-aos="fade-left">
+            <div className="space-medium bg-light" data-aos="fade-left" dir="ltr">
                 <div className="container">
                     <div className="testimonial-carousel">
                         {/* <div className="owl-carousel slider"> */}

@@ -31,7 +31,7 @@ const Header = () => {
   return (
     <>
       <div className="header-wrapper">
-        <div className="social">
+        <div className="social" dir="ltr">
           <div className="container">
             <div className="row">
               <div className="col-12">
