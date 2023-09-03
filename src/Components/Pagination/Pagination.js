@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ReactPaginate from 'react-paginate';
-import axios from "axios";
 import './Pagination.css'
-
-const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const Pagination = ({ getProductsPerPage, numberOfPages }) => {
     const handlePageClick = (data) => {
