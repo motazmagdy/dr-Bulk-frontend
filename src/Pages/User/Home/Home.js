@@ -112,7 +112,9 @@ const Home = () => {
                     <div className="row">
                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div className="service-block ">
-                                <div className="service-img"><Link to='/'><img src="./images/service-1.jpg" /></Link></div>
+                                <div className="service-img">
+                                    <Link to='/'><img src="./images/gym6.jpg" alt="" /></Link>
+                                </div>
                                 <div className="service-content">
                                     <h3><Link to='/'>NUTRITION COUNSELING</Link></h3>
                                     <p>Aenean luctus erat quis varius sollicitudin. Fusce ac risus arcu. Duis iaculis tristique enim non malesuada. Proin porttitor libero nunc nec luctus risus hendrerit non.</p>
@@ -122,7 +124,9 @@ const Home = () => {
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div className="service-block ">
-                                <div className="service-img"><Link to='/'><img src="./images/service-2.jpg" /></Link></div>
+                                <div className="service-img">
+                                    <Link to='/'><img src="./images/gym4.jpg" /></Link>
+                                </div>
                                 <div className="service-content">
                                     <h3><Link to='/'>CORPORATE WELLNESS</Link></h3>
                                     <p>Integer dictum et orci ac feugiat. Fusce laoreet mauris et bibendum fringilla. Praesent lectus antte eget tempougiat ac orci. In justo nibh sodales ut imperdiet vel viverra at lectus.</p>
@@ -133,6 +137,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
             <div className="space-medium" data-aos="fade-right">
                 <div className="container">
                     <div className="row">
@@ -174,23 +179,24 @@ const Home = () => {
                                         <li>Swap to suit your personal taste and lifestyle</li>
                                         <li>3 skill level-based exercise plans </li>
                                     </ul>
-                                    <Link to='/' className="btn bulk-dark-btn" style={{ wordWrap: "break-word" }}>Start Your Journey Now</Link>
+                                    <Link to='/' className="btn bulk-dark-btn">Start Your Journey Now</Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div className="space-medium bg-light" data-aos="fade-left">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6  col-md-6 col-sm-12 col-xs-12">
                             <div className="about-section">
-                                <h1>About Nutritionist</h1>
+                                <h1>About Us</h1>
                                 <p>Vestibulum quis massa nunroin tincidunt imper odio congue felis Perrnon porttiultricies aurasitame. </p>
                                 <div className="row">
                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 mt20">
-                                        <h3>My Approaches</h3>
+                                        <h3>Dr bulk spotlight</h3>
                                         <p>Sed accumsan libero quis lectus tempusmus liberoesw phare enimroin elementum.</p>
                                         <Link to='/' className="btn bulk-dark-btn">More About Me</Link>
                                     </div>
@@ -203,14 +209,15 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="col-lg-offset-1 col-lg-5 col-md-5 col-md-offset-1 col-sm-12 col-xs-12">
-                            <div className="">
-                                <img src="./images/about-pic.jpg" alt="" className="img-responsive" />
+                            <div className="about-section-img">
+                                <img src="./images/gym7.jpg" alt="about us" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="space-medium" data-aos="fade-right">
+
+            {/* <div className="space-medium" data-aos="fade-right">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -274,7 +281,8 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
+
             <div className="space-medium bg-light" data-aos="fade-left">
                 <div className="container">
                     <div className="testimonial-carousel">
