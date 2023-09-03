@@ -39,15 +39,20 @@ const EditToolbar = ({
   setEditingImages
 }) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-//   const [theCategories, setTheCategories] = useState([]);
-//   const [imagesPreview, setImagesPreview] = useState([]);
 
   useEffect(() => {
     getCategories();
   }, [addingNewProduct]);
 
   return (
-    <GridToolbarContainer>
+    <GridToolbarContainer 
+    sx={{
+        "& .MuiButton-root" : {
+          fontWeight: "bolder",
+          marginBottom: "1rem",
+          fontSize: "larger"
+        }
+      }}>
       {!addingNewProduct ? (
         <Button
           color="primary"
@@ -57,7 +62,7 @@ const EditToolbar = ({
             setImagesPreview([])
           }}
         >
-          Add new product
+          Add New Product
         </Button>
       ) : (
         <>
@@ -102,7 +107,7 @@ const EditToolbar = ({
                   actions.resetForm();
                   setTimeout(()=>{
                       setAddingNewProduct(false)
-                  },1000)
+                  },1500)
                   setImagesPreview([])
                 }}
                 validationSchema={NewProductSchema}
@@ -645,7 +650,7 @@ console.log(editingImages);
         }}
       >
         <DataGrid
-          checkboxSelection
+        //   checkboxSelection
           rows={products}
           getRowId={(row) => row._id}
           columns={columns}
@@ -667,7 +672,7 @@ console.log(editingImages);
               setEditingImages,
             },
           }}
-          editMode="row"
+        //   editMode="row"
         />
         {/* {console.log("editingProduct" , editingProduct)} */}
         {editingProduct ? (
@@ -709,11 +714,11 @@ console.log(editingImages);
                 }}
                 onSubmit={(values, actions) => {
                   editProduct(editingProduct._id, values);
-                  //   actions.resetForm();
-                  //   setTimeout(() => {
-                  // setEditingProduct(false)
-                  //   }, 1000);
-                  //   setImagesPreview([]);
+                    actions.resetForm();
+                    setTimeout(() => {
+                    setEditingProduct(false)
+                    }, 1000);
+                    setImagesPreview([]);
                 }}
                 validationSchema={UpdateProductSchema}
               >

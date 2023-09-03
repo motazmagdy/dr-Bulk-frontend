@@ -26,7 +26,14 @@ const EditToolbar = ({addNewCategory,addingNew,setAddingNew}) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   return (
-    <GridToolbarContainer>
+    <GridToolbarContainer  
+    sx={{
+      "& .MuiButton-root" : {
+        fontWeight: "bolder",
+        marginBottom: "1rem",
+        fontSize: "larger"
+      }
+    }}>
       {!addingNew ? (
         <Button
           color="primary"
@@ -35,7 +42,7 @@ const EditToolbar = ({addNewCategory,addingNew,setAddingNew}) => {
             setAddingNew(true);
           }}
         >
-          Add record
+          Add Category
         </Button>
       ) : (
         <Formik
@@ -355,11 +362,14 @@ const Categories = () => {
           },
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
+          },
+          " & .MuiDataGrid-selectedRowCount & .MuiTablePagination-selectLabel & .MuiTablePagination-actions & .MuiTablePagination-select" :{
+            display:"none !important"
           }
         }}
       >
         <DataGrid
-          checkboxSelection
+          // checkboxSelection
           rows={categories}
           getRowId={(row) => row._id}
           columns={columns}
@@ -369,7 +379,7 @@ const Categories = () => {
           slotProps={{
             toolbar: { addNewCategory, getCategories, addingNew, setAddingNew },
           }}
-          editMode="row"
+          // editMode="row"
         />
         { editDialog ?
         <Dialog open={editDialog ? true : false } onClose={closeEditDialog}>
