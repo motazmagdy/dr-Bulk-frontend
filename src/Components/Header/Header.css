@@ -1,3 +1,25 @@
+.social {
+  width: 100%;
+
+  background-color: var(--custom-yellow);
+}
+
+.social .social-container {
+  width: 120px;
+
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social .social-container a span {
+  font-size: 20px;
+}
+
+.social .social-container i:hover {
+  color: aliceblue;
+}
+
 .navbar {
   background-color: var(--custom-black) !important;
   padding: .3rem 1.2rem;
@@ -70,36 +92,6 @@ li.nav-item:hover a {
 .login-item,
 .signup-item {
   min-width: 115px;
-}
-
-.login-item,
-.login-item:hover {
-  border: 2px solid var(--custom-yellow);
-}
-
-.login-item a {
-  color: var(--custom-black) !important;
-}
-
-.login-item:hover a {
-  color: white !important;
-}
-
-.signup-item {
-  border: 2px solid var(--custom-yellow);
-  background-color: #212529 !important;
-}
-
-.signup-item a {
-  color: white !important;
-}
-
-.signup-item:hover {
-  background-color: var(--custom-yellow) !important;
-}
-
-.signup-item:hover a {
-  color: #212529 !important;
 }
 
 .logo a {
@@ -311,9 +303,11 @@ li.nav-item:hover a {
 
 :root {
   --custom-white: #ededed;
+  --custom-body-background: #f9f9f9;
   --custom-black: #181c18;
   --custom-gray: #383e38;
-  --custom-light-gray: #f9f9f9;
-  /* --custom-yellow: #ffe315; */
+  --custom-light-gray: #f2f2f2;
   --custom-yellow: #efd510;
+  --custom-dark-yellow: #cfba1a;
+  --custom-yellow-shadow: rgb(234, 220, 108);
 }

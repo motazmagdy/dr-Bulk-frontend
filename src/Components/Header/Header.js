@@ -31,6 +31,21 @@ const Header = () => {
   return (
     <>
       <div className="header-wrapper">
+        <div className="social">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="social-container">
+                  <a href="#"><span><i className="fa fa-facebook"></i></span></a>
+                  <a href="#"><span><i className="fa fa-twitter"></i></span></a>
+                  <a href="#"><span><i className="fa fa-whatsapp"></i></span></a>
+                  <a href="#"><span><i className="fa fa-linkedin"></i></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <nav className="navbar navbar-expand-lg rounded-0">
           <Link to="/">
             <img src={B} className="brand-icon" alt="logo icon" />
@@ -100,38 +115,38 @@ const Header = () => {
                   </div>
                   <div className="user-action">
                     {!isLoggedIn ? (
-                      <button className="login-item btn">
-                        <NavLink to="/login">
+                      <button className="bulk-btn btn login-item">
+                        <Link to="/login">
                           {" "}
                           <b>{t("Login")}</b>
-                        </NavLink>{" "}
+                        </Link>{" "}
                       </button>
                     ) : null}
                   </div>
                   <div className="user-action">
                     {!isLoggedIn ? (
-                      <button className="signup-item btn">
-                        <NavLink to="/signup">
+                      <button className="bulk-dark-btn btn signup-item">
+                        <Link to="/signup">
                           {" "}
                           <b>{t("Signup")}</b>
-                        </NavLink>{" "}
+                        </Link>{" "}
                       </button>
                     ) : null}
                     {isLoggedIn && role === "admin" ? (
-                      <li className="signup-item btn">
-                        <NavLink className="" to="/admin/change-password">
+                      <button className="bulk-dark-btn btn">
+                        <Link to="/admin/change-password">
                           {" "}
                           {t("Change password")}
-                        </NavLink>{" "}
-                      </li>
+                        </Link>{" "}
+                      </button>
                     ) : null}
                     {isLoggedIn ? (
-                      <li className="signup-item btn">
-                        <NavLink className="logout" onClick={handleLogout}>
+                      <button className="bulk-dark-btn btn">
+                        <NavLink onClick={handleLogout}>
                           {" "}
                           {t("Logout")}
                         </NavLink>{" "}
-                      </li>
+                      </button>
                     ) : null}
                   </div>
                 </li>
