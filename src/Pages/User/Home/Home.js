@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel2';
 import './Home.css'
 
@@ -31,60 +32,66 @@ const Home = () => {
 
     return (
         <>
-            <div className="custom-slider m-0 p-0">
+            <div className="slider m-0 p-0">
                 <OwlCarousel options={options} >
                     <div className="item">
-                        <div className="custom-slider-img"> <img src="./images/slider-1.jpg" alt="" /></div>
+                        <div className="slider-img">
+                            {/* <img src="./images/gym2.jpg" alt="" /> */}
+                        </div>
                         <div className="container">
                             <div className="row">
                                 {/* <div className="col-lg-7 col-md-7 col-sm-12  col-xs-12">
-                                    <div className="custom-slider-profile">
+                                    <div className="slider-profile">
                                         <div className="back-pic"></div>
                                         <div className="profile"><img src="./images/profile.jpg" alt="" className="img-responsive" /></div>
                                     </div>
                                 </div> */}
                                 <div className="col-12">
                                     {/* <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12"> */}
-                                    <div className="custom-slider-captions">
-                                        <h1 className="custom-slider-title">Dr Bulk Gym</h1>
-                                        <p className="custom-slider-text hidden-xs">Personal coach | Healthy habits | Track progress </p>
-                                        <a href="#" className="btn btn-default btn-lg hidden-sm hidden-xs">About Nutirionist</a>
+                                    <div className="slider-captions">
+                                        <h1 className="slider-title">Dr Bulk Gym</h1>
+                                        <p className="slider-text hidden-xs">Personal coach | Healthy habits | Track progress </p>
+                                        <Link to='/' className="btn bulk-dark-btn btn-lg hidden-sm hidden-xs">About Nutirionist</Link>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="item">
-                        <div className="custom-slider-img"><img src="./images/slider-2.jpg" alt="" /></div>
+                        <div className="slider-img">
+                            {/* <img src="./images/slider-2.jpg" alt="" /> */}
+                        </div>
                         <div className="container">
                             <div className="row">
                                 {/* <div className="col-lg-7 col-md-7 col-sm-12  col-xs-12"></div> */}
                                 <div className="col-12">
                                     {/* <div className="col-lg-5 col-md-5 col-sm-12  col-xs-12"> */}
-                                    <div className="custom-slider-captions">
-                                        <h1 className="custom-slider-title">Create Lean &amp;
+                                    <div className="slider-captions">
+                                        <h1 className="slider-title">Create Lean &amp;
                                             Healthy Body
                                             For Life</h1>
-                                        <p className="custom-slider-text hidden-xs">Create Lean | Healthy Body | Healthy Life</p>
-                                        <a href="#" className="btn btn-default btn-lg hidden-sm hidden-xs">View My Services</a>
+                                        <p className="slider-text hidden-xs">Create Lean | Healthy Body | Healthy Life</p>
+                                        <Link to='/' className="btn bulk-dark-btn btn-lg hidden-sm hidden-xs">View My Services</Link>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="item">
-                        <div className="custom-slider-img"><img src="./images/slider-3.jpg" alt="" /></div>
+                        <div className="slider-img">
+                            {/* <img src="./images/slider-3.jpg" alt="" /> */}
+                        </div>
                         <div className="container">
                             <div className="row">
                                 {/* <div className="col-lg-7 col-md-7 col-sm-12  col-xs-12"></div> */}
                                 <div className="col-12">
                                     {/* <div className="col-lg-5 col-md-5 col-sm-12  col-xs-12"> */}
-                                    <div className="custom-slider-captions">
-                                        <h1 className="custom-slider-title">LET'S BEGIN YOUR
+                                    <div className="slider-captions">
+                                        <h1 className="slider-title">LET'S BEGIN YOUR
                                             HEALTHIEST JOURNEY
                                             TOGETHER</h1>
-                                        <p className="custom-slider-text hidden-xs">Lets Begin | Healthiest Journey | Together </p>
-                                        <a href="#" className="btn btn-default btn-lg  hidden-sm hidden-xs">Get started Now</a>
+                                        <p className="slider-text hidden-xs">Lets Begin | Healthiest Journey | Together </p>
+                                        <Link to='/' className="btn bulk-dark-btn btn-lg  hidden-sm hidden-xs">Get started Now</Link>
                                     </div>
                                 </div>
                             </div>
@@ -105,21 +112,21 @@ const Home = () => {
                     <div className="row">
                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div className="service-block ">
-                                <div className="service-img"><a href="#"><img src="./images/service-1.jpg" /></a></div>
+                                <div className="service-img"><Link to='/'><img src="./images/service-1.jpg" /></Link></div>
                                 <div className="service-content">
-                                    <h3><a href="#">NUTRITION COUNSELING</a></h3>
+                                    <h3><Link to='/'>NUTRITION COUNSELING</Link></h3>
                                     <p>Aenean luctus erat quis varius sollicitudin. Fusce ac risus arcu. Duis iaculis tristique enim non malesuada. Proin porttitor libero nunc nec luctus risus hendrerit non.</p>
-                                    <a href="#" className="btn-link">read more</a>
+                                    <Link to='/' className="btn-link">read more</Link>
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div className="service-block ">
-                                <div className="service-img"><a href="#"><img src="./images/service-2.jpg" /></a></div>
+                                <div className="service-img"><Link to='/'><img src="./images/service-2.jpg" /></Link></div>
                                 <div className="service-content">
-                                    <h3><a href="#">CORPORATE WELLNESS</a></h3>
+                                    <h3><Link to='/'>CORPORATE WELLNESS</Link></h3>
                                     <p>Integer dictum et orci ac feugiat. Fusce laoreet mauris et bibendum fringilla. Praesent lectus antte eget tempougiat ac orci. In justo nibh sodales ut imperdiet vel viverra at lectus.</p>
-                                    <a href="#" className="btn-link">read more</a>
+                                    <Link to='/' className="btn-link">read more</Link>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +157,7 @@ const Home = () => {
                                         <li>Access to over 1000+ healthy recipes</li>
                                         <li>A choice of calorie-levels (1200-1500)</li>
                                     </ul>
-                                    <a href="#" className="btn btn-default ">Start Your Journey Now</a>
+                                    <Link to='/' className="btn bulk-dark-btn ">Start Your Journey Now</Link>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +174,7 @@ const Home = () => {
                                         <li>Swap to suit your personal taste and lifestyle</li>
                                         <li>3 skill level-based exercise plans </li>
                                     </ul>
-                                    {/* <a href="#" className="btn btn-default" style="word-wrap: break-word;">Start Your Journey Now</a> */}
+                                    <Link to='/' className="btn bulk-dark-btn" style={{ wordWrap: "break-word" }}>Start Your Journey Now</Link>
                                 </div>
                             </div>
                         </div>
@@ -185,12 +192,12 @@ const Home = () => {
                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 mt20">
                                         <h3>My Approaches</h3>
                                         <p>Sed accumsan libero quis lectus tempusmus liberoesw phare enimroin elementum.</p>
-                                        <a href="#" className="btn btn-default">More About Me</a>
+                                        <Link to='/' className="btn bulk-dark-btn">More About Me</Link>
                                     </div>
                                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 mt20">
                                         <h3>GETTING STARTED</h3>
                                         <p>Sed accumsan libero quis lectus fermentum ac faucibus tempusn enimroin elementum.</p>
-                                        <a href="#" className="btn btn-warning">get-started</a>
+                                        <Link to='/' className="btn bulk-btn">get-started</Link>
                                     </div>
                                 </div>
                             </div>
@@ -216,52 +223,52 @@ const Home = () => {
                         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div className="post-block">
                                 <div className="post-img">
-                                    <a href="#" className="imghover">
-                                        <img src="./images/post-img-small-1.jpg" alt="" className="img-responsive" /></a>
+                                    <Link to='/' className="imghover">
+                                        <img src="./images/post-img-small-1.jpg" alt="" className="img-responsive" /></Link>
                                 </div>
                                 <div className="post-content">
                                     <div className="meta">
-                                        <span className="meta-categories"><a href="#">diet tips</a></span>
+                                        <span className="meta-categories"><Link to='/'>diet tips</Link></span>
                                         <span className="meta-date">30 July, 2020</span>
                                     </div>
-                                    <h4><a href="#" className="title">Green smoothie to go</a></h4>
+                                    <h4><Link to='/' className="title">Green smoothie to go</Link></h4>
                                     <p>Nam vitae aliquet metus semper vehicula juonecin dolor....</p>
-                                    <a href="#" className="btn-link">read more</a>
+                                    <Link to='/' className="btn-link">read more</Link>
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div className="post-block">
                                 <div className="post-img">
-                                    <a href="#" className="imghover">
+                                    <Link to='/' className="imghover">
                                         <img src="./images/post-img-small-2.jpg" alt="" className="img-responsive" />
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className="post-content">
                                     <div className="meta">
-                                        <span className="meta-categories"><a href="#">Weight Loss</a></span>
+                                        <span className="meta-categories"><Link to='/'>Weight Loss</Link></span>
                                         <span className="meta-date">29 July, 2020</span>
                                     </div>
-                                    <h4><a href="#" className="title">Inflammation Fighting Foods</a></h4>
+                                    <h4><Link to='/' className="title">Inflammation Fighting Foods</Link></h4>
                                     <p>Vitae aliquet metus semperveicula juonecin doloreer ornare....</p>
-                                    <a href="#" className="btn-link">read more</a>
+                                    <Link to='/' className="btn-link">read more</Link>
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div className="post-block">
                                 <div className="post-img">
-                                    <a href="#" className="imghover">
-                                        <img src="./images/post-img-small-3.jpg" alt="" className="img-responsive" /></a>
+                                    <Link to='/' className="imghover">
+                                        <img src="./images/post-img-small-3.jpg" alt="" className="img-responsive" /></Link>
                                 </div>
                                 <div className="post-content">
                                     <div className="meta">
-                                        <span className="meta-categories"><a href="#">Health Care </a></span>
+                                        <span className="meta-categories"><Link to='/'>Health Care </Link></span>
                                         <span className="meta-date">28 July, 2020</span>
                                     </div>
-                                    <h4><a href="#" className="title">Habits, health &amp; fitness news catchright</a></h4>
+                                    <h4><Link to='/' className="title">Habits, health &amp; fitness news catchright</Link></h4>
                                     <p>Aliquet metus semper vehiculase juonecin dolor sederate....</p>
-                                    <a href="#" className="btn-link">read more</a>
+                                    <Link to='/' className="btn-link">read more</Link>
                                 </div>
                             </div>
                         </div>
