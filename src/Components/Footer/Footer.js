@@ -22,10 +22,10 @@ const Footer = () => {
                                 </ul>
                             </div>
                             <div className="footer-social">
-                                <a href="#"><span><i className="fa fa-facebook-square"></i></span></a>
-                                <a href="#"><span className="active"><i className="fa fa-twitter-square"></i> </span></a>
-                                {/* <a href="#"><span className="active"><i className="fa fa-fa-whatsapp-square"></i> </span></a> */}
-                                <a href="#"><span><i className="fa fa-linkedin-square"></i></span></a>
+                                <a href="#"><span><i className="fa fa-facebook"></i></span></a>
+                                <a href="#"><span><i className="fa fa-twitter"></i></span></a>
+                                <a href="#"><span><i className="fa fa-whatsapp"></i></span></a>
+                                <a href="#"><span><i className="fa fa-linkedin"></i></span></a>
                             </div>
                         </div>
                     </div>
