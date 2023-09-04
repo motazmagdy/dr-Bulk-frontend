@@ -100,7 +100,7 @@ const Home = () => {
                 </OwlCarousel>
             </div>
 
-            <div className="space-medium bg-light" data-aos="fade-left">
+            <div className="space-medium" data-aos="fade-left">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -139,7 +139,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="space-medium" data-aos="fade-right">
+            <div className="space-medium bg-light" data-aos="fade-right">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -188,7 +188,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className="space-medium bg-light" data-aos="fade-left">
+            <div className="space-medium" data-aos="fade-left">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6  col-md-6 col-sm-12 col-xs-12">

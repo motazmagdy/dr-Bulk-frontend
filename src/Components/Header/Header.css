@@ -165,7 +165,10 @@ li.nav-item:hover a {
 /* } */
 
 @media screen and (max-width: 991px) {
-  img {
+  .header-wrapper img {
+    width: 1.5em;
+    height: 1.5em;
+
     position: sticky;
     left: 1rem;
     top: 1rem
@@ -185,11 +188,6 @@ li.nav-item:hover a {
     gap: 1rem;
   }
 
-  img {
-    width: 1.5em;
-    height: 1.5em;
-  }
-
   .header-btn {
     position: absolute;
     right: 1rem;
@@ -198,7 +196,7 @@ li.nav-item:hover a {
 }
 
 @media screen and (min-width: 991px) and (max-width: 1320px) {
-  ul {
+  .header-wrapper ul {
     flex-wrap: wrap;
   }
 }
