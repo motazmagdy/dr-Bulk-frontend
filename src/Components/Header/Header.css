@@ -21,6 +21,8 @@
 }
 
 .navbar {
+  height: auto;
+
   background-color: var(--custom-black) !important;
   padding: .3rem 1.2rem;
 }
@@ -166,12 +168,9 @@ li.nav-item:hover a {
 
 @media screen and (max-width: 991px) {
   .header-wrapper img {
-    width: 1.5em;
-    height: 1.5em;
-
     position: sticky;
     left: 1rem;
-    top: 1rem
+    top: 1rem;
   }
 
   /* .show ul {
@@ -191,7 +190,9 @@ li.nav-item:hover a {
   .header-btn {
     position: absolute;
     right: 1rem;
-    top: 0.5rem
+    top: .5rem;
+
+    margin-top: 7px;
   }
 }
 
