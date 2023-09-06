@@ -2699,7 +2699,7 @@ a:active {
     padding: 30px;
     border-radius: 0px;
     background-color: transparent;
-    border: 1px solid #ededed;
+    border: 1px solid lightgray;
 }
 
 .widget-title {
@@ -2788,6 +2788,7 @@ a:active {
 }
 
 .widget-search {
+    width: 100%;
     margin-bottom: 30px;
 }
 
