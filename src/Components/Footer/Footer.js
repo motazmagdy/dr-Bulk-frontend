@@ -16,16 +16,16 @@ const Footer = () => {
                             <h3 className="footer-title">Contact Infomation</h3>
                             <div className="">
                                 <ul>
-                                    <li> <i className="icon-placeholder"></i>123 st.</li>
+                                    <li><i className="icon-placeholder"></i>123 st.</li>
                                     <li><i className="icon-phone-call"></i>+123-123-1234</li>
                                     <li><i className="icon-envelope"></i>info@drbulk.com</li>
                                 </ul>
                             </div>
                             <div className="footer-social">
-                                <a href="#"><span><i className="fa fa-facebook"></i></span></a>
-                                <a href="#"><span><i className="fa fa-twitter"></i></span></a>
-                                <a href="#"><span><i className="fa fa-whatsapp"></i></span></a>
-                                <a href="#"><span><i className="fa fa-linkedin"></i></span></a>
+                                <Link to='/'><span><i className="fa fa-facebook"></i></span></Link>
+                                <Link to='/'><span><i className="fa fa-twitter"></i></span></Link>
+                                <Link to='/'><span><i className="fa fa-whatsapp"></i></span></Link>
+                                <Link to='/'><span><i className="fa fa-linkedin"></i></span></Link>
                             </div>
                         </div>
                     </div>
@@ -37,8 +37,8 @@ const Footer = () => {
                                 <li><Link to="/plans-pricing">{t("Plans & Pricing")}</Link></li>
                                 <li><Link to="/instructors">{t("Instructors")}</Link></li>
                                 <li><Link to="/eat-smart">{t("Eat Smart")}</Link></li>
-                                <li> <Link to="/apparel">{t("Apparel")}</Link></li>
-                                <li> <Link to="/contactus">{t("Contact us")}</Link></li>
+                                <li><Link to="/apparel">{t("Apparel")}</Link></li>
+                                <li><Link to="/contactus">{t("Contact us")}</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -46,8 +46,8 @@ const Footer = () => {
                         <div className="footer-widget">
                             <h3 className="footer-title">payment methods</h3>
                             <div className="pay-with">
-                                <a href=""><img src="./images/mastercard_icon.png" alt="" /></a>
-                                <a href=""><img src="./images/visa_icon.png" alt="" className="ms-0" /></a>
+                                <a href=""><img src="/images/mastercard_icon.png" alt="" /></a>
+                                <a href=""><img src="/images/visa_icon.png" alt="" className="ms-0" /></a>
                             </div>
                         </div>
                     </div>
