@@ -1,44 +1,17 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Field, Formik } from "formik";
-import axios from "axios";
 import { UserLoginSchema } from "../../../Schemas/UserLoginSchema";
-import { toast } from "react-toastify";
+import useLogin from "../../../Hooks/useLogin";
 import "./Login.css";
-const serverApi = process.env.REACT_APP_DR_BULK_API;
 
 const UserLogin = () => {
-  const [t, i18n] = useTranslation();
-  const navigate = useNavigate();
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loginErrMsg, setLoginErrMsg] = useState("");
+  
+  const {t, i18n} = useTranslation();
+  const { login , isSubmitting , setIsSubmitting , loginErrMsg } = useLogin()
 
   const loginUser = (userData) => {
-    axios
-      .post(`${serverApi}/api/users/login`, userData)
-      .then((response) => {
-        if (response.status === 201) {
-          toast.success(t("Logged In Successfully ! "));
-          localStorage.setItem("Token", response.data.token);
-          localStorage.setItem("Role", "user");
-          setIsSubmitting(false);
-          setLoginErrMsg(null);
-          navigate("/");
-        }
-      })
-      .catch((err) => {
-        if (err.response.data.message) {
-          toast.error(t(err.response.data.message));
-        } else {
-          err.response.data.errors.forEach((err) => {
-            toast.error(t(err.msg));
-          });
-        }
-        setIsSubmitting(false);
-        setLoginErrMsg(err.response.data.message);
-      });
+    login(userData ,"users")
   };
 
   return (

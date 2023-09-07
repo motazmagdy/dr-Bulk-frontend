@@ -1,0 +1,14 @@
+.admin-logo{
+    background-color: transparent !important;
+}
+
+.admin-icon{
+    width: 15%;
+    margin: 0.5rem 1rem ;
+}
+
+.user-action button {
+    border : none !important ;
+    margin: 0 1rem ;
+    height: 50%;
+}

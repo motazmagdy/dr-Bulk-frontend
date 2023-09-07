@@ -2,43 +2,36 @@ import { lazy, Suspense } from "react"
 import { Routes, Route } from "react-router-dom"
 import RoutesSpinner from "./Components/Spinners/RoutesSpinner"
 import NotFound from "./Components/NotFound/NotFound"
-
-const UserSignUp = lazy(() => import("./Pages/User/SignUp/SignUp"))
-const UserLogin = lazy(() => import("./Pages/User/Login/Login"))
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ColorModeContext, useMode } from "./theme";
+import useAuthContext from "./Hooks/AuthContextHook";
+const UserRouter = lazy(() => import("./Pages/User/UserRouter"))
 const AdminLogin = lazy(() => import("./Pages/Admin/Login/Login"))
-const ChangePassword = lazy(() => import("./Pages/Admin/ChangePassword/ChangePassword"))
 const AdminHome = lazy(() => import("./Pages/Admin/AdminHome/AdminHome"))
-const Home = lazy(() => import("./Pages/User/Home/Home"))
-const Shop = lazy(() => import('./Pages/User/Shop/Shop'))
-const ProductDetails = lazy(() => import('./Pages/User/Shop/ProductDetails/ProductDetails'))
-const Instructors = lazy(() => import('./Pages/User/Instructors/Instructors'))
-const EatSmart = lazy(() => import('./Pages/User/EatSmart/EatSmart'))
-const ContactUs = lazy(() => import('./Pages/User/ContactUs/ContactUs'))
+
 
 const Router = () => {
-    return (
-        <Suspense fallback={<RoutesSpinner />}>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="instructors" element={<Instructors />} />
-                <Route path="eat-smart" element={<EatSmart />} />
-                <Route path="shop" element={<Shop />} >
-                    <Route path=":id" element={<ProductDetails />} />
-                </Route>
-                {/* <Route path="shop/:id" element={<ProductDetails />} /> */}
-                <Route path="contactus" element={<ContactUs />} />
-
-                <Route path="login" element={<UserLogin />} />
-                <Route path="signup" element={<UserSignUp />} />
-
-                <Route path="admin" element={<AdminHome />} />
-                <Route path="admin/login" element={<AdminLogin />} />
-                <Route path="admin/change-password" element={<ChangePassword />} />
-
-                <Route path="*" element={<NotFound />} />
-
-            </Routes>
-        </Suspense>
-    )
+  const [theme, colorMode] = useMode();
+  const { state } = useAuthContext();
+  return (
+    <Suspense fallback={<RoutesSpinner />}>
+      <Routes>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin/*"
+          element={
+            <ColorModeContext.Provider value={colorMode}>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <AdminHome />
+              </ThemeProvider>
+            </ColorModeContext.Provider>
+          }
+        />
+        <Route path="/*" element={<UserRouter />} /> 
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
+  )
 }
 export default Router

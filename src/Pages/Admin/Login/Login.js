@@ -1,44 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Field, Formik } from "formik";
-import { toast } from 'react-toastify';
-import axios from "axios"
 import { AdminLoginSchema } from "../../../Schemas/AdminLoginSchema";
+import useLogin from "../../../Hooks/useLogin";
 import "./Login.css";
-const serverApi = process.env.REACT_APP_DR_BULK_API;
 
 const AdminLogin = () => {
 
   const { t, i18n } = useTranslation()
-  const navigate = useNavigate()
+  const { login , isSubmitting , setIsSubmitting , loginErrMsg }  = useLogin()
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loginErrMsg, setLoginErrMsg] = useState("")
 
   const loginUser = (userData) => {
-    axios.post(`${serverApi}/api/admins/login`, userData)
-      .then(response => {
-        if (response.status === 201) {
-          toast.success(t("Logged In Successfully ! "))
-          localStorage.setItem('Token', response.data.token)
-          localStorage.setItem('Role', "admin")
-          setIsSubmitting(false)
-          setLoginErrMsg(null)
-          navigate('/admin/home')
-        }
-      })
-      .catch(err => {
-        if (err.response.data.message) {
-          toast.error(t(err.response.data.message))
-        } else {
-          err.response.data.errors.forEach(err => {
-            toast.error(t(err.msg))
-          })
-        }
-        setIsSubmitting(false)
-        setLoginErrMsg(err.response.data.message)
-      })
+    login(userData , "admins")
   }
 
   return (
@@ -71,7 +45,7 @@ const AdminLogin = () => {
                 }
                 type="email"
                 id="email"
-              // placeholder={t("Enter Your Email")}
+              placeholder={t("Enter Your Email")}
               />
               {props.errors.email && props.touched.email ? (
                 <p className="input-err-msg">{t(props.errors.email)}</p>
@@ -90,7 +64,7 @@ const AdminLogin = () => {
                 }
                 type="password"
                 id="password"
-              // placeholder={t("Enter Your Password")}
+              placeholder={t("Enter Your Password")}
               />
               {props.errors.password && props.touched.password ? (
                 <p className="input-err-msg">{t(props.errors.password)}</p>

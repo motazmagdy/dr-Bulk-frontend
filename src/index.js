@@ -4,10 +4,13 @@ import "./index.css";
 import "./Locales/config"
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { AuthContextProvider } from "./Context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <AuthContextProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </AuthContextProvider>  
 );
