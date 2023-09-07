@@ -1,24 +1,72 @@
-.ar-form{
+.App {
+  overflow-x: hidden;
+}
+
+.ar-form {
   text-align: right !important;
 }
 
-.bulk-btn{
+/* .bulk-btn {
   background-color: #FFE315;
   border-color: #FFE315;
-  color:#333
+  color: #333
 }
 
-.bulk-btn:hover{
+.bulk-btn:hover {
   background-color: #333;
   border-color: #333;
-  color:#FFE315
+  color: #FFE315
 }
 
-.bulk-btn:disabled{
+.bulk-btn:disabled {
   background-color: #333;
   border-color: #333;
-  color:#FFE315
+  color: #FFE315
+} */
+
+/* bulk-btn */
+.bulk-btn,
+.bulk-btn:hover {
+  border: 2px solid var(--custom-yellow);
+  color: #212529 !important;
+  background-color: var(--custom-yellow) !important;
 }
+
+.bulk-btn a,
+.navbar .bulk-btn a {
+  color: #212529 !important;
+}
+
+.bulk-btn:hover {
+  color: var(--custom-white) !important;
+  background-color: #212529 !important;
+}
+
+.bulk-btn:hover a,
+.navbar .bulk-btn:hover a {
+  color: var(--custom-white) !important;
+}
+
+/* bulk-dark-btn */
+.bulk-dark-btn {
+  border: 2px solid var(--custom-yellow);
+  color: var(--custom-white) !important;
+  background-color: #212529 !important;
+}
+
+.bulk-dark-btn a {
+  color: var(--custom-white) !important;
+}
+
+.bulk-dark-btn:hover {
+  color: #212529 !important;
+  background-color: var(--custom-yellow) !important;
+}
+
+.bulk-dark-btn:hover a {
+  color: #212529 !important;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -48,4 +96,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+:root {
+  --custom-white: #ededed;
+  --custom-body-background: #f9f9f9;
+  --custom-black: #181c18;
+  --custom-gray: #383e38;
+  --custom-light-gray: #f2f2f2;
+  --custom-yellow: #efd510;
+  --custom-dark-yellow: #cfba1a;
+  --custom-yellow-shadow: rgb(234, 220, 108);
 }

@@ -1,21 +1,22 @@
-import { Routes, Route } from "react-router-dom";
-import AdminLogin from "./Pages/Admin/Login/Login";
-import AdminHome from "./Pages/Admin/AdminHome/AdminHome";
+import { lazy, Suspense } from "react"
+import { Routes, Route } from "react-router-dom"
+import RoutesSpinner from "./Components/Spinners/RoutesSpinner"
+import NotFound from "./Components/NotFound/NotFound"
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import useAuthContext from "./Hooks/AuthContextHook";
-import UserRouter from "./Pages/User/UserRouter";
+const UserRouter = lazy(() => import("./Pages/User/UserRouter"))
+const AdminLogin = lazy(() => import("./Pages/Admin/Login/Login"))
+const AdminHome = lazy(() => import("./Pages/Admin/AdminHome/AdminHome"))
+
 
 const Router = () => {
   const [theme, colorMode] = useMode();
   const { state } = useAuthContext();
-  console.log(state);
   return (
-    <>
+    <Suspense fallback={<RoutesSpinner />}>
       <Routes>
-    <Route path="/admin/login" element={<AdminLogin />} />
-        
-        
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin/*"
           element={
@@ -28,8 +29,9 @@ const Router = () => {
           }
         />
         <Route path="/*" element={<UserRouter />} /> 
+        <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
-  );
-};
-export default Router;
+    </Suspense>
+  )
+}
+export default Router

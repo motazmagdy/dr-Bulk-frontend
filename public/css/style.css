@@ -72,7 +72,7 @@ body {
     font-weight: 400;
     line-height: 26px;
 
-    background-color: var(--custom-light-gray);
+    background-color: var(--custom-body-background) !important;
 }
 
 h1,
@@ -383,20 +383,21 @@ a img.aligncenter {
     white-space: normal !important;
 }
 
-.btn-primary {
+.btn-warning {
     background-color: transparent;
     border: 2px solid var(--custom-yellow);
     color: var(--custom-yellow);
 }
 
-.btn-primary:hover {
+.btn-warning:hover {
     background-color: var(--custom-yellow);
     border: 2px solid var(--custom-yellow);
     color: #fff;
 }
 
-.btn-primary.focus,
-.btn-primary:focus {
+.btn-warning.focus,
+.btn-warning:focus,
+.btn-warning:active {
     background-color: var(--custom-yellow);
     border: 2px solid var(--custom-yellow);
     color: #fff;
@@ -953,7 +954,7 @@ button.btn {
 img {
     width: auto;
     max-width: 100%;
-    /* height: auto; */
+    height: auto;
     margin: 0;
     padding: 0;
     border-radius: 0px;
@@ -1060,10 +1061,11 @@ img {
 .header-wrapper {
     z-index: 9;
     position: relative;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    top: 0;
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
     background-color: #fff;
-    border-bottom: 1px solid #eaeaea;
+    /* border-bottom: 1px solid #eaeaea; */
 }
 
 .is-sticky .header-wrapper {}
@@ -1109,11 +1111,15 @@ img {
     border: 0;
     list-style: none;
     line-height: 1;
-    display: block;
+    /* display: block; */
     position: relative;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+#navigation ul li.has-sub a {
+    display: block;
 }
 
 #navigation:after,
@@ -1141,7 +1147,7 @@ img {
 }
 
 #navigation>ul>li {
-    float: left;
+    /* float: left; */
 }
 
 #navigation.align-center>ul {
@@ -1206,10 +1212,7 @@ img {
  top: 23px;
  height: 0;
 }*/
-#navigation ul ul {
-    position: absolute;
-    left: -9999px;
-}
+
 
 #navigation.align-right ul ul {
     text-align: right;
@@ -1598,10 +1601,30 @@ img {
 /*-----------------------------------
     6. Slider 
 -------------------------------------*/
-.slider {
-    margin-bottom: -30px;
-    height: auto;
+.slider .owl-carousel,
+.slider .owl-carousel .item {
+    height: 100vh;
 }
+
+.slider .owl-carousel {
+    position: relative;
+    top: -1px;
+}
+
+@media only screen and (max-width:992px) {
+
+    .slider .owl-carousel,
+    .slider .owl-carousel .item {
+        max-height: 70vh !important;
+    }
+
+    .slider .owl-carousel,
+    .slider .owl-carousel .item {
+        margin-top: 0;
+        padding-top: 0;
+    }
+}
+
 
 /*
 .slider-img {
@@ -1619,9 +1642,12 @@ img {
 
 .slider-captions {
     position: absolute;
-    bottom: 150px;
+    /* bottom: 150px; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     /* width: 100%; */
-    width: 40%;
+    width: 60%;
     color: #fff;
 }
 
@@ -1649,7 +1675,7 @@ img {
     text-align: center;
 }
 
-.slider .owl-nav .owl-prev {
+/* .slider .owl-nav .owl-prev {
     position: absolute;
     top: 42%;
     left: 0px;
@@ -1681,7 +1707,7 @@ img {
     height: 36px;
     width: 36px;
     border: 1px solid #b3b3b3;
-}
+} */
 
 .slider .owl-nav .owl-prev:hover {
     background-color: transparent;
@@ -1696,6 +1722,8 @@ img {
     text-decoration: none;
     color: var(--custom-yellow);
 }
+
+.slider .owl-nav .owl-next::after {}
 
 .slider .owl-dots .owl-dot {
     display: inline-block;
@@ -1802,7 +1830,7 @@ img {
 }
 
 .footer-widget ul li a:hover {
-    color: #a5d897;
+    color: var(--custom-yellow);
 }
 
 .footer-widget ul li i {
@@ -1830,7 +1858,7 @@ img {
 }
 
 .footer-social a span:hover {
-    color: #a5d897;
+    color: var(--custom-yellow);
 }
 
 /*-------------- tiny footer ------------*/
@@ -1941,7 +1969,16 @@ img {
     margin-top: 30px;
 }
 
-.service-img img {}
+
+.service-img {
+    max-width: 555px;
+    height: 320px;
+}
+
+.service-img img {
+    max-width: 100%;
+    max-height: 100%;
+}
 
 .service-list {}
 
@@ -2103,7 +2140,7 @@ a:active {
     line-height: 1.2;
     font-size: 13px;
     text-transform: uppercase;
-    color: #4ec355;
+    color: var(--custom-yellow);
     letter-spacing: 0px;
     font-weight: 700;
     margin-top: 0px;
@@ -2136,7 +2173,7 @@ a:active {
 .testimonial-carousel .owl-nav .owl-prev,
 .owl-nav .owl-next:hover {}
 
-.testimonial-carousel.owl-dots .owl-dot {
+.testimonial-carousel .owl-dots .owl-dot {
     display: inline-block;
     zoom: 1;
 }
@@ -2405,7 +2442,7 @@ a:active {
 }
 
 .meta-categories {
-    color: #4ec355;
+    color: var(--custom-yellow);
 }
 
 .meta-date,
@@ -2662,7 +2699,7 @@ a:active {
     padding: 30px;
     border-radius: 0px;
     background-color: transparent;
-    border: 1px solid #ededed;
+    border: 1px solid lightgray;
 }
 
 .widget-title {
@@ -2751,6 +2788,7 @@ a:active {
 }
 
 .widget-search {
+    width: 100%;
     margin-bottom: 30px;
 }
 
@@ -3000,9 +3038,9 @@ a:active {
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width:1200px) {
-    .slider-captions {
+    /* .slider-captions {
         bottom: 50px;
-    }
+    } */
 
     .slider-title {
         font-size: 24px;
@@ -3029,13 +3067,14 @@ a:active {
 
 /* Small Devices, Tablets */
 @media only screen and (max-width:768px) {
-    .slider-captions {
+    /* .slider-captions {
         bottom: 80px;
-    }
+    } */
 
     .slider-title {
         font-size: 24px;
-        line-height: 12px;
+        /* line-height: 12px; */
+        line-height: 36px;
         font-weight: 700;
     }
 
@@ -3068,7 +3107,7 @@ a:active {
 
     .slider-title {
         font-size: 16px;
-        line-height: 12px;
+        line-height: 24px;
         font-weight: 700;
     }
 
@@ -3227,37 +3266,13 @@ a:active {
 }
 
 
-
-/* edits */
-.navbar {
-    background-color: var(--custom-black) !important;
-}
-
-.navbar a {
-    color: var(--custom-white) !important;
-}
-
-/* footer */
-.footer-widget .pay-with {
-    display: flex;
-    align-items: space-between;
-}
-
-.footer-widget .pay-with img {
-    width: 60px !important;
-
-    margin-left: 20px !important;
-}
-
-.item {
-    width: 100% !important;
-}
-
 :root {
     --custom-white: #ededed;
+    --custom-body-background: #f9f9f9;
     --custom-black: #181c18;
     --custom-gray: #383e38;
-    --custom-light-gray: #f9f9f9;
-    /* --custom-yellow: #ffe315; */
+    --custom-light-gray: #f2f2f2;
     --custom-yellow: #efd510;
+    --custom-dark-yellow: #cfba1a;
+    --custom-yellow-shadow: rgb(234, 220, 108);
 }

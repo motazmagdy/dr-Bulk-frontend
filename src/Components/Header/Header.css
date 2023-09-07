@@ -1,31 +1,81 @@
+.social {
+  width: 100%;
+
+  background-color: var(--custom-yellow);
+}
+
+.social .social-container {
+  width: 120px;
+
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social .social-container a span {
+  font-size: 20px;
+}
+
+.social .social-container i:hover {
+  color: aliceblue;
+}
+
 .navbar {
+  height: auto;
+
+  background-color: var(--custom-black) !important;
   padding: .3rem 1.2rem;
 }
 
-.header {
+.navbar a {
+  color: var(--custom-white) !important;
+}
+
+.navbar-nav {
   display: flex;
-  justify-content: flex-start;
-  align-items: baseline;
-  padding: 1rem;
-  background-color: #333;
-  color: white;
+  align-items: center;
+
+  width: 100%;
+}
+
+#navigation ul li.has-sub {
+  position: relative;
+  top: 0;
+}
+
+#navigation ul ul {
+  position: absolute;
+  left: -9999px;
+  z-index: 3;
+  top: 16px;
+
+  display: none;
+}
+
+#navigation ul li.has-sub:hover ul {
+  display: block;
 }
 
 .brand-icon {
   width: 100px;
+  height: 45px;
   margin: 0.5rem 2rem;
 }
 
-.user-action {
-  display: flex;
-  justify-content: flex-end;
+.navbar-collapse {
+  flex-basis: inherit;
+  flex-grow: inherit;
 }
 
-li {
+.navbar-toggler {
+  background-color: var(--custom-yellow);
+}
+
+li.nav-item {
   margin: 0 0.4rem;
 }
 
-li:hover a {
+li.nav-item:hover a {
   color: var(--custom-yellow) !important;
 }
 
@@ -44,36 +94,6 @@ li:hover a {
 .login-item,
 .signup-item {
   min-width: 115px;
-}
-
-.login-item,
-.login-item:hover {
-  border: 2px solid var(--custom-yellow);
-}
-
-.login-item a {
-  color: var(--custom-black) !important;
-}
-
-.login-item:hover a {
-  color: white !important;
-}
-
-.signup-item {
-  border: 2px solid var(--custom-yellow);
-  background-color: #212529 !important;
-}
-
-.signup-item a {
-  color: white !important;
-}
-
-.signup-item:hover {
-  background-color: var(--custom-yellow) !important;
-}
-
-.signup-item:hover a {
-  color: #212529 !important;
 }
 
 .logo a {
@@ -111,9 +131,13 @@ li:hover a {
   cursor: pointer;
 }
 
+#navigation ul li.btns {
+  display: flex;
+  flex-direction: row;
+}
+
 .lang {
-  width: 230px;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-right: 40px;
 }
 
@@ -143,18 +167,18 @@ li:hover a {
 /* } */
 
 @media screen and (max-width: 991px) {
-  img {
+  .header-wrapper img {
     position: sticky;
     left: 1rem;
-    top: 1rem
+    top: 1rem;
   }
 
-  .show ul {
+  /* .show ul {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     height: 10rem;
-  }
+  } */
 
   .user-action {
     display: flex;
@@ -163,20 +187,17 @@ li:hover a {
     gap: 1rem;
   }
 
-  img {
-    width: 1.5em;
-    height: 1.5em;
-  }
-
   .header-btn {
     position: absolute;
     right: 1rem;
-    top: 0.5rem
+    top: .5rem;
+
+    margin-top: 7px;
   }
 }
 
 @media screen and (min-width: 991px) and (max-width: 1320px) {
-  ul {
+  .header-wrapper ul {
     flex-wrap: wrap;
   }
 }
@@ -191,10 +212,101 @@ li:hover a {
   color: #f1c40f !important;
 }
 
+.lang .btn,
+.user-action .btn {
+  padding: 8px 10px;
+}
+
+@media only screen and (max-width:1255px)and (min-width:1170px) {
+  #navigation {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .lang {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width:1170px) and (min-width:992px) {
+  #navigation {
+    padding-left: 30px;
+  }
+
+  .lang {
+    margin-left: 0;
+  }
+
+  #navigation ul ul {
+    top: -5px;
+  }
+}
+
+@media only screen and (max-width:992px) {
+  #navigation {
+    padding-left: 30px;
+  }
+
+  .navbar-nav {
+    align-items: flex-start;
+  }
+
+  #navigation ul li.btns {
+    flex-direction: column;
+  }
+
+  .lang {
+    width: 90px !important;
+    margin: 20px 0 0 0;
+  }
+
+  .user-action {
+    margin: 20px 0 0 0;
+  }
+
+  .lang .btn,
+  .user-action .btn {
+    padding: 5px 8px;
+  }
+
+  .login-item,
+  .signup-item {
+    min-width: 80px;
+  }
+
+  #navigation ul ul {
+    top: -7px;
+  }
+
+  .navbar a:has(.brand-icon) {
+    width: 100%;
+  }
+
+  .brand-icon {
+    display: block;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width:620px) {
+  #navigation {
+    padding-left: 0px;
+  }
+
+  .brand-icon {
+    margin-left: 10px;
+  }
+}
+
+
 :root {
   --custom-white: #ededed;
+  --custom-body-background: #f9f9f9;
   --custom-black: #181c18;
   --custom-gray: #383e38;
+  --custom-light-gray: #f2f2f2;
   --custom-yellow: #efd510;
-  /* --custom-yellow: #f1c40f; */
+  --custom-dark-yellow: #cfba1a;
+  --custom-yellow-shadow: rgb(234, 220, 108);
 }

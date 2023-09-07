@@ -2,11 +2,13 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import './Footer.css'
+
 const Footer = () => {
     const [t, i18n] = useTranslation();
 
     return (
-        <div className="footer">
+        <div className="footer" dir="ltr">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
@@ -14,16 +16,16 @@ const Footer = () => {
                             <h3 className="footer-title">Contact Infomation</h3>
                             <div className="">
                                 <ul>
-                                    <li> <i className="icon-placeholder"></i>123 st.</li>
+                                    <li><i className="icon-placeholder"></i>123 st.</li>
                                     <li><i className="icon-phone-call"></i>+123-123-1234</li>
                                     <li><i className="icon-envelope"></i>info@drbulk.com</li>
                                 </ul>
                             </div>
                             <div className="footer-social">
-                                <a href="#"><span><i className="fa fa-facebook-square"></i></span></a>
-                                <a href="#"><span className="active"><i className="fa fa-twitter-square"></i> </span></a>
-                                {/* <a href="#"><span className="active"><i className="fa fa-fa-whatsapp-square"></i> </span></a> */}
-                                <a href="#"><span><i className="fa fa-linkedin-square"></i></span></a>
+                                <Link to='/'><span><i className="fa fa-facebook"></i></span></Link>
+                                <Link to='/'><span><i className="fa fa-twitter"></i></span></Link>
+                                <Link to='/'><span><i className="fa fa-whatsapp"></i></span></Link>
+                                <Link to='/'><span><i className="fa fa-linkedin"></i></span></Link>
                             </div>
                         </div>
                     </div>
@@ -35,8 +37,8 @@ const Footer = () => {
                                 <li><Link to="/plans-pricing">{t("Plans & Pricing")}</Link></li>
                                 <li><Link to="/instructors">{t("Instructors")}</Link></li>
                                 <li><Link to="/eat-smart">{t("Eat Smart")}</Link></li>
-                                <li> <Link to="/apparel">{t("Apparel")}</Link></li>
-                                <li> <Link to="/contactus">{t("Contact us")}</Link></li>
+                                <li><Link to="/apparel">{t("Apparel")}</Link></li>
+                                <li><Link to="/contactus">{t("Contact us")}</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -44,8 +46,8 @@ const Footer = () => {
                         <div className="footer-widget">
                             <h3 className="footer-title">payment methods</h3>
                             <div className="pay-with">
-                                <a href=""><img src="./images/mastercard_icon.png" alt="" /></a>
-                                <a href=""><img src="./images/visa_icon.png" alt="" className="ms-0" /></a>
+                                <a href=""><img src="/images/mastercard_icon.png" alt="" /></a>
+                                <a href=""><img src="/images/visa_icon.png" alt="" className="ms-0" /></a>
                             </div>
                         </div>
                     </div>
