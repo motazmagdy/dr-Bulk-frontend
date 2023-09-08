@@ -24,7 +24,7 @@ const Cart = () => {
     // }, [])
 
 
-    if (cartItems.length) {
+    if (!cartItems.length) {
         loading.current = false
     }
     const itemsIds = cartItems.map(item => item.id)
