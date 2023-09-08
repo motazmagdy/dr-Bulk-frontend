@@ -41,3 +41,38 @@
     margin-top: 5px;
     margin-bottom: 0;
 }
+
+@media only screen and (min-width:992px) {
+    .product-details .widget {
+        min-height: 60vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* add to cart quantity buttons */
+.product-details .quantityBtns {
+    display: flex;
+    justify-content: center;
+}
+
+.product-details .quantityBtns .btn {
+    width: 42px !important;
+    height: 42px;
+
+    border-radius: 2px !important;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-details .quantityBtns .btn .fa {
+    font-size: 16px;
+}
+
+.product-details .quantityBtns .quantity {
+    margin: 8px;
+}

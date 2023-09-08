@@ -134,11 +134,14 @@ li.nav-item:hover a {
 #navigation ul li.btns {
   display: flex;
   flex-direction: row;
+  align-items: center;
+
+  margin-left: 50px;
 }
 
 .lang {
   margin-left: 40px;
-  margin-right: 40px;
+  margin-right: 24px;
 }
 
 .language-btn {
@@ -234,6 +237,10 @@ li.nav-item:hover a {
     padding-left: 30px;
   }
 
+  #navigation ul li.btns {
+    margin-left: 7px;
+  }
+
   .lang {
     margin-left: 0;
   }
@@ -254,6 +261,7 @@ li.nav-item:hover a {
 
   #navigation ul li.btns {
     flex-direction: column;
+    margin-left: 0;
   }
 
   .lang {
@@ -268,6 +276,11 @@ li.nav-item:hover a {
   .lang .btn,
   .user-action .btn {
     padding: 5px 8px;
+  }
+
+  .navbar .btns .cartIcon {
+    margin-top: 24px !important;
+    margin-bottom: 10px !important;
   }
 
   .login-item,
@@ -299,12 +312,76 @@ li.nav-item:hover a {
   }
 }
 
+/* Cart */
+#navigation ul li a:has(.cart) {
+  padding: 0 !important;
+}
+
+.navbar .btns .cartIcon {
+  display: block;
+  margin: 0 36px;
+}
+
+.navbar .cartIcon .cart {
+  position: relative;
+
+  width: 44px;
+  height: 44px;
+
+  background-color: var(--custom-dark-gray);
+  border: 2px var(--custom-yellow) solid;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+}
+
+.navbar .cartIcon .fa-shopping-cart {
+  position: absolute;
+  left: 27%;
+
+  color: var(--custom-yellow);
+
+  transition: 1s all ease;
+}
+
+.navbar .cartIcon .cartItemsIcon {
+  width: 26px;
+  height: 26px;
+
+  position: absolute;
+  left: 28px;
+  top: 27px;
+
+  background-color: var(--custom-dark-gray);
+  color: var(--custom-yellow);
+
+  border: 2px var(--custom-yellow) solid;
+  border-radius: 50%;
+
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 21px;
+}
+
+.navbar .cartIcon .cartItemsIcon span {
+  position: absolute;
+  left: 6px;
+}
+
+.navbar .cartIcon:hover .cart,
+.navbar .cartIcon:hover .cartItemsIcon {
+  background-color: var(--custom-black);
+}
+
+
 
 :root {
   --custom-white: #ededed;
   --custom-body-background: #f9f9f9;
   --custom-black: #181c18;
   --custom-gray: #383e38;
+  --custom-dark-gray: #212529;
   --custom-light-gray: #f2f2f2;
   --custom-yellow: #efd510;
   --custom-dark-yellow: #cfba1a;

@@ -1,0 +1,127 @@
+.cart-page table {
+    margin: 50px 0;
+
+    background-color: var(--custom-body-background);
+}
+
+.cart-page .itemRow td {
+    padding: 16px 0;
+}
+
+
+.cart-page .itemRow .product-img {
+    max-height: 100%;
+}
+
+.cart-page .itemRow .product-img img {
+    max-width: 100%;
+    max-height: 120px;
+}
+
+.cart-page .itemRow .product-name {
+    font-weight: 500;
+    font-size: 18px;
+
+    padding-top: 50px;
+}
+
+.cart-page .itemRow .product-price,
+.cart-page .itemRow .total,
+.cart-page .total-price {
+    font-weight: 500;
+    font-size: 24px;
+
+    padding-top: 50px;
+}
+
+@media (max-width:768px) {
+
+    .cart-page .itemRow .product-name,
+    .cart-page .itemRow .product-price,
+    .cart-page .itemRow .total,
+    .cart-page .total-price {
+        padding-top: 16px;
+    }
+}
+
+.cart-page .itemRow .removeBtn {
+    position: relative;
+}
+
+.cart-page .itemRow .removeBtn .btn {
+    width: 42px !important;
+    height: 42px;
+
+    border-radius: 2px !important;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.cart-page .itemRow .quantityBtns {
+    padding: 6px;
+
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.cart-page .itemRow .quantityBtns .btn {
+    width: 36px;
+
+    font-weight: bold;
+}
+
+.cart-page .itemRow .quantityBtns .quantity {
+    margin: 10px 0;
+}
+
+.cart-page .emptyCart {
+    padding: 100px 0;
+    text-align: center;
+
+    font-weight: bold;
+    font-size: 24px;
+}
+
+
+/* add to cart quantity buttons */
+/* .cart-page .quantityBtns {
+    display: flex;
+    justify-content: center;
+} */
+
+.cart-page .quantityBtns .btn {
+    width: 42px !important;
+    height: 42px;
+
+    border-radius: 2px !important;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-page .quantityBtns .btn .fa {
+    font-size: 16px;
+}
+
+.cart-page .quantityBtns .quantity {
+    /* padding: 6px; */
+    margin: 0 5px;
+
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+:root {
+    --custom-white: #ededed;
+    --custom-body-background: #f9f9f9;
+    --custom-black: #181c18;
+    --custom-gray: #383e38;
+    --custom-light-gray: #f2f2f2;
+    --custom-yellow: #efd510;
+    --custom-dark-yellow: #cfba1a;
+    --custom-yellow-shadow: rgb(234, 220, 108);
+}

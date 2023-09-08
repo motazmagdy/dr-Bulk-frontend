@@ -3,12 +3,14 @@ import './ProductDetails.css'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import RoutesSpinner from '../../../../Components/Spinners/RoutesSpinner'
+import { useCart } from '../../../../Context/CartContext'
 
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const ProductDetails = () => {
     const { id: productId } = useParams()
     const [productDetails, setProductDetails] = useState({})
+    const { getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem } = useCart()
     const loading = useRef(true)
 
     useEffect(() => {
@@ -95,7 +97,22 @@ const ProductDetails = () => {
                                                 <div className="author-content">
                                                     <p className='price'>{price} $</p>
                                                     <p className='points'>{points} {points && <i className="fa fa-diamond" aria-hidden="true"></i>}</p>
-                                                    <button className="btn bulk-dark-btn">Add To Cart</button> </div>
+                                                    {/* <button className="btn bulk-dark-btn">Add To Cart</button>*/}
+                                                    {
+                                                        !getItemQuantity(productId) ?
+                                                            <button type='button' className='btn bulk-dark-btn' onClick={e => increaseItemQuantity(productId)}><i className="fa-solid fa-cart-shopping me-2"></i>Add to Cart</button>
+                                                            :
+                                                            <div className="quantityBtns">
+                                                                {getItemQuantity(productId) === 1 ?
+                                                                    <button type='button' className='btn btn-danger' onClick={e => removeItem(productId)}><i className="fa fa-times" aria-hidden="true"></i></button>
+                                                                    :
+                                                                    <button type='button' className='btn btn-dark' onClick={e => decreaseItemQuantity(productId)}><i className="fa fa-minus" aria-hidden="true"></i></button>}
+
+                                                                <div className="quantity">{getItemQuantity(productId)} in Cart</div>
+                                                                <button type='button' className='btn btn-dark' onClick={e => increaseItemQuantity(productId)}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                                                            </div>
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

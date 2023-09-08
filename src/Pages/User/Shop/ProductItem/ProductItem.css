@@ -37,6 +37,34 @@
     font-weight: 600;
 }
 
+/* add to cart quantity buttons */
+.product-item .quantityBtns {
+    display: flex;
+}
+
+.product-item .quantityBtns .btn {
+    width: 42px !important;
+    height: 42px;
+
+    border-radius: 2px !important;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-item .quantityBtns .btn .fa {
+    font-size: 16px;
+}
+
+.product-item .quantityBtns .quantity {
+    padding: 6px;
+    margin: 0 5px;
+
+    font-weight: bold;
+    border-radius: 6px;
+}
+
 :root {
     --custom-white: #ededed;
     --custom-body-background: #f9f9f9;

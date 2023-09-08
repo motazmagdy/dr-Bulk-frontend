@@ -7,6 +7,7 @@ import Router from './Router';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './Components/Footer/Footer';
+import CartProvider from './Context/CartContext';
 
 
 function App() {
@@ -16,9 +17,13 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Router />
+      <CartProvider>
+        <Header />
+        <Router />
+      </CartProvider>
+
       <Footer />
+
       <ToastContainer
         position={i18n.dir() === "ltr" ? "top-right" : "top-left"}
         autoClose={3000}

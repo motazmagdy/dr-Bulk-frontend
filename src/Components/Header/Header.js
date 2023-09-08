@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./Header.css";
 import B from "../../Assets/PngLogo/Yellow.png";
+import { useCart } from '../../Context/CartContext';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -28,6 +29,8 @@ const Header = () => {
     navigate("/");
   };
 
+  const { cartItems } = useCart()
+
   return (
     <>
       <div className="header-wrapper">
@@ -36,10 +39,10 @@ const Header = () => {
             <div className="row">
               <div className="col-12">
                 <div className="social-container">
-                  <a href="#"><span><i className="fa fa-facebook"></i></span></a>
-                  <a href="#"><span><i className="fa fa-twitter"></i></span></a>
-                  <a href="#"><span><i className="fa fa-whatsapp"></i></span></a>
-                  <a href="#"><span><i className="fa fa-linkedin"></i></span></a>
+                  <Link to='/'><span><i className="fa fa-facebook"></i></span></Link>
+                  <Link to='/'><span><i className="fa fa-twitter"></i></span></Link>
+                  <Link to='/'><span><i className="fa fa-whatsapp"></i></span></Link>
+                  <Link to='/'><span><i className="fa fa-linkedin"></i></span></Link>
                 </div>
               </div>
             </div>
@@ -61,7 +64,7 @@ const Header = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          {/* <div className="container ps-5"> */}
+
           <div className="collapse navbar-collapse" id="navbarNav">
             <div id="navigation">
               <ul className="navbar-nav">
@@ -113,7 +116,7 @@ const Header = () => {
                       {t("ChangeLangauge")}
                     </button>
                   </div>
-                  <div className="user-action">
+                  {/* <div className="user-action">
                     {!isLoggedIn ? (
                       <button className="bulk-btn btn login-item">
                         <Link to="/login">
@@ -122,7 +125,7 @@ const Header = () => {
                         </Link>{" "}
                       </button>
                     ) : null}
-                  </div>
+                  </div> */}
                   <div className="user-action">
                     {!isLoggedIn ? (
                       <button className="bulk-dark-btn btn signup-item">
@@ -132,14 +135,14 @@ const Header = () => {
                         </Link>{" "}
                       </button>
                     ) : null}
-                    {isLoggedIn && role === "admin" ? (
+                    {/* {isLoggedIn && role === "admin" ? (
                       <button className="bulk-dark-btn btn">
                         <Link to="/admin/change-password">
                           {" "}
                           {t("Change password")}
                         </Link>{" "}
                       </button>
-                    ) : null}
+                    ) : null} */}
                     {isLoggedIn ? (
                       <button className="bulk-dark-btn btn">
                         <NavLink onClick={handleLogout}>
@@ -149,13 +152,19 @@ const Header = () => {
                       </button>
                     ) : null}
                   </div>
+
+                  <div className='cartIcon'>
+                    <Link to='/cart'>
+                      <div className="cart">
+                        <i className="fa fa-shopping-cart me-2" aria-hidden="true"></i>
+                      </div>
+                      <div className="cartItemsIcon"><span>{cartItems.length}</span></div>
+                    </Link>
+                  </div>
                 </li>
               </ul>
             </div>
           </div>
-
-
-          {/* </div> */}
 
         </nav>
       </div>
