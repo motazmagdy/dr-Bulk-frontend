@@ -30,7 +30,7 @@ const Cart = () => {
     const itemsIds = cartItems.map(item => item.id)
 
     useEffect(() => {
-        setItemsDetails([])
+        // setItemsDetails([])
         itemsIds.forEach(id => {
             axios.get(`${DR_BULK_API}/api/products/${id}`)
                 .then(res => {
