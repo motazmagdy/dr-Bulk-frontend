@@ -1,11 +1,22 @@
-import React from 'react';
+import React , { useState } from "react";
+import AdminSidebar from "../../../Components/Admin-Sidebar/AdminSidebar";
+import '../AdminRouter'
+import Topbar from "../../../Components/Topbar/Topbar";
+import AdminRouter from "../AdminRouter";
 
 const AdminHome = () => {
-    return (
-        <div>
-            <h1>Admin Home</h1>
-        </div>
-    );
+
+    const [isSidebar, setIsSidebar] = useState(true);
+
+  return (
+    <div className="app">
+        <AdminSidebar isSidebar={isSidebar} />
+        <main className="content">
+            <Topbar setIsSidebar={setIsSidebar} />
+            <AdminRouter />
+        </main>
+    </div>
+  ) 
 };
 
 export default AdminHome;

@@ -1,44 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Field, Formik } from "formik";
-import axios from "axios"
-import { toast } from 'react-toastify';
+import { Field, Formik } from "formik"; 
 import { useTranslation } from "react-i18next";
 import { AdminChangePasswordSchema } from "../../../Schemas/AdminChangePasswordSchema";
+import useChangePassword from "../../../Hooks/useChangePassword";
 import "./ChangePassword.css";
-const serverApi = process.env.REACT_APP_DR_BULK_API;
 
 const ChangePassword = () => {
 
   const [t, i18n] = useTranslation()
-  const navigate = useNavigate()
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loginErrMsg, setLoginErrMsg] = useState("")
+  const { changePassword , isSubmitting , setIsSubmitting , changePwErrMsg } = useChangePassword()
 
-  const changePassword = (userData) => {
-    axios.post(`${serverApi}/api/admins/change-password`, userData
-      , {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('Token')}`
-        }
-      })
-      .then(response => {
-        console.log(response);
-        if (response.status === 200) {
-          toast.success(t("Password Changed Successfully ! "))
-          localStorage.setItem('Token', response.data.token)
-          navigate('/admin')
-          setIsSubmitting(false)
-          setLoginErrMsg(null)
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        toast.error(t(err.response.data.message))
-        setIsSubmitting(false)
-        setLoginErrMsg(err.response.data.message)
-      })
+  const handleChangePassword = (userData) => {
+    changePassword(userData)
   }
 
   return (
@@ -50,7 +24,7 @@ const ChangePassword = () => {
       }}
       onSubmit={(values, actions) => {
         setIsSubmitting(true);
-        changePassword(values)
+        handleChangePassword(values)
         actions.resetForm()
       }}
       validationSchema={AdminChangePasswordSchema}
@@ -72,7 +46,7 @@ const ChangePassword = () => {
                 }
                 type="email"
                 id="email"
-              // placeholder={t("Enter Your Email")}
+              placeholder={t("Enter Your Email")}
               />
               {props.errors.email && props.touched.email ? (
                 <p className="input-err-msg">{t(props.errors.email)}</p>
@@ -91,7 +65,7 @@ const ChangePassword = () => {
                 }
                 type="password"
                 id="password"
-              // placeholder={t("Enter Your Password")}
+              placeholder={t("Enter Your Password")}
               />
               {props.errors.password && props.touched.password ? (
                 <p className="input-err-msg">{t(props.errors.password)}</p>
@@ -134,7 +108,7 @@ const ChangePassword = () => {
                 </>
               ) : null}
             </div>
-            {loginErrMsg ? <p className="input-err-msg"> {t(loginErrMsg)}</p> : null}
+            {changePwErrMsg ? <p className="input-err-msg"> {t(changePwErrMsg)}</p> : null}
           </form>
         </div>
       )}
