@@ -9,20 +9,8 @@ const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const Cart = () => {
     const { cartItems, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem } = useCart()
-
     let [itemsDetails, setItemsDetails] = useState([])
-    // let itemsDetails = useRef([])
     const loading = useRef(true)
-
-    // useEffect(() => {
-    //     axios.get(`${DR_BULK_API}/api/products?limit=10000`)
-    //         .then(res => {
-    //             setItemsDetails(res.data)
-    //             loading.current = false
-    //         })
-    //         .catch(err => console.log(err))
-    // }, [])
-
 
     if (!cartItems.length) {
         loading.current = false
@@ -35,7 +23,6 @@ const Cart = () => {
             axios.get(`${DR_BULK_API}/api/products/${id}`)
                 .then(res => {
                     setItemsDetails(prev => [...prev, res.data.data])
-                    // itemsDetails.current.push(res.data.data)
                     loading.current = false
                 })
                 .catch(err => console.log(err))
