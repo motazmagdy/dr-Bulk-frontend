@@ -3,6 +3,7 @@ import { lazy } from "react"
 import { Routes, Route } from "react-router-dom";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
+import Cart from "./Shop/Cart/Cart";
 const UserSignUp = lazy(() => import("./SignUp/SignUp"))
 const UserLogin = lazy(() => import("./Login/Login"))
 const Home = lazy(() => import("./Home/Home"))
@@ -17,19 +18,21 @@ const UserRouter = () => {
   return (
     <>
       <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="instructors" element={<Instructors />} />
         <Route path="eat-smart" element={<EatSmart />} />
-        <Route path="shop" element={<Shop />}>
-          <Route path=":id" element={<ProductDetails />} />
-        </Route>
-        {/* <Route path="shop/:id" element={<ProductDetails />} /> */}
-        <Route path="contactus" element={<ContactUs />} />
+        <Route path="shop" element={<Shop />} />
+        <Route path="shop/:id" element={<ProductDetails />} />
+        <Route path="cart" element={<Cart />} />
+
         <Route path="login" element={<UserLogin />} />
         <Route path="signup" element={<UserSignUp />} />
-        <Route path="/home" element={<Home />} />
+
+        <Route path="contactus" element={<ContactUs />} />
       </Routes>
+
       <Footer />
     </>
   );
