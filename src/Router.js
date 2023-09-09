@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import RoutesSpinner from "./Components/Spinners/RoutesSpinner"
 import NotFound from "./Components/NotFound/NotFound"
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -15,22 +15,39 @@ const Router = () => {
   return (
     <Suspense fallback={<RoutesSpinner />}>
       <Routes>
-        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin/login"
+          element={
+            state.userRole ? (
+              state.userRole !== "admins" ? (
+                <Navigate to="/" />
+              ) : (
+                <Navigate to="/admin" />
+              )
+            ) : (
+              <AdminLogin />
+            )
+          }
+        />
         <Route
           path="/admin/*"
           element={
             <ColorModeContext.Provider value={colorMode}>
               <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <AdminHome />
+                {state.userRole === "admins" ? (
+                  <AdminHome />
+                ) : (
+                  <Navigate to="/admin/login" />
+                )}
               </ThemeProvider>
             </ColorModeContext.Provider>
           }
         />
-        <Route path="/*" element={<UserRouter />} />
+        <Route path="/*" element={state.userRole !== "admins" ? <UserRouter /> : <Navigate to="/admin" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
-  )
+  );
 }
 export default Router
