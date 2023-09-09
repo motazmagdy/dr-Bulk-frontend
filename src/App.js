@@ -22,8 +22,6 @@ function App() {
         <Router />
       </CartProvider>
 
-      <Footer />
-
       <ToastContainer
         position={i18n.dir() === "ltr" ? "top-right" : "top-left"}
         autoClose={3000}

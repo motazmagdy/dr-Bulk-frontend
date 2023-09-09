@@ -613,7 +613,7 @@ const Products = () => {
     },
   ];
 //   console.log(products);
-console.log(editingImages);
+// console.log(editingImages);
   return (
     <Box m="20px">
       <DashboardHeader title="Products" subtitle="Managing the Products" />
