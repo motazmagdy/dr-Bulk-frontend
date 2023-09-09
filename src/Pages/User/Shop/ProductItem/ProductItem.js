@@ -3,10 +3,12 @@ import useAuthContext from '../../../../Hooks/AuthContextHook'
 import { Link , useNavigate } from 'react-router-dom'
 import { useCart } from '../../../../Context/CartContext'
 import './ProductItem.css'
+import { useTranslation } from 'react-i18next'
 
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const ProductItem = ({ product }) => {
+    const { t , i18n } = useTranslation()
     const { state } = useAuthContext()
     const navigate  = useNavigate()
     const { _id: id, title, category, description, price, points, images } = product
@@ -49,7 +51,7 @@ const ProductItem = ({ product }) => {
                                 <button type='button' className='btn btn-dark' onClick={e => increaseItemQuantity(id)}><i className="fa fa-plus" aria-hidden="true"></i></button>
                             </div> 
                             : 
-                            <p className='cartLoginWarn'>You need to <span className='loginWord' onClick={()=>navigate('/login')}>Login</span> to Add to Cart</p>
+                            <p className='cartLoginWarn'>{t("You need to ")}<span className='loginWord' onClick={()=>navigate('/login')}>{t("Login")}</span>{t(" to Add to Cart")}</p>
                             )
                     }
                 </div>
