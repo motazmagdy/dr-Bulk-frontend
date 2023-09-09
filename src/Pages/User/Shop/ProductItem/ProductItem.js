@@ -1,11 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import useAuthContext from '../../../../Hooks/AuthContextHook'
+import { Link , useNavigate } from 'react-router-dom'
 import { useCart } from '../../../../Context/CartContext'
 import './ProductItem.css'
 
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const ProductItem = ({ product }) => {
+    const { state } = useAuthContext()
+    const navigate  = useNavigate()
     const { _id: id, title, category, description, price, points, images } = product
     const { getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem } = useCart()
 
@@ -34,7 +37,8 @@ const ProductItem = ({ product }) => {
                     {
                         !getItemQuantity(id) ?
                             <button type='button' className='btn bulk-dark-btn' onClick={e => increaseItemQuantity(id)}><i className="fa-solid fa-cart-shopping me-2"></i>Add to Cart</button>
-                            :
+                            : 
+                            (state.userRole === "users" ?
                             <div className="quantityBtns">
                                 {getItemQuantity(id) === 1 ?
                                     <button type='button' className='btn btn-danger' onClick={e => removeItem(id)}><i className="fa fa-times" aria-hidden="true"></i></button>
@@ -43,7 +47,10 @@ const ProductItem = ({ product }) => {
 
                                 <div className="quantity">{getItemQuantity(id)} in Cart</div>
                                 <button type='button' className='btn btn-dark' onClick={e => increaseItemQuantity(id)}><i className="fa fa-plus" aria-hidden="true"></i></button>
-                            </div>
+                            </div> 
+                            : 
+                            <p className='cartLoginWarn'>You need to <span className='loginWord' onClick={()=>navigate('/login')}>Login</span> to Add to Cart</p>
+                            )
                     }
                 </div>
             </div>

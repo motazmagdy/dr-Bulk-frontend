@@ -65,6 +65,20 @@
     border-radius: 6px;
 }
 
+.cartLoginWarn{
+    color: #dc3545;
+}
+
+.loginWord{
+    color:var(--custom-black);
+}  
+  
+.loginWord:hover {
+    cursor: pointer;
+    color: var(--custom-yellow);
+}
+
+
 :root {
     --custom-white: #ededed;
     --custom-body-background: #f9f9f9;

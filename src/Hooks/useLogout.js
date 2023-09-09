@@ -5,11 +5,12 @@ import { toast } from "react-toastify";
 
 const useLogout = () => {
 
-    const { dispatch } = useAuthContext()
+    const { state , dispatch } = useAuthContext()
     const navigate = useNavigate();
     const { t } = useTranslation()
 
     const logout = ()=>{
+      const loggedUser = state.userRole
         localStorage.removeItem("Token");
         localStorage.removeItem("User_Role");
         localStorage.removeItem("User_Name");
@@ -17,7 +18,7 @@ const useLogout = () => {
           type : "LOGOUT" 
         })
         toast.success(t("Logged Out Successfully ! "))
-        navigate("/home");
+        loggedUser === "users" ? navigate("/") : navigate("/admin")
     }
 
     return { logout }
