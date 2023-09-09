@@ -4,10 +4,14 @@ import { useTranslation } from "react-i18next";
 import "./Header.css";
 import B from "../../Assets/PngLogo/Yellow.png";
 import { useCart } from '../../Context/CartContext';
+import useLogout from "../../Hooks/useLogout";
+import useAuthContext from "../../Hooks/AuthContextHook";
 
 const Header = () => {
   const navigate = useNavigate();
   const [t, i18n] = useTranslation();
+  const { state } = useAuthContext()
+  const { logout } = useLogout()
 
   const changeLanguage = (e) => {
     if (i18n.dir() === "rtl") {
@@ -24,9 +28,7 @@ const Header = () => {
   const [role, setRole] = useState(localStorage.getItem("Role"));
 
   const handleLogout = () => {
-    localStorage.removeItem("Token");
-    localStorage.removeItem("Role");
-    navigate("/");
+    logout()
   };
 
   const { cartItems } = useCart()
@@ -117,7 +119,7 @@ const Header = () => {
                     </button>
                   </div>
                   {/* <div className="user-action">
-                    {!isLoggedIn ? (
+                    {!state.userRole ? (
                       <button className="bulk-btn btn login-item">
                         <Link to="/login">
                           {" "}
@@ -127,7 +129,7 @@ const Header = () => {
                     ) : null}
                   </div> */}
                   <div className="user-action">
-                    {!isLoggedIn ? (
+                    {!state.userRole ? (
                       <button className="bulk-dark-btn btn signup-item">
                         <Link to="/signup">
                           {" "}
@@ -135,15 +137,7 @@ const Header = () => {
                         </Link>{" "}
                       </button>
                     ) : null}
-                    {/* {isLoggedIn && role === "admin" ? (
-                      <button className="bulk-dark-btn btn">
-                        <Link to="/admin/change-password">
-                          {" "}
-                          {t("Change password")}
-                        </Link>{" "}
-                      </button>
-                    ) : null} */}
-                    {isLoggedIn ? (
+                    { state.userRole  ? (
                       <button className="bulk-dark-btn btn">
                         <NavLink onClick={handleLogout}>
                           {" "}

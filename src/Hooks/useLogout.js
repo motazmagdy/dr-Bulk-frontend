@@ -11,7 +11,8 @@ const useLogout = () => {
 
     const logout = ()=>{
         localStorage.removeItem("Token");
-        localStorage.removeItem("Role");
+        localStorage.removeItem("User_Role");
+        localStorage.removeItem("User_Name");
         dispatch({
           type : "LOGOUT" 
         })

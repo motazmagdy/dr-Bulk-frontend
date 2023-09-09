@@ -26,7 +26,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import useLogout from "../../Hooks/useLogout";
 import B from "../../Assets/PngLogo/Dark.png";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({ title, to, icon, selected, setSelected, handleLogout }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -35,7 +35,12 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       style={{
         color: colors.grey[100],
       }}
-      onClick={() => setSelected(title)}
+      onClick={() => {
+        setSelected(title)
+        if(handleLogout){
+          handleLogout()
+        }
+      }}
       icon={icon}
     >
       <Typography>{title}</Typography>
@@ -51,7 +56,7 @@ const AdminSidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   const { state } = useAuthContext()
-  console.log(state.userName);
+
   const { logout } = useLogout()
   const handleLogout = () => {
         logout()
@@ -226,8 +231,7 @@ const AdminSidebar = () => {
             />
             <Item
               title="Logout"
-              onClick={handleLogout}
-              to="/admin/logout"
+              handleLogout={handleLogout}
               icon={<LogoutIcon />}
               selected={selected}
               setSelected={setSelected}
