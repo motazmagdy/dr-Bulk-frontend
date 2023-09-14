@@ -130,19 +130,13 @@ const Header = () => {
                   </div> */}
                   <div className="user-action">
                     {!state.userRole ? (
-                      <button className="bulk-dark-btn btn signup-item">
-                        <Link to="/signup">
-                          {" "}
-                          <b>{t("Signup")}</b>
-                        </Link>{" "}
+                      <button className="bulk-dark-btn btn signup-item" onClick={()=>navigate('/signup')}>
+                          {" "}<b>{t("Signup")}</b>
                       </button>
                     ) : null}
                     { state.userRole  ? (
-                      <button className="bulk-dark-btn btn">
-                        <NavLink onClick={handleLogout}>
-                          {" "}
-                          {t("Logout")}
-                        </NavLink>{" "}
+                      <button className="bulk-dark-btn btn"  onClick={handleLogout}>
+                          <b>{t("Logout")}</b>
                       </button>
                     ) : null}
                   </div>
@@ -152,7 +146,7 @@ const Header = () => {
                       <div className="cart">
                         <i className="fa fa-shopping-cart me-2" aria-hidden="true"></i>
                       </div>
-                      <div className="cartItemsIcon"><span>{cartItems.length}</span></div>
+                      {state.userRole ?<div className="cartItemsIcon"><span>{cartItems.length}</span></div>: null}
                     </Link>
                   </div>
                 </li>
