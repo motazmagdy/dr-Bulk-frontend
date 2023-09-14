@@ -1,3 +1,6 @@
-/* .add-category-btn{
-    
-} */
+.btn-new-category{
+    margin-top: 0 !important;
+    height: 2.5rem !important;
+     color: white !important;
+      margin: auto !important;
+}

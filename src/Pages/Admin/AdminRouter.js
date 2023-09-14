@@ -4,6 +4,7 @@ import AdminHome from "./AdminHome/AdminHome";
 import Categories from "./Categories/Categories";
 import Dashboard from "./Dashboard/Dashboard";
 import Products from "./Products/Products";
+import Instructors from "./Instructors/Instructors";
 import ChangePassword from "./ChangePassword/ChangePassword";
 
 const AdminRouter = () => {
@@ -12,6 +13,7 @@ const AdminRouter = () => {
             <Route path="/" element={<Dashboard/>} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/instructors" element={<Instructors />} />
             <Route path="/change-password" element={<ChangePassword />} />
         </Routes>
         );

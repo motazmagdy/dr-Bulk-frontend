@@ -7,24 +7,15 @@ import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-// import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import CategoryIcon from '@mui/icons-material/Category';
-import UserImg from '../../Assets/user.jpg'
+// import UserImg from '../../Assets/user.jpg'
 import SyncLockIcon from '@mui/icons-material/SyncLock';
 import LogoutIcon from '@mui/icons-material/Logout';
 import useLogout from "../../Hooks/useLogout";
 import B from "../../Assets/PngLogo/Dark.png";
+import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 
 const Item = ({ title, to, icon, selected, setSelected, handleLogout }) => {
   const theme = useTheme();
@@ -164,64 +155,13 @@ const AdminSidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            {/* <Item
-              title="Invoices Balances"
-              to="/invoices"
-              icon={<ReceiptOutlinedIcon />}
+            <Item
+              title={t("Instructors")}
+              to="/admin/instructors"
+              icon={<SelfImprovementIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Pages
-            </Typography>
-            <Item
-              title="Profile Form"
-              to="/form"
-              icon={<PersonOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Charts
-            </Typography>
-            <Item
-              title="Bar Chart"
-              to="/bar"
-              icon={<BarChartOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Pie Chart"
-              to="/pie"
-              icon={<PieChartOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            /> */}
             <Item
               title="Change Password"
               to="/admin/change-password"

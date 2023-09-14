@@ -49,7 +49,7 @@ const EditToolbar = ({addNewCategory,addingNew,setAddingNew}) => {
           initialValues={{
             nameInEnglish: "",
             nameInArabic: "",
-          }}
+                      }}
           onSubmit={(values, actions) => {
             addNewCategory(values);
             actions.resetForm();
@@ -114,7 +114,7 @@ const EditToolbar = ({addNewCategory,addingNew,setAddingNew}) => {
                 </Box>
                 <Button
                   type="submit"
-                  sx={{ height: "2.5rem", color: "white", margin: "auto" }}
+                  className="btn-new-category"
                   color="secondary"
                   variant="contained"
                 >
@@ -236,10 +236,10 @@ const Categories = () => {
 
   const addNewCategory = (categoryNames) => {
     const category = {
-      en : categoryNames.nameInEnglish,
-      ar : categoryNames.nameInArabic
-    }
-    const categoryData = { name : category }
+        en : categoryNames.nameInEnglish,
+        ar : categoryNames.nameInArabic
+      }
+        const categoryData = { name : category }
     axios
       .post(`${serverApi}/api/categories`, categoryData , {
         headers: {
