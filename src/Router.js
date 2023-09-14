@@ -35,11 +35,11 @@ const Router = () => {
             <ColorModeContext.Provider value={colorMode}>
               <ThemeProvider theme={theme}>
                 <CssBaseline />
-                {state.userRole === "admins" ? (
+                {/* {state.userRole === "admins" ? ( */}
                   <AdminHome />
-                ) : (
-                  <Navigate to="/admin/login" />
-                )}
+                {/* ) : ( */}
+                  {/* <Navigate to="/admin/login" /> */}
+                {/* )} */}
               </ThemeProvider>
             </ColorModeContext.Provider>
           }
