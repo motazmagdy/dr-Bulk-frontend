@@ -14,6 +14,8 @@
 .pagination .page-item:last-of-type .page-link {
     color: var(--custom-yellow) !important;
     background-color: var(--custom-black) !important;
+
+    border-radius: 2px;
 }
 
 .pagination .page-item .page-link:focus,
