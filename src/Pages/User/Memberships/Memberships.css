@@ -1,0 +1,30 @@
+.card {
+    box-shadow: 0 5px 24px 6px rgba(0, 0, 0, 0.06);
+}
+
+.card-body,
+.card-header {
+    padding-inline: 2rem;
+}
+
+.price-points {
+    width: 25%;
+
+    display: flex;
+    justify-content: space-between;
+
+    margin: 16px 0;
+    font-size: 20px;
+}
+
+.memberships .Normal h3 {
+    display: inline-block;
+    margin-bottom: 30px;
+
+    padding-bottom: 7px;
+    border-bottom: 3px solid var(--custom-yellow);
+}
+
+.memberships .row {
+    margin-bottom: 40px;
+}
