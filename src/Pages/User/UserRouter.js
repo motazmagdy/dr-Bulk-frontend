@@ -5,6 +5,8 @@ import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import useAuthContext from "../../Hooks/AuthContextHook";
 import Cart from "./Shop/Cart/Cart";
+import Memberships from "./Memberships/Memberships";
+import PrivateTraining from "./PrivateTraining/PrivateTraining";
 const UserSignUp = lazy(() => import("./SignUp/SignUp"))
 const UserLogin = lazy(() => import("./Login/Login"))
 const Home = lazy(() => import("./Home/Home"))
@@ -22,6 +24,8 @@ const UserRouter = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/plans-pricing/gym-membership" element={<Memberships />} />
+        <Route path="/plans-pricing/private-training" element={<PrivateTraining />} />
         <Route path="instructors" element={<Instructors />} />
         <Route path="eat-smart" element={<EatSmart />} />
         <Route path="shop" element={<Shop />} />
