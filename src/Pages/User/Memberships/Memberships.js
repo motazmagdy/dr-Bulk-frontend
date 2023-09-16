@@ -56,65 +56,70 @@ const Memberships = () => {
                 </div>
             </div>
 
-            <div className='container py-5 memberships'>
-                <div className="row">
-                    <div className="col-12 Normal">
-                        <h3>Normal Memberships</h3>
+            {
+                loading.current ?
+                    <RoutesSpinner />
+                    :
+                    <div className='container py-5 memberships'>
+                        {
+                            arr.Normal.length &&
+                            <div className="row">
+                                <div className="col-12 Normal">
+                                    <h3>Normal Memberships</h3>
+                                </div>
+                                {
+                                    arr.Normal.map(n => {
+                                        return (
+                                            <div key={n._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div className="card rounded-0 mb-5">
+                                                    <MembershipItem membership={n} />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        }
+                        {
+                            arr.Bronze.length &&
+                            <div className="row">
+                                <div className="col-12 Normal">
+                                    <h3>Bronze Memberships</h3>
+                                </div>
+                                {
+                                    arr.Bronze.map(b => {
+                                        return (
+                                            <div key={b._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div className="card rounded-0 mb-5">
+                                                    <MembershipItem membership={b} />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        }
+                        {
+                            arr.Gold.length &&
+                            <div className="row">
+                                <div className="col-12 Normal">
+                                    <h3>Gold Memberships</h3>
+                                </div>
+                                {
+                                    arr.Gold.map(g => {
+                                        return (
+                                            <div key={g._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
+                                                <div className="card rounded-0 mb-5">
+                                                    <MembershipItem membership={g} />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        }
                     </div>
-                    {
-                        loading.current ?
-                            <RoutesSpinner />
-                            :
-                            arr.Normal.map(n => {
-                                return (
-                                    <div key={n._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
-                                        <div className="card rounded-0 mb-5">
-                                            <MembershipItem membership={n} />
-                                        </div>
-                                    </div>
-                                )
-                            })
-                    }
-                </div>
-                <div className="row">
-                    <div className="col-12 Normal">
-                        <h3>Bronze Memberships</h3>
-                    </div>
-                    {
-                        loading.current ?
-                            <RoutesSpinner />
-                            :
-                            arr.Bronze.map(b => {
-                                return (
-                                    <div key={b._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
-                                        <div className="card rounded-0 mb-5">
-                                            <MembershipItem membership={b} />
-                                        </div>
-                                    </div>
-                                )
-                            })
-                    }
-                </div>
-                <div className="row">
-                    <div className="col-12 Normal">
-                        <h3>Gold Memberships</h3>
-                    </div>
-                    {
-                        loading.current ?
-                            <RoutesSpinner />
-                            :
-                            arr.Gold.map(g => {
-                                return (
-                                    <div key={g._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
-                                        <div className="card rounded-0 mb-5">
-                                            <MembershipItem membership={g} />
-                                        </div>
-                                    </div>
-                                )
-                            })
-                    }
-                </div>
-            </div>
+            }
         </>
     )
 }
