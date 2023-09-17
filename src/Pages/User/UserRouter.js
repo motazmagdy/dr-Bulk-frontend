@@ -7,6 +7,7 @@ import useAuthContext from "../../Hooks/AuthContextHook";
 import Cart from "./Shop/Cart/Cart";
 import Memberships from "./Memberships/Memberships";
 import PrivateTraining from "./PrivateTraining/PrivateTraining";
+import VerifyEmailCode from "./Login/VerifyEmailCode";
 const UserSignUp = lazy(() => import("./SignUp/SignUp"))
 const UserLogin = lazy(() => import("./Login/Login"))
 const Home = lazy(() => import("./Home/Home"))
@@ -35,12 +36,16 @@ const UserRouter = () => {
           element={state.userRole === "users" ? <Cart /> : <Navigate to="/" />}
         />
         <Route
-          path="login"
-          element={!state.userRole ? <UserLogin /> : <Navigate to="/" />}
-        />
-        <Route
           path="signup"
           element={!state.userRole ? <UserSignUp /> : <Navigate to="/" />}
+        />
+        <Route
+          path="verify-email-code/:code/:id"
+          element={<VerifyEmailCode />}
+        />
+        <Route
+          path="login"
+          element={!state.userRole ? <UserLogin /> : <Navigate to="/" />}
         />
         <Route path="contactus" element={<ContactUs />} />
       </Routes>
