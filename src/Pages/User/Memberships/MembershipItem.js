@@ -9,7 +9,7 @@ const MembershipItem = ({ membership }) => {
     // if(type=='Normal'){
     //     typeBg={backgroundColor:'gray';}
     // }else 
-    if (type == 'Bronze') {
+    if (type == 'Silver') {
         typeBg = { backgroundColor: 'gray' }
     } else if (type == 'Gold') {
         typeBg = { backgroundColor: 'gold' }

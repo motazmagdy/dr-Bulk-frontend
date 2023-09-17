@@ -23,13 +23,13 @@ const Memberships = () => {
 
     const arr = []
     arr.Normal = []
-    arr.Bronze = []
+    arr.Silver = []
     arr.Gold = []
     memberships.forEach(m => {
         if (m.type == 'Normal') {
             arr.Normal.push(m)
-        } else if (m.type == 'Bronze') {
-            arr.Bronze.push(m)
+        } else if (m.type == 'Silver') {
+            arr.Silver.push(m)
         } if (m.type == 'Gold') {
             arr.Gold.push(m)
         }
@@ -81,13 +81,13 @@ const Memberships = () => {
                             </div>
                         }
                         {
-                            arr.Bronze.length &&
+                            arr.Silver.length &&
                             <div className="row">
                                 <div className="col-12 Normal">
-                                    <h3>Bronze Memberships</h3>
+                                    <h3>Silver Memberships</h3>
                                 </div>
                                 {
-                                    arr.Bronze.map(b => {
+                                    arr.Silver.map(b => {
                                         return (
                                             <div key={b._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
                                                 <div className="card rounded-0 mb-5">

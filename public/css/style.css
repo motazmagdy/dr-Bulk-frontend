@@ -229,7 +229,7 @@ label {}
 
 .form-control {
     font-style: normal;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     letter-spacing: 1px;
     border: 0;
     color: #767a7e;
