@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import UserLogin from './Login';
+import UserLogin from '../Login/Login';
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const VerifyEmailCode = () => {

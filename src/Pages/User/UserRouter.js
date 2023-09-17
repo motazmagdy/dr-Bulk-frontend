@@ -7,7 +7,7 @@ import useAuthContext from "../../Hooks/AuthContextHook";
 import Cart from "./Shop/Cart/Cart";
 import Memberships from "./Memberships/Memberships";
 import PrivateTraining from "./PrivateTraining/PrivateTraining";
-import VerifyEmailCode from "./Login/VerifyEmailCode";
+import VerifyEmailCode from "./VerifyEmail/VerifyEmailCode";
 const UserSignUp = lazy(() => import("./SignUp/SignUp"))
 const UserLogin = lazy(() => import("./Login/Login"))
 const Home = lazy(() => import("./Home/Home"))
