@@ -102,8 +102,8 @@ const EditToolbar = ({addNewInstructor,addingNewInstructor,setAddingNewInstructo
                         },
                       }}
                     >
-                        <Box className="instructorNames">
-                          <Box className="instructorName">
+                        <Box className="containerNames">
+                          <Box className="childName">
                             <TextField
                               fullWidth
                               //   variant="filled"
@@ -123,7 +123,7 @@ const EditToolbar = ({addNewInstructor,addingNewInstructor,setAddingNewInstructo
                               </span>
                             ) : null}
                           </Box>
-                          <Box className="instructorName">
+                          <Box className="childName">
                             <TextField
                               fullWidth
                               //   variant="filled"
@@ -544,8 +544,8 @@ const Instructors = () => {
                         },
                       }}
                     >
-                        <Box className="instructorNames">
-                          <Box className="instructorName">
+                        <Box className="containerNames">
+                          <Box className="childName">
                             <TextField
                               fullWidth
                               //   variant="filled"
@@ -564,7 +564,7 @@ const Instructors = () => {
                               </span>
                             ) : <br />}
                           </Box>
-                          <Box className="instructorName">
+                          <Box className="childName">
                             <TextField
                               fullWidth
                               //   variant="filled"

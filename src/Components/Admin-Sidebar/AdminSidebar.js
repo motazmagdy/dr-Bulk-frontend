@@ -9,6 +9,7 @@ import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import CategoryIcon from '@mui/icons-material/Category';
 // import UserImg from '../../Assets/user.jpg'
 import SyncLockIcon from '@mui/icons-material/SyncLock';
@@ -159,6 +160,13 @@ const AdminSidebar = () => {
               title={t("Instructors")}
               to="/admin/instructors"
               icon={<SelfImprovementIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title={t("Memberships")}
+              to="/admin/memberships"
+              icon={<CardMembershipIcon />}
               selected={selected}
               setSelected={setSelected}
             />
