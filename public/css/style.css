@@ -1170,7 +1170,7 @@ img {
 
 #navigation>ul>li>a {
     padding: 5px;
-    font-size: 14px;
+    font-size: 13px;
     color: #292f29;
     letter-spacing: 0px;
     text-decoration: none;
@@ -1255,10 +1255,10 @@ img {
     background-color: #292f29;
     padding: 14px 22px;
     width: 218px;
-    font-size: 14px;
+    font-size: 13px;
     text-decoration: none;
     color: #fff;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
     border-bottom: #383e38 1px solid;
     letter-spacing: 0px;
