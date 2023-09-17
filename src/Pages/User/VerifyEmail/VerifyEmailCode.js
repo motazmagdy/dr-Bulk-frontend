@@ -9,7 +9,7 @@ const VerifyEmailCode = () => {
     console.log(code, id)
 
     const verifyCode = () => {
-        axios.get(`${DR_BULK_API}/api/users/verify-email/${code}/${id}`)
+        axios.get(`${DR_BULK_API}/api/users/verify-email-code/${code}/${id}`)
             .then(res => {
                 console.log(res)
             })
