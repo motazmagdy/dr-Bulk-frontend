@@ -6,8 +6,6 @@ const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const VerifyEmailCode = () => {
     const { code, id } = useParams()
-    console.log(code, id)
-    console.log("**********")
 
     const verifyCode = () => {
         axios.get(`${DR_BULK_API}/api/users/verify-email-code/${code}/${id}`)
@@ -21,7 +19,7 @@ const VerifyEmailCode = () => {
         if (code && id) {
             verifyCode()
         }
-    }, [code, id])
+    }, [])
 
     return (
         <UserLogin />
