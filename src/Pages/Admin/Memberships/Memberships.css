@@ -1,17 +1,17 @@
-.containerNames{
+.membershipNames{
     display :flex !important;
     flex-direction :row !important;
     justify-content: space-between;
     width:100% !important ;
 }
 
-.childName{
+.membershipName{
     display :flex !important;
     flex-direction :column !important;
     width:48% !important ;
 }
 
-.newInstructorBtns{
+.newMembershipBtns{
     margin: auto !important;
     display: flex;
     flex-direction: row !important;
@@ -22,8 +22,20 @@
     }
 }
 
-.editInstructorForm{
+.editMembershipForm{
     display: flex;
     margin-top: 1rem;
 }
+
+/* .imgs-preview{
+    width:100% !important;
+    display: flex;
+    justify-content: space-around !important;
+    gap:15px;
+    & img {
+        width:300px !important ;
+        height:300px !important ;
+        border-radius: 4px;
+    }
+} */
 

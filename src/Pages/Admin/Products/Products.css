@@ -44,3 +44,29 @@
     border-radius: 4px;
     padding: 0.5rem;
 }
+
+.editImages{
+    position: relative;
+    width: initial !important;
+}
+
+/* .editImagesCont{
+    width: 100% !important;
+} */
+
+.deleteIconCont{
+    width: initial !important;
+    position: absolute;
+    top: -4%;
+    right: -6%;
+    cursor: pointer;
+    color:#ed0000 ;
+    padding: 0.2rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    background: #fff;
+}
+
+.deleteImgBtn{
+    font-size: xx-large !important;
+}

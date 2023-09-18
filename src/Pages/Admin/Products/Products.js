@@ -8,7 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContentText from '@mui/material/DialogContentText';
 import { DataGrid, GridToolbarContainer } from "@mui/x-data-grid";
 import InputLabel from "@mui/material/InputLabel";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { Typography , Box , useTheme, TextField } from "@mui/material";
 import "./Products.css";
@@ -22,7 +22,7 @@ import DashboardHeader from "../../../Components/DashboardHeader/DashboardHeader
 import React, { useState, useEffect } from "react";
 import { NewProductSchema } from "../../../Schemas/NewProductSchema";
 import { UpdateProductSchema } from "../../../Schemas/UpdateProductSchema"
-import { useTranslation } from "react-i18next";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { toast } from "react-toastify";
 const serverApi = process.env.REACT_APP_DR_BULK_API;
 
@@ -105,9 +105,6 @@ const EditToolbar = ({
                 onSubmit={(values, actions ) => {
                   addNewProduct(values);
                   actions.resetForm();
-                  setTimeout(()=>{
-                      setAddingNewProduct(false)
-                  },1500)
                   setImagesPreview([])
                 }}
                 validationSchema={NewProductSchema}
@@ -489,7 +486,8 @@ const Products = () => {
       })
       .then((response) => {
         if (response.status === 201) {
-          toast.success("Product Added Successfully ! ");
+            toast.success("Product Added Successfully ! ");
+            setAddingNewProduct(false)
         }
       })
       .catch((err) => {
@@ -503,6 +501,37 @@ const Products = () => {
         }
       });
   };
+
+  const deleteproductImage = (productId , img)=>{
+    console.log(productId);
+    console.log(img );
+    const formData = new FormData();
+    formData.append(`images`, img);
+    axios.delete(`${serverApi}/api/products/remove-img/${productId}`,  {
+      headers : {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${localStorage.getItem("Token")}`,
+        data :{ removedImg :  img}
+      }}
+    )
+    .then((response) => {
+      if (response.status === 200) {
+          toast.success("Product Image Deleted Successfully ! ");
+          // setEditingProduct(false)
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      if (err.response.data.message) {
+        toast.error(err.response.data.message);
+      } else {
+        err.response.data.errors.forEach((err) => {
+          toast.error(err.msg);
+        });
+      }
+    });
+  }
+
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -999,12 +1028,17 @@ const Products = () => {
                                 .replace(/\\/g, "/")
                                 .replace("/public", "");
                               return (
-                                <img
-                                  key={index}
-                                  src={modifiedString}
-                                  alt="Images Preview"
-                                  className="mt-3 mr-2"
-                                />
+                                // <Box className="editImages">
+                                //     <Box className="deleteIconCont" onClick={()=>deleteproductImage(editingProduct._id , img)}>
+                                //       <HighlightOffIcon className="deleteImgBtn"/>
+                                //     </Box>
+                                    <img
+                                      key={index}
+                                      src={modifiedString}
+                                      alt="Images Preview"
+                                      className="mt-3 mr-2"
+                                    />
+                                // </Box>
                               );
                             })
                           : imagesPreview.map((img) => (
