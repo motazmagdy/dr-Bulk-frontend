@@ -1,0 +1,59 @@
+.post-block {
+    padding: 0 30px 10px 30px;
+    box-shadow: 0 5px 24px 6px rgba(0, 0, 0, 0.06);
+}
+
+
+.eat-smart .post-content {
+    position: relative;
+}
+
+.eat-smart .post-content .points {
+    position: absolute;
+    right: 0;
+}
+
+.eat-smart .post-content .points {
+    position: absolute;
+    right: -10px;
+    top: -16px;
+}
+
+
+.eat-smart .price-points {
+    width: 60%;
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+
+.eat-smart .price-points .price {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* .eat-smart .price-points .points {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+    text-transform: none;
+} */
+
+.memberships .price-points .fa {
+    font-weight: 500;
+}
+
+:root {
+    --custom-white: #ededed;
+    --custom-body-background: #f9f9f9;
+    --custom-black: #181c18;
+    --custom-gray: #383e38;
+    --custom-light-gray: #f2f2f2;
+    --custom-yellow: #efd510;
+    --custom-dark-yellow: #cfba1a;
+    --custom-yellow-shadow: rgb(234, 220, 108);
+}
