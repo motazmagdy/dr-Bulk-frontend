@@ -1,21 +1,21 @@
 import React from "react";
 import { lazy } from "react"
 import { Routes, Route, Navigate } from "react-router-dom";
+import useAuthContext from "../../Hooks/AuthContextHook";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
-import useAuthContext from "../../Hooks/AuthContextHook";
 const Home = lazy(() => import("./Home/Home"))
 const Memberships = lazy(() => import("./Memberships/Memberships"))
-const PrivateTraining = lazy(() => import("./PrivateTraining/PrivateTraining"))
-const EatSmart = lazy(() => import('./EatSmart/EatSmart'))
+const VIPMemberships = lazy(() => import("./Memberships/VIPMemberships/VIPMemberships"))
 const Instructors = lazy(() => import('./Instructors/Instructors'))
+const EatSmart = lazy(() => import('./EatSmart/EatSmart'))
+const Shop = lazy(() => import('./Shop/Shop'))
+const Cart = lazy(() => import("./Shop/Cart/Cart"))
+const ProductDetails = lazy(() => import('./Shop/ProductDetails/ProductDetails'))
 const UserSignUp = lazy(() => import("./SignUp/SignUp"))
 const VerifyMsg = lazy(() => import("./SignUp/VerifyMsg"))
 const VerifyEmailCode = lazy(() => import("./VerifyEmail/VerifyEmailCode"))
 const UserLogin = lazy(() => import("./Login/Login"))
-const Shop = lazy(() => import('./Shop/Shop'))
-const Cart = lazy(() => import("./Shop/Cart/Cart"))
-const ProductDetails = lazy(() => import('./Shop/ProductDetails/ProductDetails'))
 const ContactUs = lazy(() => import('./ContactUs/ContactUs'))
 const NotFound = lazy(() => import("../../Components/NotFound/NotFound"))
 
@@ -28,7 +28,7 @@ const UserRouter = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/plans-pricing/gym-membership" element={<Memberships />} />
-        <Route path="/plans-pricing/private-training" element={<PrivateTraining />} />
+        <Route path="/plans-pricing/private-training" element={<VIPMemberships />} />
         <Route path="instructors" element={<Instructors />} />
         <Route path="eat-smart" element={<EatSmart />} />
         <Route path="shop" element={<Shop />} />

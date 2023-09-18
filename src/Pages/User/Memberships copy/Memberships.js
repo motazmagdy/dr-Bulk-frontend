@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import MembershipItem from './MembershipItem/MembershipItem'
+import MembershipItem from './MembershipItem'
 import RoutesSpinner from '../../../Components/Spinners/RoutesSpinner'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
@@ -25,7 +25,6 @@ const Memberships = () => {
     arr.Normal = []
     arr.Silver = []
     arr.Gold = []
-    arr.Diamond = []
     memberships.forEach(m => {
         if (m.type == 'Normal') {
             arr.Normal.push(m)
@@ -34,8 +33,11 @@ const Memberships = () => {
         } else if (m.type == 'Gold') {
             arr.Gold.push(m)
         } else if (m.type == 'Diamond') {
-            arr.Diamond.push(m)
+            arr.Gold.push(m)
         }
+        // if (m.type == 'VIP') {
+        //     arr.Gold.push(m)
+        // }
     })
     console.log(arr)
 
