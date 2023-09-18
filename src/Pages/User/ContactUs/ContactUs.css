@@ -13,6 +13,20 @@
     margin-top: 20px;
 }
 
+.contact-us .map {
+    width: 900px;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.contact-us .map iframe {
+    width: 900px;
+    height: 450px;
+    border: 0;
+}
+
+.contact-us .map {}
+
 
 :root {
     --custom-white: #ededed;
