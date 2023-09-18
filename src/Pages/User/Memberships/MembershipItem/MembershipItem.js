@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import '../Memberships.css'
 
 const MembershipItem = ({ membership }) => {
-    const { _id: id, title, description, duration, price, type, points, image } = membership
+    const { _id: id, title, description, duration, price, type, points } = membership
 
     let typeBg = {}
     // if(type=='Normal'){
@@ -22,7 +22,8 @@ const MembershipItem = ({ membership }) => {
     return (
         <>
             <div className="card-header rounded-0" style={typeBg}>
-                {type}
+                <span>{type}</span>
+                <span className="points">Earn {points} {points && <i className="fa fa-diamond" aria-hidden="true"></i>}</span>
             </div>
             <div className="card-body">
                 <h5 className="card-title">{title.en}</h5>

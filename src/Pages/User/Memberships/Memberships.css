@@ -7,16 +7,6 @@
     padding-inline: 2rem;
 }
 
-.price-points {
-    width: 25%;
-
-    display: flex;
-    justify-content: space-between;
-
-    margin: 16px 0;
-    font-size: 20px;
-}
-
 .memberships .Normal h3 {
     display: inline-block;
     margin-bottom: 30px;
@@ -27,4 +17,29 @@
 
 .memberships .row {
     margin-bottom: 40px;
+}
+
+.memberships .card-header {
+    display: flex;
+    justify-content: space-between;
+
+    text-transform: none;
+}
+
+.memberships .price-points .price {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* .memberships .price-points .points {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    text-transform: none;
+} */
+
+.memberships .price-points .fa {
+    font-weight: 500;
 }
