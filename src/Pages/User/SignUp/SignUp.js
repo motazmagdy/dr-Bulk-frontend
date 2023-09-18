@@ -1,17 +1,17 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Field, Formik } from "formik";
 import { UserSignUpSchema } from "../../../Schemas/UserSignUpSchema";
 import "./SignUp.css";
 import { useTranslation } from "react-i18next";
-import useSignup  from '../../../Hooks/useSignup'
+import useSignup from '../../../Hooks/useSignup'
 
 const UserSignUp = () => {
+  const navigate = useNavigate();
+  const { signup, isSubmitting, signupErrMsg, setIsSubmitting } = useSignup()
+  const { t, i18n } = useTranslation()
 
-  const { signup , isSubmitting , signupErrMsg , setIsSubmitting } = useSignup()
-  const { t , i18n } = useTranslation()
-
-  const signupUser = (userData) =>{
+  const signupUser = (userData) => {
     signup(userData)
   }
 
@@ -30,6 +30,8 @@ const UserSignUp = () => {
         const { confirmPassword, ...signupData } = values
         signupUser(signupData)
         actions.resetForm()
+
+        navigate('/verify-your-email')
       }}
       validationSchema={UserSignUpSchema}
     >
@@ -53,8 +55,8 @@ const UserSignUp = () => {
                     : "form-control"
                 }
                 id="name"
-                // placeholder={t("Enter Your Name")}
-                 />
+              // placeholder={t("Enter Your Name")}
+              />
               {props.errors.name && props.touched.name ? (
                 <p className="input-err-msg">{t(props.errors.name)}</p>
               ) : null}
@@ -72,7 +74,7 @@ const UserSignUp = () => {
                 }
                 type="email"
                 id="email"
-                // placeholder={t("Enter Your Email")}
+              // placeholder={t("Enter Your Email")}
               />
               {props.errors.email && props.touched.email ? (
                 <p className="input-err-msg">{t(props.errors.email)}</p>
@@ -91,7 +93,7 @@ const UserSignUp = () => {
                 }
                 type="password"
                 id="password"
-                // placeholder={t("Enter Your Password")}
+              // placeholder={t("Enter Your Password")}
               />
               {props.errors.password && props.touched.password ? (
                 <p className="input-err-msg">{t(props.errors.password)}</p>
@@ -110,7 +112,7 @@ const UserSignUp = () => {
                 }
                 type="password"
                 id="confirmPassword"
-                // placeholder={t("Enter Your Password Again")}
+              // placeholder={t("Enter Your Password Again")}
               />
               {props.errors.confirmPassword && props.touched.confirmPassword ? (
                 <p className="input-err-msg">{t(props.errors.confirmPassword)}</p>
@@ -160,7 +162,7 @@ const UserSignUp = () => {
                 }
                 type="tel"
                 id="phoneNumber"
-                // placeholder={t("Enter Your Phone number")}
+              // placeholder={t("Enter Your Phone number")}
               />
               {props.errors.phoneNumber && props.touched.phoneNumber ? (
                 <p className="input-err-msg">{t(props.errors.phoneNumber)}</p>
