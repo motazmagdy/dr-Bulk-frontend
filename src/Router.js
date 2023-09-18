@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import RoutesSpinner from "./Components/Spinners/RoutesSpinner"
-import NotFound from "./Components/NotFound/NotFound"
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import useAuthContext from "./Hooks/AuthContextHook";
@@ -37,15 +36,14 @@ const Router = () => {
                 <CssBaseline />
                 {state.userRole === "admins" ? (
                   <AdminHome />
-                 ) : ( 
-                   <Navigate to="/admin/login" /> 
-                 )} 
+                ) : (
+                  <Navigate to="/admin/login" />
+                )}
               </ThemeProvider>
             </ColorModeContext.Provider>
           }
         />
         <Route path="/*" element={state.userRole !== "admins" ? <UserRouter /> : <Navigate to="/admin" />} />
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );

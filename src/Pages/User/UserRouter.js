@@ -4,18 +4,20 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
 import useAuthContext from "../../Hooks/AuthContextHook";
-import Cart from "./Shop/Cart/Cart";
-import Memberships from "./Memberships/Memberships";
-import PrivateTraining from "./PrivateTraining/PrivateTraining";
-import VerifyEmailCode from "./VerifyEmail/VerifyEmailCode";
-const UserSignUp = lazy(() => import("./SignUp/SignUp"))
-const UserLogin = lazy(() => import("./Login/Login"))
 const Home = lazy(() => import("./Home/Home"))
-const Shop = lazy(() => import('./Shop/Shop'))
-const ProductDetails = lazy(() => import('./Shop/ProductDetails/ProductDetails'))
-const Instructors = lazy(() => import('./Instructors/Instructors'))
+const Memberships = lazy(() => import("./Memberships/Memberships"))
+const PrivateTraining = lazy(() => import("./PrivateTraining/PrivateTraining"))
 const EatSmart = lazy(() => import('./EatSmart/EatSmart'))
+const Instructors = lazy(() => import('./Instructors/Instructors'))
+const UserSignUp = lazy(() => import("./SignUp/SignUp"))
+const VerifyMsg = lazy(() => import("./SignUp/VerifyMsg"))
+const VerifyEmailCode = lazy(() => import("./VerifyEmail/VerifyEmailCode"))
+const UserLogin = lazy(() => import("./Login/Login"))
+const Shop = lazy(() => import('./Shop/Shop'))
+const Cart = lazy(() => import("./Shop/Cart/Cart"))
+const ProductDetails = lazy(() => import('./Shop/ProductDetails/ProductDetails'))
 const ContactUs = lazy(() => import('./ContactUs/ContactUs'))
+const NotFound = lazy(() => import("../../Components/NotFound/NotFound"))
 
 const UserRouter = () => {
   const { state } = useAuthContext();
@@ -39,15 +41,14 @@ const UserRouter = () => {
           path="signup"
           element={!state.userRole ? <UserSignUp /> : <Navigate to="/" />}
         />
-        <Route
-          path="verify-email-code/:code/:id"
-          element={<VerifyEmailCode />}
-        />
+        <Route path="verify-your-email" element={<VerifyMsg />} />
+        <Route path="verify-email-code/:code/:id" element={<VerifyEmailCode />} />
         <Route
           path="login"
           element={!state.userRole ? <UserLogin /> : <Navigate to="/" />}
         />
         <Route path="contactus" element={<ContactUs />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
