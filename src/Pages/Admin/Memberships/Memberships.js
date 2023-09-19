@@ -382,7 +382,7 @@ const Memberships = () => {
   const [deleteRow, setDeleteRow] = useState("");
   const [addingNewMembership, setAddingNewMembership] = useState(false);
   const [imagesPreview, setImagesPreview] = useState([]);
-  const membershipTypes = ["Normal", "Silver", "Gold"];
+  const membershipTypes = ['Normal', 'Silver', 'Gold','Diamond','VIP'];
 
   const openDeleteAlert = (deleteData) => {
     setDeleteRow(deleteData);
@@ -401,7 +401,6 @@ const Memberships = () => {
     axios
       .get(`${serverApi}/api/memberships`)
       .then((response) => {
-        // console.log(response.data.data);
         setMemberships(response.data.data);
       })
       .catch((error) => console.log(error));
