@@ -36,7 +36,8 @@ const InstructorItem = ({ instructor }) => {
                         {/* <span className="points">{phoneNumber} {phoneNumber && <i className="fa fa-diamond" aria-hidden="true"></i>}</span> */}
                     </div>
                     <p>
-                        {bio?.length > 50 ? (bio?.substring(0, 50) + '....') : bio}
+                        {/* {bio?.length > 50 ? (bio?.substring(0, 50) + '....') : bio} */}
+                        {bio}
                     </p>
                     <Link to={`book-instructor/${id}`} className="btn bulk-dark-btn">{t("Book Now")}</Link>
                     {/* {
