@@ -1,11 +1,12 @@
-import { useState  } from "react";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 const serverApi = process.env.REACT_APP_DR_BULK_API;
 
 const useSignup = () => {
-
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,6 +19,8 @@ const useSignup = () => {
         if (response.status === 201) {
           toast.success(t("Signed Up Successfully ! "));
           setIsSubmitting(false);
+
+          navigate('/verify-your-email')
         }
       })
       .catch((err) => {
@@ -33,7 +36,7 @@ const useSignup = () => {
       });
   };
 
-  return { signup , isSubmitting , signupErrMsg , setIsSubmitting };
+  return { signup, isSubmitting, signupErrMsg, setIsSubmitting };
 };
 
 export default useSignup;

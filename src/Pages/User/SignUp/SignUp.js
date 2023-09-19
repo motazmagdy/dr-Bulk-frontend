@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Field, Formik } from "formik";
 import { UserSignUpSchema } from "../../../Schemas/UserSignUpSchema";
 import "./SignUp.css";
@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import useSignup from '../../../Hooks/useSignup'
 
 const UserSignUp = () => {
-  const navigate = useNavigate();
   const { signup, isSubmitting, signupErrMsg, setIsSubmitting } = useSignup()
   const { t, i18n } = useTranslation()
 
@@ -29,9 +28,7 @@ const UserSignUp = () => {
         setIsSubmitting(true);
         const { confirmPassword, ...signupData } = values
         signupUser(signupData)
-        actions.resetForm()
-
-        navigate('/verify-your-email')
+        // actions.resetForm()
       }}
       validationSchema={UserSignUpSchema}
     >
