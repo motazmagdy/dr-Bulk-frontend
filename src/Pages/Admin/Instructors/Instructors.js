@@ -20,6 +20,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import "./Instructors.css";
+import InstructorDefault from '../../../Assets/InstructorDefault.jpg'
 
 const serverApi = process.env.REACT_APP_DR_BULK_API;
 
@@ -689,7 +690,7 @@ const Instructors = () => {
                         <Box className="imgs-preview">
                           {!editingImages ? (
                             <img
-                              src={loadInstructorImage(imagesPreview)}
+                              src={imagesPreview ? loadInstructorImage(imagesPreview) : InstructorDefault}
                               alt="Image Preview"
                               className="mt-3 mr-2  instructImg"
                             />
