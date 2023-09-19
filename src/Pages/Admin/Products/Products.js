@@ -342,7 +342,7 @@ const EditToolbar = ({
                               src={img}
                               key={img}
                               alt="Images Preview"
-                              className="mt-3 mr-2"
+                              className="mt-3 mr-2 productImg"
                             />
                           ))}
                         </Box>
@@ -1028,17 +1028,12 @@ const Products = () => {
                                 .replace(/\\/g, "/")
                                 .replace("/public", "");
                               return (
-                                // <Box className="editImages">
-                                //     <Box className="deleteIconCont" onClick={()=>deleteproductImage(editingProduct._id , img)}>
-                                //       <HighlightOffIcon className="deleteImgBtn"/>
-                                //     </Box>
                                     <img
                                       key={index}
                                       src={modifiedString}
                                       alt="Images Preview"
                                       className="mt-3 mr-2"
                                     />
-                                // </Box>
                               );
                             })
                           : imagesPreview.map((img) => (

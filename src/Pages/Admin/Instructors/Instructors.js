@@ -1,13 +1,13 @@
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import { orange, red } from "@mui/material/colors";
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { DataGrid,GridToolbarContainer } from "@mui/x-data-grid";
-import { Box, useTheme, TextField , Typography } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import { DataGrid, GridToolbarContainer } from "@mui/x-data-grid";
+import { Box, useTheme, TextField, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
@@ -16,14 +16,20 @@ import { tokens } from "../../../theme";
 import axios from "axios";
 import { InstructorSchema } from "../../../Schemas/InstructorSchema";
 import DashboardHeader from "../../../Components/DashboardHeader/DashboardHeader";
-import React , { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import "./Instructors.css"
+import "./Instructors.css";
 
 const serverApi = process.env.REACT_APP_DR_BULK_API;
 
-const EditToolbar = ({addNewInstructor,addingNewInstructor,setAddingNewInstructor}) => {
+const EditToolbar = ({
+  addNewInstructor,
+  addingNewInstructor,
+  setAddingNewInstructor,
+  imagesPreview,
+  setImagesPreview,
+}) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   return (
@@ -42,6 +48,7 @@ const EditToolbar = ({addNewInstructor,addingNewInstructor,setAddingNewInstructo
           startIcon={<AddIcon />}
           onClick={() => {
             setAddingNewInstructor(true);
+            setImagesPreview([])
           }}
         >
           Add Instructor
@@ -74,6 +81,7 @@ const EditToolbar = ({addNewInstructor,addingNewInstructor,setAddingNewInstructo
                   bioInEnglish: "",
                   bioInArabic: "",
                   phoneNumber: "",
+                  image: [],
                 }}
                 onSubmit={(values, actions) => {
                   addNewInstructor(values);
@@ -89,6 +97,7 @@ const EditToolbar = ({addNewInstructor,addingNewInstructor,setAddingNewInstructo
                   handleBlur,
                   handleChange,
                   handleSubmit,
+                  setFieldValue,
                 }) => (
                   <form display="flex" onSubmit={handleSubmit}>
                     <Box
@@ -102,48 +111,94 @@ const EditToolbar = ({addNewInstructor,addingNewInstructor,setAddingNewInstructo
                         },
                       }}
                     >
-                        <Box className="containerNames">
-                          <Box className="childName">
-                            <TextField
-                              fullWidth
-                              //   variant="filled"
-                              type="text"
-                              label="Instructor Name in English"
-                              onBlur={handleBlur}
-                              onChange={handleChange}
-                              value={values.nameInEnglish}
-                              name="nameInEnglish"
-                              error={!!touched.name && !!errors.name}
-                              sx={{ gridColumn: "span 2" }}
+                       <Box className="profileImageSection">
+                        <DialogTitle className="uploadImageTitle">Upload Profile Image </DialogTitle>
+                        <input
+                          variant="filled"
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          label="Image"
+                          onBlur={handleBlur}
+                          onChange={(e) => {
+                            setImagesPreview([]);
+                            const selectedImages = [...e.target.files];
+                            setFieldValue("image", selectedImages);
+                            selectedImages.forEach((imageFile) => {
+                              const reader = new FileReader();
+                              reader.onload = () => {
+                                if (reader.readyState === 2) {
+                                  setImagesPreview((prevImages) => [
+                                    ...prevImages,
+                                    reader.result,
+                                  ]);
+                                }
+                              };
+                              reader.readAsDataURL(imageFile);
+                            });
+                          }}
+                          name="images"
+                          sx={{ gridColumn: "span 2" }}
+                        />
+
+                        <Box className="imgs-preview">
+                          {imagesPreview.map((img) => (
+                            <img
+                              src={img}
+                              key={img}
+                              alt="Images Preview"
+                              className="mt-3 mr-2 instructImg"
                             />
-                            <br />
-                            {errors.nameInEnglish && touched.nameInEnglish ? (
-                              <span className="input-err-msg">
-                                {errors.nameInEnglish}
-                              </span>
-                            ) : null}
-                          </Box>
-                          <Box className="childName">
-                            <TextField
-                              fullWidth
-                              //   variant="filled"
-                              type="text"
-                              label="اسم المدرب بالعربى"
-                              onBlur={handleBlur}
-                              onChange={handleChange}
-                              value={values.nameInArabic}
-                              name="nameInArabic"
-                              error={!!touched.name && !!errors.name}
-                              sx={{ gridColumn: "span 2" }}
-                            />
-                            <br />
-                            {errors.nameInArabic && touched.nameInArabic ? (
-                              <span className="input-err-msg">
-                                {errors.nameInArabic}
-                              </span>
-                            ) : null}
-                          </Box>
+                          ))}
+                          {errors.images && touched.images ? (
+                            <span className="input-err-msg">
+                              {errors.images}
+                            </span>
+                          ) : null}
                         </Box>
+                      </Box>
+                      <Box className="containerNames">
+                        <Box className="childName">
+                          <TextField
+                            fullWidth
+                            //   variant="filled"
+                            type="text"
+                            label="Instructor Name in English"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.nameInEnglish}
+                            name="nameInEnglish"
+                            error={!!touched.name && !!errors.name}
+                            sx={{ gridColumn: "span 2" }}
+                          />
+                          <br />
+                          {errors.nameInEnglish && touched.nameInEnglish ? (
+                            <span className="input-err-msg">
+                              {errors.nameInEnglish}
+                            </span>
+                          ) : null}
+                        </Box>
+                        <Box className="childName">
+                          <TextField
+                            fullWidth
+                            //   variant="filled"
+                            type="text"
+                            label="اسم المدرب بالعربى"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.nameInArabic}
+                            name="nameInArabic"
+                            error={!!touched.name && !!errors.name}
+                            sx={{ gridColumn: "span 2" }}
+                          />
+                          <br />
+                          {errors.nameInArabic && touched.nameInArabic ? (
+                            <span className="input-err-msg">
+                              {errors.nameInArabic}
+                            </span>
+                          ) : null}
+                        </Box>
+                      </Box>
                       <Box display="flex" flexDirection="column">
                         <TextField
                           fullWidth
@@ -208,6 +263,7 @@ const EditToolbar = ({addNewInstructor,addingNewInstructor,setAddingNewInstructo
                         <Button
                           onClick={() => {
                             setAddingNewInstructor(false);
+                            setImagesPreview([]);
                           }}
                           sx={{
                             backgroundColor: "rgb(244, 67, 54) !important",
@@ -241,28 +297,29 @@ const EditToolbar = ({addNewInstructor,addingNewInstructor,setAddingNewInstructo
 };
 
 const Instructors = () => {
-
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { t } = useTranslation();
   const [categories, setInstructors] = useState([]);
   const [rows, setRows] = useState(categories);
   const [editDialog, setEditDialog] = useState("");
-  const [deleteRow,setDeleteRow] = useState("")
+  const [deleteRow, setDeleteRow] = useState("");
   const [addingNewInstructor, setAddingNewInstructor] = useState(false);
+  const [imagesPreview, setImagesPreview] = useState("");
   const [rowModesModel, setRowModesModel] = useState({});
+  const [editingImages , setEditingImages] = useState(false)
 
-  const openDeleteAlert = (deleteData)=>{
-    setDeleteRow(deleteData)
-  }
-  const closeDeleteAlert = ()=>{
-    setDeleteRow("")
-  }
-  const openEditDialog = (instructor)=>{
-    setEditDialog(instructor)
-  }
-  const closeEditDialog =()=>{
-    setEditDialog("")
-  }
+  const openDeleteAlert = (deleteData) => {
+    setDeleteRow(deleteData);
+  };
+  const closeDeleteAlert = () => {
+    setDeleteRow("");
+  };
+  const openEditDialog = (instructor) => {
+    setEditDialog(instructor);
+  };
+  const closeEditDialog = () => {
+    setEditDialog("");
+  };
 
   const getInstructors = () => {
     axios
@@ -274,29 +331,42 @@ const Instructors = () => {
       .catch((error) => console.log(error));
   };
 
-  const editInstructor = (id , instructoreEditedData)=>{
-    const instructorNewData = {
-      name: {
-        en: instructoreEditedData.nameInEnglish,
-        ar: instructoreEditedData.nameInArabic,
-      },
-      bio: {
-        en: instructoreEditedData.bioInEnglish,
-        ar: instructoreEditedData.bioInArabic,
-      },
-      phoneNumber : instructoreEditedData.phoneNumber
-    };
+  const editInstructor = (id, instructoreEditedData) => {
+    // const instructorNewData = {
+    //   name: {
+    //     en: instructoreEditedData.nameInEnglish,
+    //     ar: instructoreEditedData.nameInArabic,
+    //   },
+    //   bio: {
+    //     en: instructoreEditedData.bioInEnglish,
+    //     ar: instructoreEditedData.bioInArabic,
+    //   },
+    //   phoneNumber: instructoreEditedData.phoneNumber,
+    // };
+
+    const formData = new FormData();
+    formData.append("name[en]" , instructoreEditedData.nameInEnglish)
+    formData.append("name[ar]" , instructoreEditedData.nameInArabic)
+    formData.append("bio[en]" , instructoreEditedData.bioInEnglish)
+    formData.append("bio[ar]" , instructoreEditedData.bioInArabic)
+    formData.set("phoneNumber", instructoreEditedData.phoneNumber);
+
+    instructoreEditedData.image.forEach((image) => {
+      formData.append(`image`, image);
+    });
 
     axios
-      .put(`${serverApi}/api/instructors/${id}`,  instructorNewData , {
+      .put(`${serverApi}/api/instructors/${id}`, formData, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${localStorage.getItem("Token")}`,
         },
       })
       .then((response) => {
         if (response.status === 200) {
+          console.log(response.data);
           toast.success("Instructor Info Updated Successfully ! ");
-          setEditDialog("")
+          setEditDialog("");
         }
       })
       .catch((err) => {
@@ -308,9 +378,9 @@ const Instructors = () => {
           });
         }
       });
-  }
+  };
 
-  const deleteInstructor = (id)=>{
+  const deleteInstructor = (id) => {
     axios
       .delete(`${serverApi}/api/instructors/${id}`, {
         headers: {
@@ -320,7 +390,7 @@ const Instructors = () => {
       .then((response) => {
         if (response.status === 204) {
           toast.success("Instructor Deleted Successfully ! ");
-          setDeleteRow("")
+          setDeleteRow("");
         }
       })
       .catch((err) => {
@@ -332,35 +402,37 @@ const Instructors = () => {
           });
         }
       });
-  }
+  };
 
   useEffect(() => {
     getInstructors();
-  }, [addingNewInstructor,deleteRow,editDialog]);
+  }, [addingNewInstructor, deleteRow, editDialog]);
 
   const addNewInstructor = (instructorData) => {
-    const instructor = {
-      name: {
-        en: instructorData.nameInEnglish,
-        ar: instructorData.nameInArabic,
-      },
-      bio: {
-        en: instructorData.bioInEnglish,
-        ar: instructorData.bioInArabic,
-      },
-      phoneNumber : instructorData.phoneNumber
-    };
+
+    const formData = new FormData();
+    formData.append("name[en]" , instructorData.nameInEnglish)
+    formData.append("name[ar]" , instructorData.nameInArabic)
+    formData.append("bio[en]" , instructorData.bioInEnglish)
+    formData.append("bio[ar]" , instructorData.bioInArabic)
+    formData.set("phoneNumber", instructorData.phoneNumber);
+
+    instructorData.image.forEach((image) => {
+      formData.append(`image`, image);
+    });
 
     axios
-      .post(`${serverApi}/api/instructors`, instructor , {
+      .post(`${serverApi}/api/instructors`, formData, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${localStorage.getItem("Token")}`,
         },
       })
       .then((response) => {
         if (response.status === 201) {
+          console.log(response);
           toast.success("Instructor Added Successfully ! ");
-          setAddingNewInstructor(false)
+          setAddingNewInstructor(false);
         }
       })
       .catch((err) => {
@@ -403,7 +475,7 @@ const Instructors = () => {
       field: "edit",
       headerName: "Edit",
       flex: 0.2,
-      renderCell: ({ row: { _id , name , bio , phoneNumber} }) => {
+      renderCell: ({ row: { _id, name, bio, phoneNumber , image } }) => {
         return (
           <Box
             width="50%"
@@ -415,9 +487,13 @@ const Instructors = () => {
               type="submit"
               style={{ backgroundColor: orange[500], color: "white" }}
               variant="contained"
-              onClick={()=>openEditDialog({ _id , name , bio , phoneNumber})}
-            >
-                Edit <EditIcon sx={{ marginLeft: '8px' }}/>
+              onClick={() => {
+                openEditDialog({ _id, name, bio, phoneNumber })
+                setImagesPreview(image)
+                setEditingImages(false)
+              }}
+                >
+              Edit <EditIcon sx={{ marginLeft: "8px" }} />
             </Button>
           </Box>
         );
@@ -427,7 +503,7 @@ const Instructors = () => {
       field: "delete",
       headerName: "Delete",
       flex: 0.2,
-      renderCell: ({ row: { _id , name } }) => {
+      renderCell: ({ row: { _id, name } }) => {
         return (
           <Box
             width="50%"
@@ -439,9 +515,9 @@ const Instructors = () => {
               type="submit"
               style={{ backgroundColor: red[500], color: "white" }}
               variant="contained"
-              onClick={()=>openDeleteAlert({ _id , name })}
+              onClick={() => openDeleteAlert({ _id, name })}
             >
-              Delete <DeleteIcon sx={{ marginLeft: '8px' }} />
+              Delete <DeleteIcon sx={{ marginLeft: "8px" }} />
             </Button>
           </Box>
         );
@@ -449,9 +525,20 @@ const Instructors = () => {
     },
   ];
 
+  const loadInstructorImage = (instructorImage)=>{
+    const imgLinkToFormat = `${serverApi}/${instructorImage}`;
+    const modifiedString = imgLinkToFormat
+                            .replace(/\\/g, "/")
+                            .replace("/public", "");
+                            return modifiedString
+  }
+
   return (
     <Box m="20px">
-      <DashboardHeader title="Instructors" subtitle="Managing the Instructors" />
+      <DashboardHeader
+        title="Instructors"
+        subtitle="Managing the Instructors"
+      />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -479,15 +566,15 @@ const Instructors = () => {
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
           },
-          " & .MuiDataGrid-selectedRowCount & .MuiTablePagination-selectLabel & .MuiTablePagination-actions & .MuiTablePagination-select" :{
-            display:"none !important"
+          " & .MuiDataGrid-selectedRowCount & .MuiTablePagination-selectLabel & .MuiTablePagination-actions & .MuiTablePagination-select":
+            {
+              display: "none !important",
+            },
+
+          " & .MuiDialogContentText-root": {
+            marginBottom: "1 rem !important",
           },
-          
-          " & .MuiDialogContentText-root" : {
-            marginBottom:"1 rem !important"
-          }
-        }
-      }
+        }}
       >
         <DataGrid
           // checkboxSelection
@@ -498,27 +585,48 @@ const Instructors = () => {
             toolbar: EditToolbar,
           }}
           slotProps={{
-            toolbar: { addNewInstructor, getInstructors, addingNewInstructor, setAddingNewInstructor },
+            toolbar: {
+              addNewInstructor,
+              getInstructors,
+              addingNewInstructor,
+              setAddingNewInstructor,
+              imagesPreview,
+              setImagesPreview,
+            },
           }}
           // editMode="row"
         />
-        { editDialog ?       
-        <Dialog open={editDialog ? true : false } onClose={closeEditDialog}>
-        <DialogTitle>Editing Instructor Info</DialogTitle>
-        <DialogContent>
-          <DialogContentText className="editInstructorText">
-            Enter the new Name for <b>{editDialog.name.en}</b>
-          </DialogContentText>
-          <Formik
+        {editDialog ? (
+          <Dialog
+            open={editDialog ? true : false}
+            onClose={closeEditDialog}
+            sx={{
+              "& .MuiPaper-root": {
+                width: "100%",
+              },
+              "& .MuiBox-root": {
+                flexDirection: "column",
+                flexWrap: "wrap",
+              },
+              "& .MuiBox-root > .MuiBox-root": {
+                width: "100%",
+                margin: "0.5rem 0",
+              },
+            }}
+          >
+            <DialogTitle>Editing Instructor Info</DialogTitle>
+            <DialogContent>
+              <Formik
                 initialValues={{
                   nameInEnglish: editDialog.name.en,
                   nameInArabic: editDialog.name.ar,
                   bioInEnglish: editDialog.bio.en,
                   bioInArabic: editDialog.bio.ar,
                   phoneNumber: editDialog.phoneNumber,
+                  image: editDialog.image,
                 }}
                 onSubmit={(values, actions) => {
-                  editInstructor(editDialog._id , values);
+                  editInstructor(editDialog._id, values);
                   // actions.resetForm();
                   // setAddingNewInstructor(false);
                 }}
@@ -531,6 +639,7 @@ const Instructors = () => {
                   handleBlur,
                   handleChange,
                   handleSubmit,
+                  setFieldValue,
                 }) => (
                   <form className="editInstructorForm" onSubmit={handleSubmit}>
                     <Box
@@ -538,52 +647,105 @@ const Instructors = () => {
                       flexDirection="column"
                       mb={2}
                       gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                      width={"100%"}
                       sx={{
                         "& > div": {
                           gridColumn: isNonMobile ? undefined : "span 4",
                         },
                       }}
                     >
-                        <Box className="containerNames">
-                          <Box className="childName">
-                            <TextField
-                              fullWidth
-                              //   variant="filled"
-                              type="text"
-                              label="Instructor Name in English"
-                              onBlur={handleBlur}
-                              onChange={handleChange}
-                              value={values.nameInEnglish}
-                              name="nameInEnglish"
-                              error={!!touched.name && !!errors.name}
-                              sx={{ gridColumn: "span 2" }}
+                      <Box className="profileImageSection">
+                        <DialogTitle className="uploadImageTitle">
+                          Upload New Image
+                        </DialogTitle>
+                        <input
+                          variant="filled"
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          label="Image"
+                          onBlur={handleBlur}
+                          onChange={(e) => {
+                            setEditingImages(true);
+                            setImagesPreview("");
+                            const selectedImages = [...e.target.files];
+                            setFieldValue("image", selectedImages);
+                            selectedImages.forEach((imageFile) => {
+                              const reader = new FileReader();
+                              reader.onload = () => {
+                                if (reader.readyState === 2) {
+                                  setImagesPreview((prevImages) => [
+                                    ...prevImages,
+                                    reader.result,
+                                  ]);
+                                }
+                              };
+                              reader.readAsDataURL(imageFile);
+                            });
+                          }}
+                          name="images"
+                          sx={{ gridColumn: "span 2" }}
+                        />
+                        <Box className="imgs-preview">
+                          {!editingImages ? (
+                            <img
+                              src={loadInstructorImage(imagesPreview)}
+                              alt="Image Preview"
+                              className="mt-3 mr-2  instructImg"
                             />
-                            {errors.nameInEnglish && touched.nameInEnglish ? (
-                              <span className="input-err-msg">
-                                {errors.nameInEnglish}
-                              </span>
-                            ) : <br />}
-                          </Box>
-                          <Box className="childName">
-                            <TextField
-                              fullWidth
-                              //   variant="filled"
-                              type="text"
-                              label="اسم المدرب بالعربى"
-                              onBlur={handleBlur}
-                              onChange={handleChange}
-                              value={values.nameInArabic}
-                              name="nameInArabic"
-                              error={!!touched.name && !!errors.name}
-                              sx={{ gridColumn: "span 2" }}
+                          ) : (
+                            <img
+                              src={imagesPreview}
+                              alt="Image Preview"
+                              className="mt-3 mr-2  instructImg"
                             />
-                            {errors.nameInArabic && touched.nameInArabic ? (
-                              <span className="input-err-msg">
-                                {errors.nameInArabic}
-                              </span>
-                            ) : <br />}
-                          </Box>
+                          )}
                         </Box>
+                      </Box>
+                      <Box className="containerNames">
+                        <Box className="childName">
+                          <TextField
+                            fullWidth
+                            //   variant="filled"
+                            type="text"
+                            label="Instructor Name in English"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.nameInEnglish}
+                            name="nameInEnglish"
+                            error={!!touched.name && !!errors.name}
+                            sx={{ gridColumn: "span 2" }}
+                          />
+                          {errors.nameInEnglish && touched.nameInEnglish ? (
+                            <span className="input-err-msg">
+                              {errors.nameInEnglish}
+                            </span>
+                          ) : (
+                            <br />
+                          )}
+                        </Box>
+                        <Box className="childName">
+                          <TextField
+                            fullWidth
+                            //   variant="filled"
+                            type="text"
+                            label="اسم المدرب بالعربى"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.nameInArabic}
+                            name="nameInArabic"
+                            error={!!touched.name && !!errors.name}
+                            sx={{ gridColumn: "span 2" }}
+                          />
+                          {errors.nameInArabic && touched.nameInArabic ? (
+                            <span className="input-err-msg">
+                              {errors.nameInArabic}
+                            </span>
+                          ) : (
+                            <br />
+                          )}
+                        </Box>
+                      </Box>
                       <Box display="flex" flexDirection="column">
                         <TextField
                           fullWidth
@@ -601,7 +763,9 @@ const Instructors = () => {
                           <span className="input-err-msg">
                             {errors.bioInEnglish}
                           </span>
-                        ) : <br />}
+                        ) : (
+                          <br />
+                        )}
                       </Box>
                       <Box display="flex" flexDirection="column">
                         <TextField
@@ -620,7 +784,9 @@ const Instructors = () => {
                           <span className="input-err-msg">
                             {errors.bioInArabic}
                           </span>
-                        ) : <br />}
+                        ) : (
+                          <br />
+                        )}
                       </Box>
                       <Box display="flex" flexDirection="column">
                         <TextField
@@ -638,8 +804,11 @@ const Instructors = () => {
                           <span className="input-err-msg">
                             {errors.phoneNumber}
                           </span>
-                        ) : <br />}
+                        ) : (
+                          <br />
+                        )}
                       </Box>
+
                       <br />
                       <Box className="newInstructorBtns">
                         <Button
@@ -669,29 +838,31 @@ const Instructors = () => {
                   </form>
                 )}
               </Formik>
-        </DialogContent>
-      </Dialog>
-      : null }
-        {deleteRow ?
-        <Dialog
-              open={deleteRow ? true : false}
-              keepMounted
-              onClose={closeDeleteAlert}
-              aria-describedby="alert-dialog-slide-description"
-            >
-              <DialogTitle>Delete Instructor confirmation alert </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-slide-description">
-                Are you sure you want to delete the instructor ?<br/>
+            </DialogContent>
+          </Dialog>
+        ) : null}
+        {deleteRow ? (
+          <Dialog
+            open={deleteRow ? true : false}
+            keepMounted
+            onClose={closeDeleteAlert}
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <DialogTitle>Delete Instructor confirmation alert </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-slide-description">
+                Are you sure you want to delete the instructor ?<br />
                 Name : <b>{deleteRow.name.en}</b> <br />
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={closeDeleteAlert}>No</Button>
-                <Button onClick={()=>deleteInstructor(deleteRow._id)}>Yes</Button>
-              </DialogActions>
-            </Dialog>
-            : null }
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={closeDeleteAlert}>No</Button>
+              <Button onClick={() => deleteInstructor(deleteRow._id)}>
+                Yes
+              </Button>
+            </DialogActions>
+          </Dialog>
+        ) : null}
       </Box>
     </Box>
   );
