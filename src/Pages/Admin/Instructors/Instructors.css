@@ -27,3 +27,35 @@
     margin-top: 1rem;
 }
 
+.imgs-placeholder{
+    width:200px ;
+    height:200px ;
+    border-radius: 4px;
+    background-color: #c1bfbf;
+}
+
+.profileImageSection{
+    width: 100% !important;
+    margin: 0 !important;
+    padding : 0 !important ;
+    display: flex;
+    flex-direction: row !important ;
+    justify-content: space-between;
+}
+
+.uploadImageTitle{
+    padding : 0 !important;
+}
+
+.instructImg{
+        width:300px ;
+        height:300px ;
+        border-radius: 4px;
+        margin: auto;
+}
+
+.instructorImgContainer{
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+}

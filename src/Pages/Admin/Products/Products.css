@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-around !important;
     gap:15px;
-    & img {
+    & .productImg{
         width:300px ;
         height:300px ;
         border-radius: 4px;
