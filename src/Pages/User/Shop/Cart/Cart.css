@@ -34,6 +34,11 @@
     padding-top: 50px;
 }
 
+.cart-page .total-price td {
+    padding-top: 20px;
+    padding-bottom: 22px;
+}
+
 @media (max-width:768px) {
 
     .cart-page .itemRow .product-name,
@@ -114,6 +119,21 @@
     font-weight: bold;
     border-radius: 6px;
 }
+
+
+.order-btn-row {
+    position: relative;
+}
+
+.order-btn-row .btn {
+    width: 146px;
+    padding: 10px 20px;
+
+    position: absolute;
+    top: 10px;
+    left: -20px;
+}
+
 
 :root {
     --custom-white: #ededed;

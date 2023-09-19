@@ -84,14 +84,13 @@ const Cart = () => {
 
                                     })
                                 }
-                            </tbody>
-                            <tfoot>
+
                                 <tr className='total-price'>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td>Total Price </td>
-                                    <td colSpan='2'>{
+                                    <td>{
                                         cartItems.reduce((itemQuantity, item) => {
                                             const i = itemsDetails.find(itemD => itemD._id === item.id)
 
@@ -99,9 +98,11 @@ const Cart = () => {
                                         }, 0)
                                     } $
                                     </td>
-                                    <td></td>
+                                    <td className='order-btn-row'>
+                                        <button type='submit' className="btn bulk-dark-btn">Order Now</button>
+                                    </td>
                                 </tr>
-                            </tfoot>
+                            </tbody>
                         </table>)
                         :
                         <div className="emptyCart">Cart is empty. Go to <Link to="/shop">Store</Link>.</div>
