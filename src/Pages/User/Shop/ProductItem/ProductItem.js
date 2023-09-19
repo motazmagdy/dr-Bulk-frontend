@@ -1,6 +1,6 @@
 import React from 'react'
 import useAuthContext from '../../../../Hooks/AuthContextHook'
-import { Link , useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../../../../Context/CartContext'
 import './ProductItem.css'
 import { useTranslation } from 'react-i18next'
@@ -8,15 +8,15 @@ import { useTranslation } from 'react-i18next'
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const ProductItem = ({ product }) => {
-    const { t , i18n } = useTranslation()
+    const { t, i18n } = useTranslation()
     const { state } = useAuthContext()
-    const navigate  = useNavigate()
+    const navigate = useNavigate()
     const { _id: id, title, category, description, price, points, images } = product
     const { getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem } = useCart()
 
     return (
         <>
-            <div className="post-block product-item">
+            <div className="post-block product-item border border-1">
                 <div className="post-img">
                     <Link to={`/shop/${id}`} className="imghover">
                         <img src={images[0]?.replace('public\\uploads\\', DR_BULK_API + '/uploads/')} alt="product" className="img-responsive" />
@@ -39,19 +39,19 @@ const ProductItem = ({ product }) => {
                     {
                         !getItemQuantity(id) ?
                             <button type='button' className='btn bulk-dark-btn' onClick={e => increaseItemQuantity(id)}><i className="fa-solid fa-cart-shopping me-2"></i>Add to Cart</button>
-                            : 
+                            :
                             (state.userRole === "users" ?
-                            <div className="quantityBtns">
-                                {getItemQuantity(id) === 1 ?
-                                    <button type='button' className='btn btn-danger' onClick={e => removeItem(id)}><i className="fa fa-times" aria-hidden="true"></i></button>
-                                    :
-                                    <button type='button' className='btn btn-dark' onClick={e => decreaseItemQuantity(id)}><i className="fa fa-minus" aria-hidden="true"></i></button>}
+                                <div className="quantityBtns">
+                                    {getItemQuantity(id) === 1 ?
+                                        <button type='button' className='btn btn-danger' onClick={e => removeItem(id)}><i className="fa fa-times" aria-hidden="true"></i></button>
+                                        :
+                                        <button type='button' className='btn btn-dark' onClick={e => decreaseItemQuantity(id)}><i className="fa fa-minus" aria-hidden="true"></i></button>}
 
-                                <div className="quantity">{getItemQuantity(id)} in Cart</div>
-                                <button type='button' className='btn btn-dark' onClick={e => increaseItemQuantity(id)}><i className="fa fa-plus" aria-hidden="true"></i></button>
-                            </div> 
-                            : 
-                            <p className='cartLoginWarn'>{t("You need to ")}<span className='loginWord' onClick={()=>navigate('/login')}>{t("Login")}</span>{t(" to Add to Cart")}</p>
+                                    <div className="quantity">{getItemQuantity(id)} in Cart</div>
+                                    <button type='button' className='btn btn-dark' onClick={e => increaseItemQuantity(id)}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                                </div>
+                                :
+                                <p className='cartLoginWarn'>{t("You need to ")}<span className='loginWord' onClick={() => navigate('/login')}>{t("Login")}</span>{t(" to Add to Cart")}</p>
                             )
                     }
                 </div>
