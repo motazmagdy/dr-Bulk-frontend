@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./Header.css";
-import B from "../../Assets/PngLogo/Yellow.PNG";
+import B from "../../Assets/PngLogo/Yellow.png";
 import { useCart } from '../../Context/CartContext';
 import useLogout from "../../Hooks/useLogout";
 import useAuthContext from "../../Hooks/AuthContextHook";
