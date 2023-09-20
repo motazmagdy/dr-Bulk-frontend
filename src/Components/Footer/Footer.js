@@ -38,7 +38,7 @@ const Footer = () => {
                                 <li><Link to="/plans-pricing/private-training">{t("Private Training")}</Link></li>
                                 <li><Link to="/instructors">{t("Instructors")}</Link></li>
                                 <li><Link to="/eat-smart">{t("Eat Smart")}</Link></li>
-                                <li><Link to="/shop">{t("Apparel")}</Link></li>
+                                <li><Link to="/apparel">{t("Apparel")}</Link></li>
                                 <li><Link to="/contactus">{t("Contact us")}</Link></li>
                             </ul>
                         </div>

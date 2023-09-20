@@ -31,8 +31,8 @@ const UserRouter = () => {
         <Route path="/plans-pricing/private-training" element={<VIPMemberships />} />
         <Route path="instructors" element={<Instructors />} />
         <Route path="eat-smart" element={<EatSmart />} />
-        <Route path="shop" element={<Shop />} />
-        <Route path="shop/:id" element={<ProductDetails />} />
+        <Route path="apparel" element={<Shop />} />
+        <Route path="apparel/:id" element={<ProductDetails />} />
         <Route
           path="cart"
           element={state.userRole === "users" ? <Cart /> : <Navigate to="/" />}

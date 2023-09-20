@@ -2,6 +2,8 @@
   "ChangeLangauge": "English",
   "Home": "الصفحة الرئيسية",
   "Plans & Pricing": "الخطط & الأسعار",
+  "Gym Membership": "الاشتراك",
+  "Private Training": "الخطة المميزة",
   "Instructors": "المدربين",
   "Eat Smart": "الأكل الصحي",
   "Apparel": "المنتجات",
@@ -45,11 +47,11 @@
   "New Password": "كلمة المرور الجديدة",
   "Enter Your New Password": "ادخل كلمة المرور الجديدة",
   "Password Changed Successfully ! ": "تم تغيير كلمة المرور بنجاح",
-  "You need to Login to Add to Cart":"يجب ان تقوم بتسجيل الدخول حتى تستطيع ان تضيف الى السلة",
-  "You need to ":"يجب ان تقوم بى " , 
-  " to Add to Cart":" لكى تستطيع اضافة المنتجات الى السله ",
-  "For Contact" : "للتواصل ",
-  "Book Now":"احجز الآن",
-  "Weekly" : "أسبوعيا",
-  "Monthly" : "شهريا"
+  "You need to Login to Add to Cart": "يجب ان تقوم بتسجيل الدخول حتى تستطيع ان تضيف الى السلة",
+  "You need to ": "يجب ان تقوم بى ",
+  " to Add to Cart": " لكى تستطيع اضافة المنتجات الى السله ",
+  "For Contact": "للتواصل ",
+  "Book Now": "احجز الآن",
+  "Weekly": "أسبوعيا",
+  "Monthly": "شهريا"
 }

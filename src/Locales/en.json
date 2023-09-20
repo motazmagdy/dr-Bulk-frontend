@@ -2,6 +2,8 @@
   "ChangeLangauge": "اللغة العربية",
   "Home": "Home",
   "Plans & Pricing": "Plans & Pricing",
+  "Gym Membership": "Gym Membership",
+  "Private Training": "Private Training",
   "Instructors": "Instructors",
   "Eat Smart": "Eat Smart",
   "Apparel": "Apparel",
@@ -45,11 +47,11 @@
   "New Password": "New Password",
   "Enter Your New Password": "Enter Your New Password",
   "Password Changed Successfully ! ": "Password Changed Successfully ! ",
-  "Categories" :"Categories",
-  "You need to ":"You need to ",
-  " to Add to Cart":" to Add to Cart",
-  "For Contact":"For Contact",
-  "Book Now":"Book Now",
-  "Weekly" : "Weekly",
-  "Monthly" : "Monthly"
+  "Categories": "Categories",
+  "You need to ": "You need to ",
+  " to Add to Cart": " to Add to Cart",
+  "For Contact": "For Contact",
+  "Book Now": "Book Now",
+  "Weekly": "Weekly",
+  "Monthly": "Monthly"
 }
