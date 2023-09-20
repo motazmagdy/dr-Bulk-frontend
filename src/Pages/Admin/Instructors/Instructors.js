@@ -326,6 +326,7 @@ const Instructors = () => {
     axios
       .get(`${serverApi}/api/instructors`)
       .then((response) => {
+        // console.log(response.data.data);
         setInstructors(response.data.data);
       })
       .catch((error) => console.log(error));
@@ -607,7 +608,7 @@ const Instructors = () => {
                   bioInEnglish: editDialog.bio.en,
                   bioInArabic: editDialog.bio.ar,
                   phoneNumber: editDialog.phoneNumber,
-                  image: editDialog.image,
+                  image:"",
                 }}
                 onSubmit={(values, actions) => {
                   editInstructor(editDialog._id, values);
