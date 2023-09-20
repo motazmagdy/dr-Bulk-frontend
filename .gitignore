@@ -24,3 +24,4 @@ yarn-error.log*
 src/Pages/Admin/Categories/testCrud.js
 src/Pages/Admin/Instructors/testCrud.js
 src/Assets/Instructor.jpg
+src/Pages/User/EatSmart/EatSmartItem/test.js

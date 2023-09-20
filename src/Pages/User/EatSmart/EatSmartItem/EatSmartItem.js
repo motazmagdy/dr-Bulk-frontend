@@ -25,7 +25,7 @@ const EatSmartItem = ({ eatSmartPlan }) => {
 
     return (
         <>
-            <div className="card-header rounded-0" s
+            <div className="card-header rounded-0" 
             // tyle={typeBg}
             >
                 {t(type)}
