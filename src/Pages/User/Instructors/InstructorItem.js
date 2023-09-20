@@ -21,7 +21,7 @@ const InstructorItem = ({ instructor }) => {
           <div className="card rounded-0 mb-5">
             <div className="post-block product-item">
                 <div className="post-img">
-                    <Link to={`/instrucotrs/${id}`} className="imghover">
+                    <Link to={`/instructors`} className="imghover">
                         <img src={image?.replace('public\\uploads\\', DR_BULK_API + '/uploads/')} alt="product" className="img-responsive" />
                     </Link>
                 </div>
@@ -39,7 +39,7 @@ const InstructorItem = ({ instructor }) => {
                         {/* {bio?.length > 50 ? (bio?.substring(0, 50) + '....') : bio} */}
                         {bio}
                     </p>
-                    <Link to={`book-instructor/${id}`} className="btn bulk-dark-btn">{t("Book Now")}</Link>
+                    {/* <Link to={`book-instructor/${id}`} className="btn bulk-dark-btn">{t("Book Now")}</Link> */}
                     {/* {
                         !getItemQuantity(id) ?
                             <button type='button' className='btn bulk-dark-btn' onClick={e => increaseItemQuantity(id)}><i className="fa-solid fa-cart-shopping me-2"></i>Add to Cart</button>

@@ -82,7 +82,7 @@ const EditToolbar = ({
                   bioInEnglish: "",
                   bioInArabic: "",
                   phoneNumber: "",
-                  image: [],
+                  image: "",
                 }}
                 onSubmit={(values, actions) => {
                   addNewInstructor(values);
@@ -326,24 +326,13 @@ const Instructors = () => {
     axios
       .get(`${serverApi}/api/instructors`)
       .then((response) => {
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setInstructors(response.data.data);
       })
       .catch((error) => console.log(error));
   };
 
   const editInstructor = (id, instructoreEditedData) => {
-    // const instructorNewData = {
-    //   name: {
-    //     en: instructoreEditedData.nameInEnglish,
-    //     ar: instructoreEditedData.nameInArabic,
-    //   },
-    //   bio: {
-    //     en: instructoreEditedData.bioInEnglish,
-    //     ar: instructoreEditedData.bioInArabic,
-    //   },
-    //   phoneNumber: instructoreEditedData.phoneNumber,
-    // };
 
     const formData = new FormData();
     formData.append("name[en]" , instructoreEditedData.nameInEnglish)
@@ -351,10 +340,7 @@ const Instructors = () => {
     formData.append("bio[en]" , instructoreEditedData.bioInEnglish)
     formData.append("bio[ar]" , instructoreEditedData.bioInArabic)
     formData.set("phoneNumber", instructoreEditedData.phoneNumber);
-
-    instructoreEditedData.image.forEach((image) => {
-      formData.append(`image`, image);
-    });
+    formData.append(`image`, instructoreEditedData.image);
 
     axios
       .put(`${serverApi}/api/instructors/${id}`, formData, {
@@ -417,10 +403,7 @@ const Instructors = () => {
     formData.append("bio[en]" , instructorData.bioInEnglish)
     formData.append("bio[ar]" , instructorData.bioInArabic)
     formData.set("phoneNumber", instructorData.phoneNumber);
-
-    instructorData.image.forEach((image) => {
-      formData.append(`image`, image);
-    });
+    formData.append(`image`, instructorData.image);
 
     axios
       .post(`${serverApi}/api/instructors`, formData, {
@@ -527,6 +510,7 @@ const Instructors = () => {
   ];
 
   const loadInstructorImage = (instructorImage)=>{
+    console.log(instructorImage);
     const imgLinkToFormat = `${serverApi}/${instructorImage}`;
     const modifiedString = imgLinkToFormat
                             .replace(/\\/g, "/")
@@ -624,7 +608,7 @@ const Instructors = () => {
                   bioInEnglish: editDialog.bio.en,
                   bioInArabic: editDialog.bio.ar,
                   phoneNumber: editDialog.phoneNumber,
-                  image: editDialog.image,
+                  image:"",
                 }}
                 onSubmit={(values, actions) => {
                   editInstructor(editDialog._id, values);
@@ -690,7 +674,7 @@ const Instructors = () => {
                         <Box className="imgs-preview">
                           {!editingImages ? (
                             <img
-                              src={imagesPreview ? loadInstructorImage(imagesPreview) : InstructorDefault}
+                              src={!imagesPreview  ? InstructorDefault  :loadInstructorImage(imagesPreview) }
                               alt="Image Preview"
                               className="mt-3 mr-2  instructImg"
                             />

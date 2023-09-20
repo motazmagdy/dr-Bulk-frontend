@@ -7,6 +7,7 @@ import Products from "./Products/Products";
 import Instructors from "./Instructors/Instructors";
 import ChangePassword from "./ChangePassword/ChangePassword";
 import Memberships from "./Memberships/Memberships";
+import EatSmarts from "./EatSmart/EatSmart";
 
 const AdminRouter = () => {
     return (
@@ -16,6 +17,7 @@ const AdminRouter = () => {
             <Route path="/products" element={<Products />} />
             <Route path="/instructors" element={<Instructors />} />
             <Route path="/memberships" element={<Memberships />} />
+            <Route path="/eat-smart" element={<EatSmarts />} />
             <Route path="/change-password" element={<ChangePassword />} />
         </Routes>
         );

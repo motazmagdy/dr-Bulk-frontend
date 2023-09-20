@@ -11,6 +11,7 @@ import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import CategoryIcon from '@mui/icons-material/Category';
+import FlatwareIcon from '@mui/icons-material/Flatware';
 // import UserImg from '../../Assets/user.jpg'
 import SyncLockIcon from '@mui/icons-material/SyncLock';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -167,6 +168,13 @@ const AdminSidebar = () => {
               title={t("Memberships")}
               to="/admin/memberships"
               icon={<CardMembershipIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title={t("Eat-Smart")}
+              to="/admin/eat-smart"
+              icon={<FlatwareIcon />}
               selected={selected}
               setSelected={setSelected}
             />

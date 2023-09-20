@@ -21,18 +21,18 @@ import DashboardHeader from "../../../Components/DashboardHeader/DashboardHeader
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import "./Memberships.css";
-import { MembershipSchema } from "../../../Schemas/MembershipSchema";
+import "./EatSmart.css";
+import { EatSmartSchema } from "../../../Schemas/EatSmartSchema";
 
 const serverApi = process.env.REACT_APP_DR_BULK_API;
 
 const EditToolbar = ({
-  addNewMembership,
-  addingNewMembership,
-  setAddingNewMembership,
+  addNewEatSmart,
+  addingNewEatSmart,
+  setAddingNewEatSmart,
 //   imagesPreview,
   setImagesPreview,
-  membershipTypes
+  eatSmartTypes
 }) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   
@@ -47,20 +47,20 @@ const EditToolbar = ({
         },
       }}
     >
-      {!addingNewMembership ? (
+      {!addingNewEatSmart ? (
         <Button
           color="primary"
           startIcon={<AddIcon />}
           onClick={() => {
-            setAddingNewMembership(true);
+            setAddingNewEatSmart(true);
           }}
         >
-          Add Membership
+          Add Eat Smart
         </Button>
       ) : (
         <>
           <Dialog
-            open={addingNewMembership}
+            open={addingNewEatSmart}
             sx={{
               "& .MuiPaper-root": {
                 width: "100%",
@@ -75,9 +75,9 @@ const EditToolbar = ({
                 margin: "0.5rem 0",
               },
             }}
-            onClose={() => setAddingNewMembership(false)}
+            onClose={() => setAddingNewEatSmart(false)}
           >
-            <DialogTitle>Add New Membership</DialogTitle>
+            <DialogTitle>Add New EatSmart</DialogTitle>
             <DialogContent>
               <Formik
                 initialValues={{
@@ -92,11 +92,11 @@ const EditToolbar = ({
                   image: []
                 }}
                 onSubmit={(values, actions) => {
-                  addNewMembership(values);
+                  addNewEatSmart(values);
                 //   actions.resetForm();
-                  //setAddingNewMembership(false);
+                  //setAddingNewEatSmart(false);
                 }}
-                validationSchema={MembershipSchema}
+                validationSchema={EatSmartSchema}
               >
                 {({
                   values,
@@ -121,18 +121,18 @@ const EditToolbar = ({
                     >
                       <Box>
                         <InputLabel id="type-select-label">
-                          Membership Type
+                          EatSmart Type
                         </InputLabel>
                         <Select
                           onChange={(e) => {
-                            const selectedMembership = e.target.value;
-                            setFieldValue("type", selectedMembership);
+                            const selectedEatSmart = e.target.value;
+                            setFieldValue("type", selectedEatSmart);
                           }}
                           value={values.type}
                           name="type"
                           sx={{ width: "100%", marginTop: "1rem !important" }}
                         >
-                          {membershipTypes.map((type, index) => {
+                          {eatSmartTypes.map((type, index) => {
                             return (
                               <MenuItem key={index} value={type}>
                                 {type}
@@ -152,7 +152,7 @@ const EditToolbar = ({
                             fullWidth
                             //   variant="filled"
                             type="text"
-                            label="Membership Name in English"
+                            label="EatSmart Name in English"
                             onBlur={handleBlur}
                             onChange={handleChange}
                             value={values.titleInEnglish}
@@ -249,7 +249,7 @@ const EditToolbar = ({
                           fullWidth
                           multiline={true}
                           type="text"
-                          label="Membership Description in English"
+                          label="EatSmart Description in English"
                           onBlur={handleBlur}
                           onChange={handleChange}
                           value={values.descriptionInEnglish}
@@ -329,7 +329,7 @@ const EditToolbar = ({
                       <Box className="newInstructorBtns">
                         <Button
                           onClick={() => {
-                            setAddingNewMembership(false);
+                            setAddingNewEatSmart(false);
                             setImagesPreview([]);
                           }}
                           sx={{
@@ -373,16 +373,16 @@ const EditToolbar = ({
   );
 };
 
-const Memberships = () => {
+const EatSmarts = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { t } = useTranslation();
-  const [memberships, setMemberships] = useState([]);
-  const [rows, setRows] = useState(memberships);
+  const [eatSmart, setEatSmarts] = useState([]);
+  const [rows, setRows] = useState(eatSmart);
   const [editDialog, setEditDialog] = useState("");
   const [deleteRow, setDeleteRow] = useState("");
-  const [addingNewMembership, setAddingNewMembership] = useState(false);
+  const [addingNewEatSmart, setAddingNewEatSmart] = useState(false);
   const [imagesPreview, setImagesPreview] = useState([]);
-  const membershipTypes = ['Normal', 'Silver', 'Gold','Diamond','VIP'];
+  const eatSmartTypes = ['Weekly', 'Monthly'];
 
   const openDeleteAlert = (deleteData) => {
     setDeleteRow(deleteData);
@@ -397,39 +397,39 @@ const Memberships = () => {
     setEditDialog("");
   };
 
-  const getMemberships = () => {
+  const getEatSmarts = () => {
     axios
-      .get(`${serverApi}/api/memberships`)
+      .get(`${serverApi}/api/eat-smart`)
       .then((response) => {
-        setMemberships(response.data.data);
+        setEatSmarts(response.data.data);
       })
       .catch((error) => console.log(error));
   };
 
-  const editMembership = (id, membershipEditedData) => {
-    const membershipNewData = {
+  const editEatSmart = (id, eatsmartEditedData) => {
+    const eatsmartNewData = {
         title: {
-            en: membershipEditedData.titleInEnglish,
-            ar: membershipEditedData.titleInArabic,
+            en: eatsmartEditedData.titleInEnglish,
+            ar: eatsmartEditedData.titleInArabic,
           },
-          duration: membershipEditedData.duration,
-          type: membershipEditedData.type,
-          price: membershipEditedData.price,
+          duration: eatsmartEditedData.duration,
+          type: eatsmartEditedData.type,
+          price: eatsmartEditedData.price,
           description: {
-            en: membershipEditedData.descriptionInEnglish,
-            ar: membershipEditedData.descriptionInArabic,
+            en: eatsmartEditedData.descriptionInEnglish,
+            ar: eatsmartEditedData.descriptionInArabic,
           },
-          points: membershipEditedData.points
+          points: eatsmartEditedData.points
     };
     axios
-      .put(`${serverApi}/api/memberships/${id}`, membershipNewData, {
+      .put(`${serverApi}/api/eat-smart/${id}`, eatsmartNewData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
       })
       .then((response) => {
         if (response.status === 200) {
-          toast.success("Membership Info Updated Successfully ! ");
+          toast.success("EatSmart Info Updated Successfully ! ");
           setEditDialog("");
         }
       })
@@ -444,16 +444,16 @@ const Memberships = () => {
       });
   };
 
-  const deleteMembership = (id) => {
+  const deleteEatSmart = (id) => {
     axios
-      .delete(`${serverApi}/api/memberships/${id}`, {
+      .delete(`${serverApi}/api/eat-smart/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
       })
       .then((response) => {
         if (response.status === 204) {
-          toast.success("Membership Deleted Successfully ! ");
+          toast.success("EatSmart Deleted Successfully ! ");
           setDeleteRow("");
         }
       })
@@ -469,41 +469,41 @@ const Memberships = () => {
   };
 
   useEffect(() => {
-    getMemberships();
-  }, [addingNewMembership, deleteRow, editDialog]);
+    getEatSmarts();
+  }, [addingNewEatSmart, deleteRow, editDialog]);
 
-  const addNewMembership = (membershipData) => {
-    console.log(membershipData);
+  const addNewEatSmart = (eatsmartData) => {
+    console.log(eatsmartData);
     
-    const membership = {
+    const eatsmart = {
       title: {
-        en: membershipData.titleInEnglish,
-        ar: membershipData.titleInArabic,
+        en: eatsmartData.titleInEnglish,
+        ar: eatsmartData.titleInArabic,
       },
-      duration: membershipData.duration,
-      type: membershipData.type,
-      price: membershipData.price,
+      duration: eatsmartData.duration,
+      type: eatsmartData.type,
+      price: eatsmartData.price,
       description: {
-        en: membershipData.descriptionInEnglish,
-        ar: membershipData.descriptionInArabic,
+        en: eatsmartData.descriptionInEnglish,
+        ar: eatsmartData.descriptionInArabic,
       },
-      points: membershipData.points,
-    //   image: membershipData.image,
+      points: eatsmartData.points,
+    //   image: eatsmartData.image,
     //   image :formData
     };
-    console.log("Membership", membership);
+    console.log("EatSmart", eatsmart);
 
-    //     formData.append("title[en]" , membershipData.titleInEnglish)
-    //     formData.append("title[ar]" , membershipData.titleInArabic)
-    //     formData.append("description[en]" , membershipData.descriptionInEnglish )
-    //     formData.append("description[ar]" , membershipData.descriptionInArabic )
-    //     formData.append("duration", membershipData.duration);
-    //     formData.append("price", membershipData.price);
-    //     formData.append("points", membershipData.points);
-    //     formData.append("type", membershipData.type);
+    //     formData.append("title[en]" , eatsmartData.titleInEnglish)
+    //     formData.append("title[ar]" , eatsmartData.titleInArabic)
+    //     formData.append("description[en]" , eatsmartData.descriptionInEnglish )
+    //     formData.append("description[ar]" , eatsmartData.descriptionInArabic )
+    //     formData.append("duration", eatsmartData.duration);
+    //     formData.append("price", eatsmartData.price);
+    //     formData.append("points", eatsmartData.points);
+    //     formData.append("type", eatsmartData.type);
 
     axios
-      .post(`${serverApi}/api/memberships`, membership, {
+      .post(`${serverApi}/api/eat-smart`, eatsmart, {
         headers: {
             // 'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
@@ -511,8 +511,8 @@ const Memberships = () => {
       })
       .then((response) => {
         if (response.status === 201) {
-          toast.success("Membership Added Successfully ! ");
-          setAddingNewMembership(false);
+          toast.success("EatSmart Added Successfully ! ");
+          setAddingNewEatSmart(false);
         }
       })
       .catch((err) => {
@@ -615,8 +615,8 @@ const Memberships = () => {
   return (
     <Box m="20px">
       <DashboardHeader
-        title="Memberships"
-        subtitle="Managing the Memberships"
+        title="EatSmarts"
+        subtitle="Managing the EatSmarts"
       />
       <Box
         m="40px 0 0 0"
@@ -657,7 +657,7 @@ const Memberships = () => {
       >
         <DataGrid
           // checkboxSelection
-          rows={memberships}
+          rows={eatSmart}
           getRowId={(row) => row._id}
           columns={columns}
           slots={{
@@ -665,13 +665,13 @@ const Memberships = () => {
           }}
           slotProps={{
             toolbar: {
-              addNewMembership,
-              getMemberships,
-              addingNewMembership,
-              setAddingNewMembership,
+              addNewEatSmart,
+              getEatSmarts,
+              addingNewEatSmart,
+              setAddingNewEatSmart,
               imagesPreview,
               setImagesPreview,
-              membershipTypes
+              eatSmartTypes
             },
           }}
           // editMode="row"
@@ -695,7 +695,7 @@ const Memberships = () => {
           }}
           onClose={() => setEditDialog(false)}
         >
-          <DialogTitle>Editing Membership</DialogTitle>
+          <DialogTitle>Editing EatSmart</DialogTitle>
           <DialogContent>
             <Formik
               initialValues={{
@@ -710,11 +710,11 @@ const Memberships = () => {
                 image: []
               }}
               onSubmit={(values, actions) => {
-                editMembership(editDialog._id,values);
+                editEatSmart(editDialog._id,values);
               //   actions.resetForm();
-                //setAddingNewMembership(false);
+                //setAddingNewEatSmart(false);
               }}
-              validationSchema={MembershipSchema}
+              validationSchema={EatSmartSchema}
             >
               {({
                 values,
@@ -739,18 +739,18 @@ const Memberships = () => {
                   >
                     <Box>
                       <InputLabel id="type-select-label">
-                        Membership Type
+                        EatSmart Type
                       </InputLabel>
                       <Select
                         onChange={(e) => {
-                          const selectedMembership = e.target.value;
-                          setFieldValue("type", selectedMembership);
+                          const selectedEatSmart = e.target.value;
+                          setFieldValue("type", selectedEatSmart);
                         }}
                         value={values.type}
                         name="type"
                         sx={{ width: "100%", marginTop: "1rem !important" }}
                       >
-                        {membershipTypes.map((type, index) => {
+                        {eatSmartTypes.map((type, index) => {
                           return (
                             <MenuItem key={index} value={type}>
                               {type}
@@ -770,7 +770,7 @@ const Memberships = () => {
                           fullWidth
                           //   variant="filled"
                           type="text"
-                          label="Membership Name in English"
+                          label="EatSmart Name in English"
                           onBlur={handleBlur}
                           onChange={handleChange}
                           value={values.titleInEnglish}
@@ -867,7 +867,7 @@ const Memberships = () => {
                         fullWidth
                         multiline={true}
                         type="text"
-                        label="Membership Description in English"
+                        label="EatSmart Description in English"
                         onBlur={handleBlur}
                         onChange={handleChange}
                         value={values.descriptionInEnglish}
@@ -1001,7 +1001,7 @@ const Memberships = () => {
             </DialogContent>
             <DialogActions>
               <Button onClick={closeDeleteAlert}>No</Button>
-              <Button onClick={() => deleteMembership(deleteRow._id)}>
+              <Button onClick={() => deleteEatSmart(deleteRow._id)}>
                 Yes
               </Button>
             </DialogActions>
@@ -1012,4 +1012,4 @@ const Memberships = () => {
   );
 };
 
-export default Memberships;
+export default EatSmarts;
