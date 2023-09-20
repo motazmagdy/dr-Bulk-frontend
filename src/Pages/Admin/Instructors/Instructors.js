@@ -82,7 +82,7 @@ const EditToolbar = ({
                   bioInEnglish: "",
                   bioInArabic: "",
                   phoneNumber: "",
-                  image: "",
+                  image: []
                 }}
                 onSubmit={(values, actions) => {
                   addNewInstructor(values);
@@ -151,9 +151,9 @@ const EditToolbar = ({
                               className="mt-3 mr-2 instructImg"
                             />
                           ))}
-                          {errors.images && touched.images ? (
+                          {errors.image && touched.image ? (
                             <span className="input-err-msg">
-                              {errors.images}
+                              {errors.image}
                             </span>
                           ) : null}
                         </Box>
@@ -340,7 +340,9 @@ const Instructors = () => {
     formData.append("bio[en]" , instructoreEditedData.bioInEnglish)
     formData.append("bio[ar]" , instructoreEditedData.bioInArabic)
     formData.set("phoneNumber", instructoreEditedData.phoneNumber);
-    formData.append(`image`, instructoreEditedData.image);
+    instructoreEditedData.image.forEach((image) => {
+      formData.append(`image`, image);
+    });
 
     axios
       .put(`${serverApi}/api/instructors/${id}`, formData, {
@@ -403,7 +405,9 @@ const Instructors = () => {
     formData.append("bio[en]" , instructorData.bioInEnglish)
     formData.append("bio[ar]" , instructorData.bioInArabic)
     formData.set("phoneNumber", instructorData.phoneNumber);
-    formData.append(`image`, instructorData.image);
+    instructorData.image.forEach((image) => {
+      formData.append(`image`, image);
+    });
 
     axios
       .post(`${serverApi}/api/instructors`, formData, {
@@ -510,7 +514,7 @@ const Instructors = () => {
   ];
 
   const loadInstructorImage = (instructorImage)=>{
-    console.log(instructorImage);
+    // console.log(instructorImage);
     const imgLinkToFormat = `${serverApi}/${instructorImage}`;
     const modifiedString = imgLinkToFormat
                             .replace(/\\/g, "/")
@@ -608,7 +612,7 @@ const Instructors = () => {
                   bioInEnglish: editDialog.bio.en,
                   bioInArabic: editDialog.bio.ar,
                   phoneNumber: editDialog.phoneNumber,
-                  image:"",
+                  image:editDialog.image,
                 }}
                 onSubmit={(values, actions) => {
                   editInstructor(editDialog._id, values);
@@ -672,12 +676,15 @@ const Instructors = () => {
                           sx={{ gridColumn: "span 2" }}
                         />
                         <Box className="imgs-preview">
-                          {!editingImages ? (
+                        {!editingImages ? (
+                          <>
+                          {/* {console.log(editDialog)} */}
                             <img
-                              src={!imagesPreview  ? InstructorDefault  :loadInstructorImage(imagesPreview) }
+                              src={loadInstructorImage(imagesPreview)}
                               alt="Image Preview"
                               className="mt-3 mr-2  instructImg"
                             />
+                           </> 
                           ) : (
                             <img
                               src={imagesPreview}
