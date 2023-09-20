@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./Header.css";
-import B from "../../Assets/PngLogo/Yellow.png";
+import B from "../../Assets/PngLogo/Yellow.PNG";
 import { useCart } from '../../Context/CartContext';
 import useLogout from "../../Hooks/useLogout";
 import useAuthContext from "../../Hooks/AuthContextHook";
@@ -94,13 +94,14 @@ const Header = () => {
                     {t("Eat Smart")}
                   </NavLink>
                 </li>
-                <li className="nav-item has-sub">
-                  <NavLink className="nav-link" to='/apparel' onClick={e => e.preventDefault()}>
+                <li className="nav-item">
+                  {/* <NavLink className="nav-link" to='/apparel' onClick={e => e.preventDefault()}> */}
+                  <NavLink className="nav-link" to='/apparel'>
                     {t("Apparel")}
                   </NavLink>
-                  <ul>
+                  {/* <ul>
                     <li><Link to='/shop' title="shop">Shop</Link></li>
-                  </ul>
+                  </ul> */}
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/contactus">
@@ -130,13 +131,13 @@ const Header = () => {
                   </div> */}
                   <div className="user-action">
                     {!state.userRole ? (
-                      <button className="bulk-dark-btn btn signup-item" onClick={()=>navigate('/signup')}>
-                          {" "}<b>{t("Signup")}</b>
+                      <button className="bulk-dark-btn btn signup-item" onClick={() => navigate('/signup')}>
+                        {" "}<b>{t("Signup")}</b>
                       </button>
                     ) : null}
-                    { state.userRole  ? (
-                      <button className="bulk-dark-btn btn"  onClick={handleLogout}>
-                          <b>{t("Logout")}</b>
+                    {state.userRole ? (
+                      <button className="bulk-dark-btn btn" onClick={handleLogout}>
+                        <b>{t("Logout")}</b>
                       </button>
                     ) : null}
                   </div>
@@ -146,7 +147,7 @@ const Header = () => {
                       <div className="cart">
                         <i className="fa fa-shopping-cart me-2" aria-hidden="true"></i>
                       </div>
-                      {state.userRole ?<div className="cartItemsIcon"><span>{cartItems.length}</span></div>: null}
+                      {state.userRole ? <div className="cartItemsIcon"><span>{cartItems.length}</span></div> : null}
                     </Link>
                   </div>
                 </li>
