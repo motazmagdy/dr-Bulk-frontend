@@ -1,6 +1,38 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react'
+import EatSmartItem from './EatSmartItem/EatSmartItem';
+import RoutesSpinner from '../../../Components/Spinners/RoutesSpinner'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const EatSmart = () => {
+
+    const [eatSmartPlans, setEatSmartPlans] = useState([])
+    const loading = useRef(true)
+
+    const getEatSmarts = () => {
+        axios.get(`${DR_BULK_API}/api/eat-smart`)
+            .then(res => {
+                console.log(res.data)
+                setEatSmartPlans(res.data.data)
+                loading.current = false
+            })
+            .catch(err => console.log(err))
+    }
+    useEffect(() => { getEatSmarts() }, [])
+
+    const plans = []
+    plans.Weekly = []
+    plans.Monthly = []
+    eatSmartPlans.forEach(plan => {
+        if (plan.type == 'Weekly') {
+            plans.Weekly.push(plan)
+        } else if (plan.type == 'Monthly') {
+            plans.Monthly.push(plan)
+        } 
+    })
+    console.log(plans)
+
     return (
         <>
             <div className="page-header">
@@ -8,11 +40,11 @@ const EatSmart = () => {
                     <div className="row">
                         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div className="page-section">
-                                <h1 className="page-title ">Blog</h1>
+                                <h1 className="page-title ">Eat-Smart</h1>
                                 <div className="page-breadcrumb">
                                     <ol className="breadcrumb">
-                                        <li><a href="#">Home</a></li>
-                                        <li>Blog</li>
+                                        <li><Link to="/">Home</Link></li>
+                                        <li>Eat-Smart</li>
                                     </ol>
                                 </div>
                             </div>
@@ -26,7 +58,37 @@ const EatSmart = () => {
                 </div>
             </div>
 
-            <div className="space-medium">
+            <div className='container py-5 memberships'>
+                        <div className="row">
+                            <div className="col-12 Normal">
+                                <h3>Our Plans</h3>
+                            </div>
+                            {
+                                plans.Weekly.map(plan => {
+                                    return (
+                                        <div key={plan._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div className="card rounded-0 mb-5">
+                                                <EatSmartItem eatSmartPlan={plan} />
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+
+{
+                                plans.Monthly.map(plan => {
+                                    return (
+                                        <div key={plan._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
+                                            <div className="card rounded-0 mb-5">
+                                                <EatSmartItem eatSmartPlan={plan} />
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+            {/* <div className="space-medium">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -151,7 +213,7 @@ const EatSmart = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     );
 };
