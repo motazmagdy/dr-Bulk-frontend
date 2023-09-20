@@ -2,12 +2,17 @@
     background-color: var(--custom-light-gray);
 } */
 
+.product-item {
+    box-shadow: 0 5px 24px 6px rgba(0, 0, 0, 0.06);
+}
+
 .space-medium .post-block .post-img {
     height: 270px;
 }
 
 .space-medium .post-block .post-img img {
-    max-height: 270px;
+    width: 100%;
+    max-height: 280px;
 }
 
 .space-medium .post-block .post-content {
@@ -65,14 +70,14 @@
     border-radius: 6px;
 }
 
-.cartLoginWarn{
+.cartLoginWarn {
     color: #dc3545;
 }
 
-.loginWord{
-    color:var(--custom-black);
-}  
-  
+.loginWord {
+    color: var(--custom-black);
+}
+
 .loginWord:hover {
     cursor: pointer;
     color: var(--custom-yellow);

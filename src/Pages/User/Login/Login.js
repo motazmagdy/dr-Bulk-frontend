@@ -6,12 +6,12 @@ import useLogin from "../../../Hooks/useLogin";
 import "./Login.css";
 
 const UserLogin = () => {
-  
-  const {t, i18n} = useTranslation();
-  const { login , isSubmitting , setIsSubmitting , loginErrMsg } = useLogin()
+
+  const { t, i18n } = useTranslation();
+  const { login, isSubmitting, setIsSubmitting, loginErrMsg } = useLogin()
 
   const loginUser = (userData) => {
-    login(userData ,"users")
+    login(userData, "users")
   };
 
   return (
@@ -23,7 +23,7 @@ const UserLogin = () => {
       onSubmit={(values, actions) => {
         setIsSubmitting(true);
         loginUser(values);
-        actions.resetForm();
+        // actions.resetForm();
       }}
       validationSchema={UserLoginSchema}
     >

@@ -51,30 +51,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    {/* <div className=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div className="footer-widget">
-                            <h3 className="footer-title">contact us</h3>
-                            <form>
-                                <div className="form-group">
-                                    <label className="control-label sr-only" htmlFor="name"></label>
-                                    <input id="name" type="text" className="form-control" placeholder="Name" />
-                                </div>
-                                <div className="form-group">
-                                    <label className="control-label sr-only" htmlFor="Email"></label>
-                                    <input id="email" type="text" className="form-control" placeholder="Email" />
-                                </div>
-                                <div className="form-group">
-                                    <label className="control-label sr-only" htmlFor="Phone"></label>
-                                    <input id="phone" type="text" className="form-control" placeholder="Phone" />
-                                </div>
-                                <div className="form-group">
-                                    <label className="control-label sr-only" htmlFor="textarea"></label>
-                                    <textarea className="form-control" id="textarea" name="textarea" rows="3" placeholder="textarea"></textarea>
-                                </div>
-                                <button className="btn btn-primary btn-sm">submit</button>
-                            </form>
-                        </div>
-                    </div> */}
+
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div className="tiny-footer">
                             <p>© 2023 - Dr Bulk Gym. All Rights Reserved.</p>

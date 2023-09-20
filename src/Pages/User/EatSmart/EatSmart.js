@@ -32,7 +32,6 @@ const EatSmart = () => {
         } 
     })
     console.log(plans)
-
     return (
         <>
             <div className="page-header">
@@ -51,12 +50,13 @@ const EatSmart = () => {
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-6 hidden-xs">
                             <div className="page-section">
-                                <p>Please Enjoy!! Healthy Eating and Dietitian blogs. Get nutrition advice, tips and facts from Jessica</p>
+                                <p>Healthy Eating and Dietitian Schedules. Get nutrition advice, tips and facts with Dr Bulk.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div className='container py-5 memberships'>
                         <div className="row">
@@ -91,126 +91,37 @@ const EatSmart = () => {
             {/* <div className="space-medium">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div className="post-block">
-                                <div className="post-img">
-                                    <a href="#" className="imghover">
-                                        <img src="./images/post-img-small-1.jpg" alt="" className="img-responsive" /></a>
-                                </div>
-                                <div className="post-content">
-                                    <div className="meta">
-                                        <span className="meta-categories"><a href="#">diet tips</a></span>
-                                        <span className="meta-date">30 July, 2020</span>
-                                    </div>
-                                    <h4><a href="#" className="title">Green smoothie to go</a></h4>
-                                    <p>Nam vitae aliquet metus semper vehicula juonecin dolor....</p>
-                                    <a href="#" className="btn-link">read more</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div className="post-block">
-                                <div className="post-img">
-                                    <a href="#" className="imghover">
-                                        <img src="./images/post-img-small-2.jpg" alt="" className="img-responsive" />
-                                    </a>
-                                </div>
-                                <div className="post-content">
-                                    <div className="meta">
-                                        <span className="meta-categories"><a href="#">Weight Loss</a></span>
-                                        <span className="meta-date">29 July, 2020</span>
-                                    </div>
-                                    <h4><a href="#" className="title">Inflammation Fighting Foods</a></h4>
-                                    <p>Vitae aliquet metus semperveicula juonecin doloreer ornare....</p>
-                                    <a href="#" className="btn-link">read more</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div className="post-block">
-                                <div className="post-img">
-                                    <a href="#" className="imghover">
-                                        <img src="./images/post-img-small-3.jpg" alt="" className="img-responsive" /></a>
-                                </div>
-                                <div className="post-content">
-                                    <div className="meta">
-                                        <span className="meta-categories"><a href="#">Health Care</a> </span>
-                                        <span className="meta-date">28 July, 2020</span>
-                                    </div>
-                                    <h4><a href="#" className="title">Habits, health &amp; fitness news catchup</a></h4>
-                                    <p>Aliquet metus semper vehiculase juonecin dolor sederate....</p>
-                                    <a href="#" className="btn-link">read more</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div className="post-block">
-                                <div className="post-img">
-                                    <a href="#" className="imghover">
-                                        <img src="./images/post-img-small-4.jpg" alt="" className="img-responsive" /></a>
-                                </div>
-                                <div className="post-content">
-                                    <div className="meta">
-                                        <span className="meta-categories"><a href="#">Health Care</a> </span>
-                                        <span className="meta-date">27 July, 2020</span>
-                                    </div>
-                                    <h4><a href="#" className="title">Drinking water dilutes
-                                        stomach acid</a></h4>
-                                    <p>Juctus metuis acmetus pharetra efficitur velit neincidu...</p>
-                                    <a href="#" className="btn-link">read more</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div className="post-block">
-                                <div className="post-img">
-                                    <a href="#" className="imghover">
-                                        <img src="./images/post-img-small-5.jpg" alt="" className="img-responsive" />
-                                    </a>
-                                </div>
-                                <div className="post-content">
-                                    <div className="meta">
-                                        <span className="meta-categories"><a href="#">Weight Loss</a></span>
-                                        <span className="meta-date">26 July, 2020</span>
-                                    </div>
-                                    <h4><a href="#" className="title">Top 5 natural therapies
-                                        to fight hpylori</a></h4>
-                                    <p>Vivamus qususcipit auguenon placerat urnurabitursed...</p>
-                                    <a href="#" className="btn-link">read more</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div className="post-block">
-                                <div className="post-img">
-                                    <a href="#" className="imghover">
-                                        <img src="./images/post-img-small-6.jpg" alt="" className="img-responsive" /></a>
-                                </div>
-                                <div className="post-content">
-                                    <div className="meta">
-                                        <span className="meta-categories"><a href="#">Weight Loss</a>  </span>
-                                        <span className="meta-date">25 July, 2020</span>
-                                    </div>
-                                    <h4><a href="#" className="title">Essential oils for fixing
-                                        the gut</a></h4>
-                                    <p>Morbi ut metus in magna luctus veneuis veli vehicula... </p>
-                                    <a href="#" className="btn-link">read more</a>
-                                </div>
-                            </div>
-                        </div>
+                        {
+                            eatSmart.map(e => {
+                                const { _id: id, title, description, duration, price, type, points } = e
 
-
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div className="st-pagination">
-                                <ul className="pagination">
-                                    <li><a href="#" aria-label="previous"><span aria-hidden="true">Previous</span></a> </li>
-                                    <li className="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li> <a href="#" aria-label="Next"><span aria-hidden="true">Next</span></a> </li>
-                                </ul>
-                            </div>
-                        </div>
+                                return (
+                                    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12" key={id}>
+                                        <div className="post-block border border-1">
+                                            {/* <div className="post-img">
+                                                <Link to='/' className="imghover">
+                                                    <img src="./images/post-img-small-1.jpg" alt="" className="img-responsive" /></Link>
+                                            </div> */}
+                                            <div className="post-content">
+                                                <span className="points">Earn {points} {points && <i className="fa fa-diamond" aria-hidden="true"></i>}</span>
+                                                <h4><Link to='/' className="title">{title.en}</Link></h4>
+                                                <div className="meta">
+                                                    <div className="meta-categories"><Link to='/'>{type} Online Tracking</Link></div>
+                                                    <div className="meta-date">{duration}</div>
+                                                </div>
+                                                <h6 className="my-2">
+                                                    <div className="price-points">
+                                                        <span className="price">{price}$</span>
+                                                        {/* <span className="points">Earn {points} {points && <i className="fa fa-diamond" aria-hidden="true"></i>}</span> */}
+                                                    </div>
+                                                </h6>
+                                                <p>{description.en}</p>
+                                                <Link to='/' className="btn bulk-dark-btn">Book Now</Link>
+                                            </div>
+                                        </div>
+                                    </div>)
+                            })
+                        }
                     </div>
                 </div>
             </div> */}

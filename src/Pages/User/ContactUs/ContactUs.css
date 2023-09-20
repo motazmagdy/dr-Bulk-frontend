@@ -1,0 +1,40 @@
+.contact-us {
+    padding: 50px 0;
+}
+
+.contact-us .footer-title {
+    color: var(--custom-black);
+
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact-us .btn {
+    margin-top: 20px;
+}
+
+.contact-us .map {
+    width: 900px;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.contact-us .map iframe {
+    width: 900px;
+    height: 450px;
+    border: 0;
+}
+
+.contact-us .map {}
+
+
+:root {
+    --custom-white: #ededed;
+    --custom-body-background: #f9f9f9;
+    --custom-black: #181c18;
+    --custom-gray: #383e38;
+    --custom-light-gray: #f2f2f2;
+    --custom-yellow: #efd510;
+    --custom-dark-yellow: #cfba1a;
+    --custom-yellow-shadow: rgb(234, 220, 108);
+}
