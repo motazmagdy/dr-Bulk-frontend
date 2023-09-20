@@ -49,5 +49,7 @@
   "You need to ":"You need to ",
   " to Add to Cart":" to Add to Cart",
   "For Contact":"For Contact",
-  "Book Now":"Book Now"
+  "Book Now":"Book Now",
+  "Weekly" : "Weekly",
+  "Monthly" : "Monthly"
 }
