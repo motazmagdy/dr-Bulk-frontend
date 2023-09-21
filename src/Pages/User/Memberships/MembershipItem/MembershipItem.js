@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import '../Memberships.css'
 
-const MembershipItem = ({ membership }) => {
+const MembershipItem = ({ membership , handleRouting}) => {
     const { _id: id, title, description, duration, price, type, points } = membership
 
     let typeBg = {}
@@ -35,7 +34,9 @@ const MembershipItem = ({ membership }) => {
                     </div>
                 </h6>
                 <p className="card-text">{description.en}</p>
-                <Link to={`book-membership/${id}`} className="btn bulk-dark-btn">Book Now</Link>
+                <button onClick={()=>handleRouting(type === "VIP" ? 'private-training': 'book-membership' ,id)} 
+                // to={`book-membership/${id}`} 
+                className="btn bulk-dark-btn">Book Now</button>
             </div>
         </>
     )

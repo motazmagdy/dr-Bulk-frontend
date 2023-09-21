@@ -1,6 +1,7 @@
 import React from "react";
 import { lazy } from "react"
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate , useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import useAuthContext from "../../Hooks/AuthContextHook";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
@@ -21,21 +22,33 @@ const NotFound = lazy(() => import("../../Components/NotFound/NotFound"))
 
 const UserRouter = () => {
   const { state } = useAuthContext();
+  const navigate = useNavigate();
+
+  const handleRouting = ( route , id )=>{
+    if (state.userRole === "users"){
+        navigate(`${route}/${id}`)
+    } else {
+        toast.warning('Please Login First !')
+        setTimeout(()=>{
+        navigate('/login')
+        },3000)
+    }  
+  }
 
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/plans-pricing/gym-membership" element={<Memberships />} />
-        <Route path="/plans-pricing/private-training" element={<VIPMemberships />} />
+        <Route path="/plans-pricing/gym-membership" element={<Memberships handleRouting={handleRouting} />} />
+        <Route path="/plans-pricing/private-training" element={<VIPMemberships handleRouting={handleRouting} />} />
         <Route path="instructors" element={<Instructors />} />
-        <Route path="eat-smart" element={<EatSmart />} />
-        <Route path="apparel" element={<Shop />} />
+        <Route path="eat-smart" element={<EatSmart handleRouting={handleRouting} />} />
+        <Route path="apparel" element={<Shop handleRouting={handleRouting} />} />
         <Route path="apparel/:id" element={<ProductDetails />} />
         <Route
           path="cart"
-          element={state.userRole === "users" ? <Cart /> : <Navigate to="/" />}
+          element={<Cart />}
         />
         <Route
           path="signup"

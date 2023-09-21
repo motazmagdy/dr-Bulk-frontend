@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
-const VIPMemberships = () => {
+const VIPMemberships = ({handleRouting}) => {
     const [VIPMemberships, setVIPMemberships] = useState([])
     const loading = useRef(true)
 
@@ -63,7 +63,7 @@ const VIPMemberships = () => {
                                     return (
                                         <div key={m._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
                                             <div className="card rounded-0 mb-5">
-                                                <MembershipItem membership={m} />
+                                                <MembershipItem membership={m} handleRouting={handleRouting}/>
                                             </div>
                                         </div>
                                     )

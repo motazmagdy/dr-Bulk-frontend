@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import './EatSmart.css'
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
-const EatSmart = () => {
+const EatSmart = ({handleRouting}) => {
     const [eatSmart, setEatSmarts] = useState([])
     const loading = useRef(true)
 
@@ -72,7 +72,7 @@ const EatSmart = () => {
                                                     </div>
                                                 </h6>
                                                 <p>{description.en}</p>
-                                                <Link to='/' className="btn bulk-dark-btn">Book Now</Link>
+                                                <button onClick={()=>handleRouting('/eat-smart' , id)} className="btn bulk-dark-btn">Book Now</button>
                                             </div>
                                         </div>
                                     </div>)

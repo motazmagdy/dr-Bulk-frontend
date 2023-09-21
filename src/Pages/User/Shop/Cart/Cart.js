@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useCart } from '../../../../Context/CartContext'
-import { Link } from 'react-router-dom'
+import useAuthContext from '../../../../Hooks/AuthContextHook'
+import { Link , useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import RoutesSpinner from '../../../../Components/Spinners/RoutesSpinner'
 import axios from 'axios'
 import './Cart.css'
@@ -8,6 +10,9 @@ import './Cart.css'
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const Cart = () => {
+    const { state } = useAuthContext()
+    const navigate = useNavigate()
+    const { t } = useTranslation()
     const { cartItems, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem } = useCart()
     let [itemsDetails, setItemsDetails] = useState([])
     const loading = useRef(true)
@@ -99,7 +104,11 @@ const Cart = () => {
                                     } $
                                     </td>
                                     <td className='order-btn-row'>
+                                    {state.userRole === "users" ?
                                         <button type='submit' className="btn bulk-dark-btn">Order Now</button>
+                                        :
+                                        <p className='cartLoginWarn'>{t("You need to ")}<span className='loginWord' onClick={() => navigate('/login')}>{t("Login")}</span>{t(" to Order")}</p>
+                                        } 
                                     </td>
                                 </tr>
                             </tbody>

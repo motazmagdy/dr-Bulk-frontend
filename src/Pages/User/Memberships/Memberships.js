@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
-const Memberships = () => {
+const Memberships = ({ handleRouting }) => {
     const [memberships, setMemberships] = useState([])
     const loading = useRef(true)
 
@@ -73,7 +73,7 @@ const Memberships = () => {
                                     return (
                                         <div key={n._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
                                             <div className="card rounded-0 mb-5">
-                                                <MembershipItem membership={n} />
+                                                <MembershipItem membership={n} handleRouting={handleRouting}/>
                                             </div>
                                         </div>
                                     )
@@ -89,7 +89,7 @@ const Memberships = () => {
                                     return (
                                         <div key={b._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
                                             <div className="card rounded-0 mb-5">
-                                                <MembershipItem membership={b} />
+                                                <MembershipItem membership={b} handleRouting={handleRouting}/>
                                             </div>
                                         </div>
                                     )
@@ -105,7 +105,7 @@ const Memberships = () => {
                                     return (
                                         <div key={g._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
                                             <div className="card rounded-0 mb-5">
-                                                <MembershipItem membership={g} />
+                                                <MembershipItem membership={g} handleRouting={handleRouting}/>
                                             </div>
                                         </div>
                                     )
@@ -121,7 +121,7 @@ const Memberships = () => {
                                     return (
                                         <div key={d._id} className="col-xs-6 col-lg-6 col-md-6 col-sm-12">
                                             <div className="card rounded-0 mb-5">
-                                                <MembershipItem membership={d} />
+                                                <MembershipItem membership={d} handleRouting={handleRouting}/>
                                             </div>
                                         </div>
                                     )

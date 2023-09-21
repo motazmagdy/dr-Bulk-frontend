@@ -39,6 +39,19 @@
     padding-bottom: 22px;
 }
 
+.cartLoginWarn {
+    color: #dc3545;
+}
+
+.loginWord {
+    color: var(--custom-black);
+}
+
+.loginWord:hover {
+    cursor: pointer;
+    color: var(--custom-yellow);
+}
+
 @media (max-width:768px) {
 
     .cart-page .itemRow .product-name,
