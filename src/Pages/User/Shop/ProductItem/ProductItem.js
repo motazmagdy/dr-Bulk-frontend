@@ -40,7 +40,7 @@ const ProductItem = ({ product }) => {
                         !getItemQuantity(id) ?
                             <button type='button' className='btn bulk-dark-btn' onClick={e => increaseItemQuantity(id)}><i className="fa-solid fa-cart-shopping me-2"></i>Add to Cart</button>
                             :
-                            (state.userRole === "users" ?
+                            // (state.userRole === "users" ?
                                 <div className="quantityBtns">
                                     {getItemQuantity(id) === 1 ?
                                         <button type='button' className='btn btn-danger' onClick={e => removeItem(id)}><i className="fa fa-times" aria-hidden="true"></i></button>
@@ -50,9 +50,9 @@ const ProductItem = ({ product }) => {
                                     <div className="quantity">{getItemQuantity(id)} in Cart</div>
                                     <button type='button' className='btn btn-dark' onClick={e => increaseItemQuantity(id)}><i className="fa fa-plus" aria-hidden="true"></i></button>
                                 </div>
-                                :
-                                <p className='cartLoginWarn'>{t("You need to ")}<span className='loginWord' onClick={() => navigate('/login')}>{t("Login")}</span>{t(" to Add to Cart")}</p>
-                            )
+                            //     :
+                            //     <p className='cartLoginWarn'>{t("You need to ")}<span className='loginWord' onClick={() => navigate('/login')}>{t("Login")}</span>{t(" to Add to Cart")}</p>
+                            // )
                     }
                 </div>
             </div>

@@ -20,7 +20,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import "./Instructors.css";
-import InstructorDefault from '../../../Assets/InstructorDefault.jpg'
+// import InstructorDefault from '../../../Assets/InstructorDefault.jpg'
 
 const serverApi = process.env.REACT_APP_DR_BULK_API;
 
