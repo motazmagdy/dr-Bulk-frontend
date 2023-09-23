@@ -555,18 +555,24 @@ const Instructors = () => {
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
           },
-          " & .MuiDataGrid-selectedRowCount & .MuiTablePagination-selectLabel & .MuiTablePagination-actions & .MuiTablePagination-select":
-            {
-              display: "none !important",
-            },
-
           " & .MuiDialogContentText-root": {
             marginBottom: "1 rem !important",
+          },"& .MuiTablePagination-selectLabel":{
+            display :"none !important"
           },
+          "& .MuiTablePagination-input" :{
+            display :"none !important"
+          },
+          "& .MuiTablePagination-actions" : {
+            display :"none !important"
+          },
+          "& .MuiTablePagination-displayedRows" : {
+            margin:"auto 3rem"
+          }
         }}
       >
         <DataGrid
-          // checkboxSelection
+          disableRowSelectionOnClick
           rows={categories}
           getRowId={(row) => row._id}
           columns={columns}

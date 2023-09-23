@@ -676,10 +676,22 @@ const Products = () => {
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
           },
+          "& .MuiTablePagination-selectLabel":{
+            display :"none !important"
+          },
+          "& .MuiTablePagination-input" :{
+            display :"none !important"
+          },
+          "& .MuiTablePagination-actions" : {
+            display :"none !important"
+          },
+          "& .MuiTablePagination-displayedRows" : {
+            margin:"auto 3rem"
+          }
         }}
       >
         <DataGrid
-        //   checkboxSelection
+          disableRowSelectionOnClick
           rows={products}
           getRowId={(row) => row._id}
           columns={columns}

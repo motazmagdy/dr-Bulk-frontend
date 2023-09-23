@@ -649,14 +649,24 @@ const Memberships = () => {
             {
               display: "none !important",
             },
-
           " & .MuiDialogContentText-root": {
             marginBottom: "1 rem !important",
+          },"& .MuiTablePagination-selectLabel":{
+            display :"none !important"
           },
+          "& .MuiTablePagination-input" :{
+            display :"none !important"
+          },
+          "& .MuiTablePagination-actions" : {
+            display :"none !important"
+          },
+          "& .MuiTablePagination-displayedRows" : {
+            margin:"auto 3rem"
+          }
         }}
       >
         <DataGrid
-          // checkboxSelection
+          disableRowSelectionOnClick
           rows={memberships}
           getRowId={(row) => row._id}
           columns={columns}

@@ -48,7 +48,7 @@ const UserRouter = () => {
         <Route path="apparel/:id" element={<ProductDetails />} />
         <Route
           path="cart"
-          element={<Cart />}
+          element={<Cart handleRouting={handleRouting} />}
         />
         <Route
           path="signup"
