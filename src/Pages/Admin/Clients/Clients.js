@@ -28,13 +28,14 @@ const SearchToolbar = ({searchLetters,showVerifiedOnly,resetSearchValue}) => {
 
 const Clients = () => {
   const [users, setUsers] = useState([]);
-  const [rows , setRows] = useState(users)
+  const [filteredValues , setFilteredValues] = useState(users)
   let searchValue = ""
   const getUsers = () => {
     axios
       .get(`${serverApi}/api/users/all-users`)
       .then((response) => {
         setUsers(response.data.data);
+        setFilteredValues(response.data.data)
       })
       .catch((error) => console.log(error));
   };
@@ -45,19 +46,19 @@ const Clients = () => {
       const filteredResults = users.filter((user) =>
         user.email.includes(searchValue)
       );
-      setRows(filteredResults)
+      setFilteredValues(filteredResults)
     } else {
-      setRows(users);
+      setFilteredValues(users);
     }
   };
 
   const showVerifiedOnly = ()=>{
     const verifiedUsers = users.filter((user) =>user.verified);
-    setRows(verifiedUsers)
+    setFilteredValues(verifiedUsers)
   }
 
   const resetSearchValue = ()=>{
-    setRows(users)
+    setFilteredValues(users)
   }
 
   useEffect(() => {
@@ -108,6 +109,7 @@ const Clients = () => {
         }
     }
   ];
+
   return (
     <Box m="20px">
       <DashboardHeader title="Users" subtitle="Managing the Users" />
@@ -153,7 +155,8 @@ const Clients = () => {
       >
         <DataGrid
           disableRowSelectionOnClick
-          rows={rows.length === 0 ? users : rows}
+          // rows={rows.length === 0 ? users : rows}
+          rows={filteredValues}
           getRowId={(row) => row._id}
           columns={columns}
           slots={{
