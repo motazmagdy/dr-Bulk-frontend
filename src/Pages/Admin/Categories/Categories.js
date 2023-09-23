@@ -19,6 +19,7 @@ import DashboardHeader from "../../../Components/DashboardHeader/DashboardHeader
 import React , { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import './Categories.css'
 
 const serverApi = process.env.REACT_APP_DR_BULK_API;
 
@@ -70,6 +71,7 @@ const EditToolbar = ({addNewCategory,addingNew,setAddingNew}) => {
                 gap="30px"
                 mb={2}
                 gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                alignItems="baseline"
                 sx={{
                   "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                 }}
@@ -114,19 +116,14 @@ const EditToolbar = ({addNewCategory,addingNew,setAddingNew}) => {
                 </Box>
                 <Button
                   type="submit"
-                  className="btn-new-category"
-                  color="secondary"
+                  className="category-btns add-category"
                   variant="contained"
                 >
                   Add
                 </Button>
                 <Button
                   type="submit"
-                  sx={{
-                    backgroundColor: "red",
-                    height: "2.5rem",
-                    margin: "auto",
-                  }}
+                  className="category-btns cancel-category"
                   variant="contained"
                   onClick={() => {
                     setAddingNew(false);
@@ -363,8 +360,17 @@ const Categories = () => {
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
           },
-          " & .MuiDataGrid-selectedRowCount & .MuiTablePagination-selectLabel & .MuiTablePagination-actions & .MuiTablePagination-select" :{
-            display:"none !important"
+          "& .MuiTablePagination-selectLabel":{
+            display :"none !important"
+          },
+          "& .MuiTablePagination-input" :{
+            display :"none !important"
+          },
+          "& .MuiTablePagination-actions" : {
+            display :"none !important"
+          },
+          "& .MuiTablePagination-displayedRows" : {
+            margin:"auto 3rem"
           }
         }}
       >

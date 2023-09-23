@@ -39,13 +39,13 @@
     padding-bottom: 22px;
 }
 
-.cartLoginWarn {
+/* .cartLoginWarn {
     color: #dc3545;
 }
 
 .loginWord {
     color: var(--custom-black);
-}
+} */
 
 .loginWord:hover {
     cursor: pointer;

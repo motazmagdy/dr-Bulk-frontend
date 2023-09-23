@@ -1,6 +1,13 @@
-.btn-new-category{
-    margin-top: 0 !important;
+.category-btns{
     height: 2.5rem !important;
-     color: white !important;
-      margin: auto !important;
+    color: white !important;
+    margin: 0 auto !important;
+}
+
+.add-category{
+    background-color: #4cceac !important;
+}
+
+.cancel-category{
+    background-color: rgb(244, 67, 54) !important;
 }

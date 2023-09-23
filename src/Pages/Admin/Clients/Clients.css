@@ -1,0 +1,44 @@
+.search-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap:3rem;
+}
+
+.search-btns{
+    color:white !important;
+    font-size: medium !important;
+}
+
+.verified-only{
+    background-color: #3eb797 !important; 
+}
+
+.verified-only:hover{
+    background-color: #359078 !important;
+}
+
+.reset-btn{
+    background-color: #f44336 !important;
+}
+
+.reset-btn:hover{
+    background-color: #db2518 !important;
+}
+
+.searchInput{
+    margin-bottom: 1rem !important;
+    width: 50% !important;
+}
+
+.user-status {
+    color: white !important;
+    cursor: initial;
+}
+.verified{
+    background-color: #359078 !important; 
+}
+
+.not-verified{
+    background-color: rgb(25, 110, 247) !important; 
+}
