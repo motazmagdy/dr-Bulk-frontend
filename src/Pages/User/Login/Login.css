@@ -1,17 +1,17 @@
-.form{
+.form {
     text-align: left;
     margin: auto;
     width: 40%;
 }
 
-.form-btns{
+.form-btns {
     display: flex;
     justify-content: space-evenly;
 }
 
-.input-err-msg{
+.input-err-msg {
     margin-top: 1.5vh;
-    color : #ff0000;
+    color: #ff0000;
     font-style: italic;
     font-weight: 500;
 }
@@ -19,27 +19,28 @@
 .input-error {
     border-color: #ff0000;
 }
-.input-error:focus{
+
+.input-error:focus {
     border: none;
     box-shadow: 0 0 10px #ff0000;
     outline: 3px solid #ff0000;
 }
 
-.form{
-    margin-bottom : 3rem ;
+.form {
+    margin-bottom: 3rem;
 }
 
-.submit-btn:disabled{
+.submit-btn:disabled {
     opacity: 0.35;
 }
 
-.spinner-border{
+.spinner-border {
     margin-top: 0.4rem;
     width: 1.5rem;
     height: 1.5rem;
-    color: darkorange;
+    color: #efd510;
 }
 
-.redirect-user{
+.redirect-user {
     text-align: center;
 }

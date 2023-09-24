@@ -89,7 +89,7 @@ h6 {
         sans-serif;
     margin: 0px 0px 15px 0px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0;
 }
 
 h1 {
@@ -213,7 +213,7 @@ label {}
 
 .control-label {
     font-size: 12px;
-    letter-spacing: 1.5px;
+    letter-spacing: 0;
     text-transform: uppercase;
     color: #9b9a98;
 }
@@ -230,7 +230,7 @@ label {}
 .form-control {
     font-style: normal;
     /* text-transform: uppercase; */
-    letter-spacing: 1px;
+    letter-spacing: 0;
     border: 0;
     color: #767a7e;
     font-size: 14px;
