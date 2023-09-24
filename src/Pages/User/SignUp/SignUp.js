@@ -116,6 +116,25 @@ const UserSignUp = () => {
               ) : null}
             </div>
             <div className="mb-3">
+              <label htmlFor="phone" className="form-label">
+                {t("Phone Number")}
+              </label>
+              <Field
+                name="phoneNumber"
+                className={
+                  props.errors.phoneNumber && props.touched.phoneNumber
+                    ? " input-error form-control"
+                    : "form-control"
+                }
+                type="tel"
+                id="phoneNumber"
+              // placeholder={t("Enter Your Phone number")}
+              />
+              {props.errors.phoneNumber && props.touched.phoneNumber ? (
+                <p className="input-err-msg">{t(props.errors.phoneNumber)}</p>
+              ) : null}
+            </div>
+            <div className="mb-5 mt-4">
               <label className="form-label">{t("Gender")}</label>
               <div>
                 <div className="form-check form-check-inline">
@@ -145,25 +164,6 @@ const UserSignUp = () => {
                   </label>
                 </div>
               </div>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="phone" className="form-label">
-                {t("Phone Number")}
-              </label>
-              <Field
-                name="phoneNumber"
-                className={
-                  props.errors.phoneNumber && props.touched.phoneNumber
-                    ? " input-error form-control"
-                    : "form-control"
-                }
-                type="tel"
-                id="phoneNumber"
-              // placeholder={t("Enter Your Phone number")}
-              />
-              {props.errors.phoneNumber && props.touched.phoneNumber ? (
-                <p className="input-err-msg">{t(props.errors.phoneNumber)}</p>
-              ) : null}
             </div>
             <p className='redirect-user'>{t("Already have an account .")}<Link to='/login'>{t("Login Here")} </Link> </p>
             <div className="form-btns">

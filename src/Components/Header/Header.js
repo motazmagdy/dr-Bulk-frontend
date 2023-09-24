@@ -8,8 +8,8 @@ import useLogout from "../../Hooks/useLogout";
 import useAuthContext from "../../Hooks/AuthContextHook";
 
 const Header = () => {
-  const navigate = useNavigate();
   const [t, i18n] = useTranslation();
+  const navigate = useNavigate();
   const { state } = useAuthContext()
   const { logout } = useLogout()
 
@@ -80,8 +80,8 @@ const Header = () => {
                     {t("Plans & Pricing")}
                   </Link>
                   <ul>
-                    <li><Link to='/plans-pricing/gym-membership' title="Gym Membership">Gym Membership</Link></li>
-                    <li><Link to='/plans-pricing/private-training' title="Private Training">Private Training</Link></li>
+                    <li><Link to='/plans-pricing/gym-membership' title="Gym Membership">{t("Gym Membership")}</Link></li>
+                    <li><Link to='/plans-pricing/private-training' title="Private Training">{t("Private Training")}</Link></li>
                   </ul>
                 </li>
                 <li className="nav-item">
@@ -147,7 +147,7 @@ const Header = () => {
                       <div className="cart">
                         <i className="fa fa-shopping-cart me-2" aria-hidden="true"></i>
                       </div>
-                      {state.userRole ? <div className="cartItemsIcon"><span>{cartItems.length}</span></div> : null}
+                      <div className="cartItemsIcon"><span>{cartItems.length}</span></div>
                     </Link>
                   </div>
                 </li>

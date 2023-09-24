@@ -13,7 +13,7 @@ const Footer = () => {
                 <div className="row">
                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                         <div className="footer-widget">
-                            <h3 className="footer-title">Contact Infomation</h3>
+                            <h3 className="footer-title">{t("Contact Information")}</h3>
                             <div className="">
                                 <ul>
                                     <li><i className="icon-placeholder"></i>123 st.</li>
@@ -31,7 +31,7 @@ const Footer = () => {
                     </div>
                     <div className=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div className="footer-widget">
-                            <h3 className="footer-title">Quick Links</h3>
+                            <h3 className="footer-title">{t("Quick Links")}</h3>
                             <ul className="angle angle-right">
                                 <li><Link to="/">{t("Home")}</Link></li>
                                 <li><Link to="/plans-pricing/gym-membership">{t("Gym Membership")}</Link></li>
@@ -45,7 +45,7 @@ const Footer = () => {
                     </div>
                     <div className=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div className="footer-widget">
-                            <h3 className="footer-title">payment methods</h3>
+                            <h3 className="footer-title">{t("payment methods")}</h3>
                             <div className="pay-with">
                                 <a href=""><img src="/images/mastercard_icon.png" alt="" /></a>
                                 <a href=""><img src="/images/visa_icon.png" alt="" className="ms-0" /></a>

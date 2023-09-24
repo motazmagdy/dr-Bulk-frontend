@@ -1,12 +1,15 @@
 import React from 'react';
 import './ContactUs.css'
+import { useTranslation } from "react-i18next";
 
 const ContactUs = () => {
+    const [t, i18n] = useTranslation();
+
     return (
         <div className="container contact-us">
             <div className="row">
                 <div className="col-12">
-                    <h3 className="footer-title">contact us</h3>
+                    <h3 className="footer-title">{t("Contact us")}</h3>
                 </div>
 
                 <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-auto">
@@ -14,21 +17,21 @@ const ContactUs = () => {
                         <form>
                             <div className="form-group">
                                 <label className="control-label" htmlFor="name"></label>
-                                <input id="name" type="text" className="form-control" placeholder="Name" />
+                                <input id="name" type="text" className="form-control" placeholder={t("Name")} />
                             </div>
                             <div className="form-group">
                                 <label className="control-label" htmlFor="Email"></label>
-                                <input id="email" type="text" className="form-control" placeholder="Email" />
+                                <input id="email" type="text" className="form-control" placeholder={t("Email")} />
                             </div>
                             <div className="form-group">
                                 <label className="control-label" htmlFor="Phone"></label>
-                                <input id="phone" type="text" className="form-control" placeholder="Phone" />
+                                <input id="phone" type="text" className="form-control" placeholder={t("Phone Number")} />
                             </div>
                             <div className="form-group">
                                 <label className="control-label" htmlFor="textarea"></label>
-                                <textarea className="form-control" id="textarea" name="textarea" rows="3" placeholder="textarea"></textarea>
+                                <textarea className="form-control" id="textarea" name="textarea" rows="3" placeholder={t("Textarea")}></textarea>
                             </div>
-                            <button className="btn bulk-dark-btn btn-sm">submit</button>
+                            <button className="btn bulk-dark-btn btn-sm">{t("submit")}</button>
                         </form>
                     </div>
                 </div>

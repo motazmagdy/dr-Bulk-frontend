@@ -4,10 +4,13 @@ import RoutesSpinner from '../../../Components/Spinners/RoutesSpinner';
 import Pagination from '../../../Components/Pagination/Pagination';
 import ProductItem from './ProductItem/ProductItem';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const Shop = () => {
+    const { t, i18n } = useTranslation()
+
     const [products, setProducts] = useState([])
     const numberOfPages = useRef(1)
     const loading = useRef(true)
@@ -26,7 +29,6 @@ const Shop = () => {
         getProductsPerPage()
     }, [])
 
-
     return (
         <>
             <div className="page-header">
@@ -34,11 +36,11 @@ const Shop = () => {
                     <div className="row">
                         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div className="page-section">
-                                <h1 className="page-title ">Shop</h1>
+                                <h1 className="page-title ">{t("Shop")}</h1>
                                 <div className="page-breadcrumb">
                                     <ol className="breadcrumb">
-                                        <li><Link to='/'>Home</Link></li>
-                                        <li>Shop</li>
+                                        <li><Link to='/'>{t("Home")}</Link></li>
+                                        <li>{t("Shop")}</li>
                                     </ol>
                                 </div>
                             </div>

@@ -21,7 +21,7 @@
   "Password must be at least 8 characters": "Password must be at least 8 characters",
   "Password": "Password",
   "Enter Your Password": "Enter Your Password",
-  "Dont' have an account .": "Dont' have an account .",
+  "Dont' have an account .": "Don't have an account .",
   "Sign up Here": "Sign up Here",
   "Sign Up": "Sign Up",
   "Name": "Name",
@@ -53,5 +53,14 @@
   "For Contact": "For Contact",
   "Book Now": "Book Now",
   "Weekly": "Weekly",
-  "Monthly": "Monthly"
+  "Monthly": "Monthly",
+  "Shop": "Shop",
+  "in Cart": " in Cart",
+  "next": "next",
+  "previous": "previous",
+  "Contact Information": "Contact Information",
+  "Quick Links": "Quick Links",
+  "payment methods": "payment methods",
+  "Textarea": "Textarea",
+  "submit": "submit"
 }
