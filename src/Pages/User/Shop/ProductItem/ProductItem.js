@@ -48,7 +48,7 @@ const ProductItem = ({ product }) => {
 
                     {
                         !getItemQuantity(id) ?
-                            <button type='button' className='btn bulk-dark-btn' onClick={e => increaseItemQuantity(id)}><i className="fa-solid fa-cart-shopping me-2"></i>Add to Cart</button>
+                            <button type='button' className='btn bulk-dark-btn' onClick={e => increaseItemQuantity(id)}><i className="fa-solid fa-cart-shopping me-2"></i>{t("Add to Cart")}</button>
                             :
                             // (state.userRole === "users" ?
                             <div className="quantityBtns">

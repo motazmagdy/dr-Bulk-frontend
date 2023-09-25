@@ -3,9 +3,18 @@
   "Home": "الصفحة الرئيسية",
   "Plans & Pricing": "الخطط & الأسعار",
   "Gym Membership": "الخطط",
+  "Memberships":"الخطط",
+  "Normal":"العاديه",
+  "Silver":"الفضيه",
+  "Gold":"الذهبيه",
+  "Diamond":"الماسيه",
   "Private Training": "الخطة المميزة",
+  "VIP":"مميزة",
   "Instructors": "المدربين",
   "Eat Smart": "الأكل الصحي",
+  "Weekly":"أسبوعيًا",
+  "Monthly":"شهريًا",
+  "Online Tracking":"متابعة اونلاين",
   "Apparel": "المنتجات",
   "Contact us": "تواصل معنا",
   "Login": "تسجيل الدخول",
@@ -62,5 +71,8 @@
   "Quick Links": "روابط مهمة",
   "payment methods": "طرق الدفع",
   "Textarea": "اضف رسالة",
-  "submit": "ارسال"
+  "submit": "ارسال",
+  "Earn":"احصل على",
+  "Add to Cart":"اضف الى السله",
+  "Description":"الوصف"
 }
