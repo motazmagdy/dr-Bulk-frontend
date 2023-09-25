@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import MembershipItem from './MembershipItem/MembershipItem'
 import RoutesSpinner from '../../../Components/Spinners/RoutesSpinner'
 import axios from 'axios'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
@@ -9,6 +10,7 @@ const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 const Memberships = ({ handleRouting }) => {
     const [memberships, setMemberships] = useState([])
     const loading = useRef(true)
+    const { t } = useTranslation()
 
     const getMemberships = () => {
         axios.get(`${DR_BULK_API}/api/memberships`)
@@ -46,11 +48,11 @@ const Memberships = ({ handleRouting }) => {
                     <div className="row">
                         <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div className="page-section">
-                                <h1 className="page-title ">GYM Memberships</h1>
+                                <h1 className="page-title ">{t("Gym Membership")}</h1>
                                 <div className="page-breadcrumb">
                                     <ol className="breadcrumb">
-                                        <li><Link to='/'>Home</Link></li>
-                                        <li>GYM Memberships</li>
+                                        <li><Link to='/'>{t("Home")}</Link></li>
+                                        <li>{t("Gym Membership")}</li>
                                     </ol>
                                 </div>
                             </div>
@@ -66,7 +68,7 @@ const Memberships = ({ handleRouting }) => {
                     <div className='container py-5 memberships'>
                         <div className="row">
                             <div className="col-12 Normal">
-                                <h3>Normal Memberships</h3>
+                                <h3>{t("Memberships")} {t("Normal")} </h3>
                             </div>
                             {
                                 arr.Normal.map(n => {
@@ -82,7 +84,7 @@ const Memberships = ({ handleRouting }) => {
                         </div>
                         <div className="row">
                             <div className="col-12 Normal">
-                                <h3>Silver Memberships</h3>
+                                <h3>{t("Memberships")} {t("Silver")}</h3>
                             </div>
                             {
                                 arr.Silver.map(b => {
@@ -98,7 +100,7 @@ const Memberships = ({ handleRouting }) => {
                         </div>
                         <div className="row">
                             <div className="col-12 Normal">
-                                <h3>Gold Memberships</h3>
+                                <h3>{t("Memberships")} {t("Gold")}</h3>
                             </div>
                             {
                                 arr.Gold.map(g => {
@@ -114,7 +116,7 @@ const Memberships = ({ handleRouting }) => {
                         </div>
                         <div className="row">
                             <div className="col-12 Normal">
-                                <h3>Diamond Memberships</h3>
+                                <h3>{t("Memberships")} {t("Diamond")}</h3>
                             </div>
                             {
                                 arr.Diamond.map(d => {
