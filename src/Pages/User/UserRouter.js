@@ -1,6 +1,6 @@
 import React from "react";
 import { lazy } from "react"
-import { Routes, Route, Navigate , useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuthContext from "../../Hooks/AuthContextHook";
 import Header from '../../Components/Header/Header';
@@ -24,15 +24,17 @@ const UserRouter = () => {
   const { state } = useAuthContext();
   const navigate = useNavigate();
 
-  const handleRouting = ( route , id )=>{
-    if (state.userRole === "users"){
-        navigate(`${route}/${id}`)
+  // const handleRouting = ( route , id )=>{
+  const handleRouting = (func) => {
+    if (state.userRole === "users") {
+      // navigate(`${route}/${id}`)
+      func()
     } else {
-        toast.warning('Please Login First !')
-        setTimeout(()=>{
+      toast.warning('Please Login First !')
+      setTimeout(() => {
         navigate('/login')
-        },3000)
-    }  
+      }, 3000)
+    }
   }
 
   return (

@@ -5,13 +5,13 @@ const CartContext = createContext({})
 const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cart")) || [])
 
-    const increaseItemQuantity = (id) => {
+    const increaseItemQuantity = (productId) => {
         setCartItems(prevCart => {
-            if (prevCart.find(item => item.id === id) == null) {
-                return [...prevCart, { id, quantity: 1 }]
+            if (prevCart.find(item => item.productId === productId) == null) {
+                return [...prevCart, { productId, quantity: 1 }]
             } else {
                 return prevCart.map(item => {
-                    if (item.id === id) {
+                    if (item.productId === productId) {
                         return { ...item, quantity: item.quantity + 1 }
                     } else {
                         return item
@@ -21,11 +21,11 @@ const CartProvider = ({ children }) => {
         })
     }
 
-    const decreaseItemQuantity = (id) => {
+    const decreaseItemQuantity = (productId) => {
         setCartItems(prevCart => {
-            if (prevCart.find(item => item.id === id)) {
+            if (prevCart.find(item => item.productId === productId)) {
                 return prevCart.map(item => {
-                    if ((item.id === id) && (item.quantity > 1)) {
+                    if ((item.productId === productId) && (item.quantity > 1)) {
                         return { ...item, quantity: item.quantity - 1 }
                     } else {
                         return item
@@ -34,10 +34,10 @@ const CartProvider = ({ children }) => {
             }
         })
     }
-    const removeItem = (id) => {
+    const removeItem = (productId) => {
         setCartItems(prevCart => {
-            if (prevCart.find(item => item.id === id)) {
-                return prevCart.filter(item => item.id !== id)
+            if (prevCart.find(item => item.productId === productId)) {
+                return prevCart.filter(item => item.productId !== productId)
             }
         })
     }
@@ -46,8 +46,8 @@ const CartProvider = ({ children }) => {
         localStorage.setItem('cart', JSON.stringify(cartItems))
     }, [cartItems])
 
-    const getItemQuantity = (id) => {
-        return cartItems.find(item => item.id === id)?.quantity || 0
+    const getItemQuantity = (productId) => {
+        return cartItems.find(item => item.productId === productId)?.quantity || 0
     }
 
     return (
