@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import RoutesSpinner from '../../../../Components/Spinners/RoutesSpinner'
 import { useCart } from '../../../../Context/CartContext'
+import { useTranslation } from 'react-i18next'
 
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
@@ -12,6 +13,7 @@ const ProductDetails = () => {
     const [productDetails, setProductDetails] = useState({})
     const { getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem } = useCart()
     const loading = useRef(true)
+    const { t , i18n } = useTranslation()
 
     useEffect(() => {
         axios.get(`${DR_BULK_API}/api/products/${productId}`)
@@ -22,7 +24,10 @@ const ProductDetails = () => {
             .catch(err => console.log(err))
     }, [])
 
-    let { title, category, description, price, points, images } = productDetails
+    let { category, price, points, images } = productDetails
+    const title = i18n.dir() === "ltr" ? productDetails.title.en : productDetails.title.ar ;
+    const description = i18n.dir() === "ltr" ? productDetails.description.en : productDetails.description.ar ;
+
     images = images?.map(img => img.replace('public\\uploads\\', DR_BULK_API + '/uploads/'))
 
     return (
@@ -75,11 +80,11 @@ const ProductDetails = () => {
 
                                             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span className="visually-hidden">Previous</span>
+                                                <span className="visually-hidden">{t("previous")}</span>
                                             </button>
                                             <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                                                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span className="visually-hidden">Next</span>
+                                                <span className="visually-hidden">{t("next")}</span>
                                             </button>
                                         </div>
                                     </div>
@@ -91,7 +96,7 @@ const ProductDetails = () => {
                                         <div className=" author-block">
                                             <div className="author-post-content ">
                                                 <div className="author-header">
-                                                    <h3><span className="title">ghhjhhf jhghjghj jkhkjhkjj {title.en}</span></h3>
+                                                    <h3><span className="title">ghhjhhf jhghjghj jkhkjhkjj {title}</span></h3>
                                                 </div>
                                                 <div className="author-meta ">{category.name.en}</div>
                                                 <div className="author-content">
@@ -124,10 +129,10 @@ const ProductDetails = () => {
                                         <div className="post-content">
                                             <div className="post-header">
                                                 <h2 className="post-title">
-                                                    <span className="title">Description : </span>
+                                                    <span className="title">{t("Description")} : </span>
                                                 </h2>
                                             </div>
-                                            <p>{description.en}</p>
+                                            <p>{description}</p>
                                         </div>
                                     </div>
 

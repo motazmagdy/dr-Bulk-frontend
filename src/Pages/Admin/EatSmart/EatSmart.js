@@ -16,7 +16,7 @@ import { Formik } from "formik";
 import { tokens } from "../../../theme";
 import axios from "axios";
 import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
+// import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import DashboardHeader from "../../../Components/DashboardHeader/DashboardHeader";
 import React, { useState, useEffect } from "react";
@@ -31,12 +31,12 @@ const EditToolbar = ({
   addNewEatSmart,
   addingNewEatSmart,
   setAddingNewEatSmart,
-//   imagesPreview,
+  //   imagesPreview,
   setImagesPreview,
-  eatSmartTypes
+  // eatSmartTypes
 }) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  
+
 
   return (
     <GridToolbarContainer
@@ -94,7 +94,7 @@ const EditToolbar = ({
                 }}
                 onSubmit={(values, actions) => {
                   addNewEatSmart(values);
-                //   actions.resetForm();
+                  //   actions.resetForm();
                   //setAddingNewEatSmart(false);
                 }}
                 validationSchema={EatSmartSchema}
@@ -121,7 +121,18 @@ const EditToolbar = ({
                       }}
                     >
                       <Box>
-                        <InputLabel id="type-select-label">
+                        <TextField
+                          fullWidth
+                          type="string"
+                          label="EatSmart Type"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.type}
+                          name="type"
+                          error={!!touched.name && !!errors.name}
+                          sx={{ gridColumn: "span 2" }}
+                        />
+                        {/* <InputLabel id="type-select-label">
                           EatSmart Type
                         </InputLabel>
                         <Select
@@ -140,7 +151,7 @@ const EditToolbar = ({
                               </MenuItem>
                             );
                           })}
-                        </Select>
+                        </Select> */}
                         {errors.category && touched.category ? (
                           <span className="input-err-msg">
                             {errors.category}
@@ -260,7 +271,7 @@ const EditToolbar = ({
                         />
                         <br />
                         {errors.descriptionInEnglish &&
-                        touched.descriptionInEnglish ? (
+                          touched.descriptionInEnglish ? (
                           <span className="input-err-msg">
                             {errors.descriptionInEnglish}
                           </span>
@@ -281,7 +292,7 @@ const EditToolbar = ({
                         />
                         <br />
                         {errors.descriptionInArabic &&
-                        touched.descriptionInArabic ? (
+                          touched.descriptionInArabic ? (
                           <span className="input-err-msg">
                             {errors.descriptionInArabic}
                           </span>
@@ -383,7 +394,7 @@ const EatSmarts = ({eatSmart, setEatSmarts , getEatSmarts}) => {
   const [deleteRow, setDeleteRow] = useState("");
   const [addingNewEatSmart, setAddingNewEatSmart] = useState(false);
   const [imagesPreview, setImagesPreview] = useState([]);
-  const eatSmartTypes = ['Weekly', 'Monthly'];
+  // const eatSmartTypes = ['Weekly', 'Monthly'];
 
   const openDeleteAlert = (deleteData) => {
     setDeleteRow(deleteData);
@@ -400,18 +411,18 @@ const EatSmarts = ({eatSmart, setEatSmarts , getEatSmarts}) => {
 
   const editEatSmart = (id, eatsmartEditedData) => {
     const eatsmartNewData = {
-        title: {
-            en: eatsmartEditedData.titleInEnglish,
-            ar: eatsmartEditedData.titleInArabic,
-          },
-          duration: eatsmartEditedData.duration,
-          type: eatsmartEditedData.type,
-          price: eatsmartEditedData.price,
-          description: {
-            en: eatsmartEditedData.descriptionInEnglish,
-            ar: eatsmartEditedData.descriptionInArabic,
-          },
-          points: eatsmartEditedData.points
+      title: {
+        en: eatsmartEditedData.titleInEnglish,
+        ar: eatsmartEditedData.titleInArabic,
+      },
+      duration: eatsmartEditedData.duration,
+      type: eatsmartEditedData.type,
+      price: eatsmartEditedData.price,
+      description: {
+        en: eatsmartEditedData.descriptionInEnglish,
+        ar: eatsmartEditedData.descriptionInArabic,
+      },
+      points: eatsmartEditedData.points
     };
     axios
       .put(`${serverApi}/api/eat-smart/${id}`, eatsmartNewData, {
@@ -466,7 +477,7 @@ const EatSmarts = ({eatSmart, setEatSmarts , getEatSmarts}) => {
 
   const addNewEatSmart = (eatsmartData) => {
     console.log(eatsmartData);
-    
+
     const eatsmart = {
       title: {
         en: eatsmartData.titleInEnglish,
@@ -480,8 +491,8 @@ const EatSmarts = ({eatSmart, setEatSmarts , getEatSmarts}) => {
         ar: eatsmartData.descriptionInArabic,
       },
       points: eatsmartData.points,
-    //   image: eatsmartData.image,
-    //   image :formData
+      //   image: eatsmartData.image,
+      //   image :formData
     };
     console.log("EatSmart", eatsmart);
 
@@ -497,7 +508,7 @@ const EatSmarts = ({eatSmart, setEatSmarts , getEatSmarts}) => {
     axios
       .post(`${serverApi}/api/eat-smart`, eatsmart, {
         headers: {
-            // 'Content-Type': 'multipart/form-data',
+          // 'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
       })
@@ -719,17 +730,17 @@ const adminColumns = [...editorColumns , adminFields]
           },
           " & .MuiDialogContentText-root": {
             marginBottom: "1 rem !important",
-          },"& .MuiTablePagination-selectLabel":{
-            display :"none !important"
+          }, "& .MuiTablePagination-selectLabel": {
+            display: "none !important"
           },
-          "& .MuiTablePagination-input" :{
-            display :"none !important"
+          "& .MuiTablePagination-input": {
+            display: "none !important"
           },
-          "& .MuiTablePagination-actions" : {
-            display :"none !important"
+          "& .MuiTablePagination-actions": {
+            display: "none !important"
           },
-          "& .MuiTablePagination-displayedRows" : {
-            margin:"auto 3rem"
+          "& .MuiTablePagination-displayedRows": {
+            margin: "auto 3rem"
           }
         }}
       >
@@ -751,77 +762,88 @@ const adminColumns = [...editorColumns , adminFields]
               setAddingNewEatSmart,
               imagesPreview,
               setImagesPreview,
-              eatSmartTypes
+              // eatSmartTypes
             },
           }}
-          // editMode="row"
+        // editMode="row"
         />
         {editDialog ? (
           <Dialog
-          open={editDialog ? true : false}
-          sx={{
-            "& .MuiPaper-root": {
-              width: "100%",
-              maxWidth: "1000px",
-            },
-            "& .MuiBox-root": {
-              flexDirection: "row",
-              flexWrap: "wrap",
-            },
-            "& .MuiBox-root > .MuiBox-root": {
-              width: "100%",
-              margin: "0.5rem 0",
-            },
-          }}
-          onClose={() => setEditDialog(false)}
-        >
-          <DialogTitle>Editing EatSmart</DialogTitle>
-          <DialogContent>
-            <Formik
-              initialValues={{
-                titleInEnglish: editDialog.title.en,
-                titleInArabic: editDialog.title.ar,
-                descriptionInEnglish: editDialog.description.en,
-                descriptionInArabic: editDialog.description.ar,
-                duration: editDialog.duration,
-                price: editDialog.price,
-                points: editDialog.points,
-                type: editDialog.type,
-                image: []
-              }}
-              onSubmit={(values, actions) => {
-                editEatSmart(editDialog._id,values);
-              //   actions.resetForm();
-                //setAddingNewEatSmart(false);
-              }}
-              validationSchema={EatSmartSchema}
-            >
-              {({
-                values,
-                errors,
-                touched,
-                handleBlur,
-                handleChange,
-                handleSubmit,
-                setFieldValue,
-              }) => (
-                <form display="flex" onSubmit={handleSubmit}>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    mb={2}
-                    gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-                    sx={{
-                      "& > div": {
-                        gridColumn: isNonMobile ? undefined : "span 4",
-                      },
-                    }}
-                  >
-                    <Box>
-                      <InputLabel id="type-select-label">
+            open={editDialog ? true : false}
+            sx={{
+              "& .MuiPaper-root": {
+                width: "100%",
+                maxWidth: "1000px",
+              },
+              "& .MuiBox-root": {
+                flexDirection: "row",
+                flexWrap: "wrap",
+              },
+              "& .MuiBox-root > .MuiBox-root": {
+                width: "100%",
+                margin: "0.5rem 0",
+              },
+            }}
+            onClose={() => setEditDialog(false)}
+          >
+            <DialogTitle>Editing EatSmart</DialogTitle>
+            <DialogContent>
+              <Formik
+                initialValues={{
+                  titleInEnglish: editDialog.title.en,
+                  titleInArabic: editDialog.title.ar,
+                  descriptionInEnglish: editDialog.description.en,
+                  descriptionInArabic: editDialog.description.ar,
+                  duration: editDialog.duration,
+                  price: editDialog.price,
+                  points: editDialog.points,
+                  type: editDialog.type,
+                  image: []
+                }}
+                onSubmit={(values, actions) => {
+                  editEatSmart(editDialog._id, values);
+                  //   actions.resetForm();
+                  //setAddingNewEatSmart(false);
+                }}
+                validationSchema={EatSmartSchema}
+              >
+                {({
+                  values,
+                  errors,
+                  touched,
+                  handleBlur,
+                  handleChange,
+                  handleSubmit,
+                  setFieldValue,
+                }) => (
+                  <form display="flex" onSubmit={handleSubmit}>
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      mb={2}
+                      gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                      sx={{
+                        "& > div": {
+                          gridColumn: isNonMobile ? undefined : "span 4",
+                        },
+                      }}
+                    >
+                      <Box>
+                        <TextField
+                          fullWidth
+                          type="string"
+                          label="EatSmart Type"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.type}
+                          name="type"
+                          error={!!touched.name && !!errors.name}
+                          sx={{ gridColumn: "span 2" }}
+                        />
+                        {/* <InputLabel id="type-select-label">
                         EatSmart Type
-                      </InputLabel>
-                      <Select
+                      </InputLabel> */}
+                        {/* <Select
                         onChange={(e) => {
                           const selectedEatSmart = e.target.value;
                           setFieldValue("type", selectedEatSmart);
@@ -837,155 +859,155 @@ const adminColumns = [...editorColumns , adminFields]
                             </MenuItem>
                           );
                         })}
-                      </Select>
-                      {errors.category && touched.category ? (
-                        <span className="input-err-msg">
-                          {errors.category}
-                        </span>
-                      ) : null}
-                    </Box>
-                    <Box className="containerNames">
-                      <Box className="childName">
-                        <TextField
-                          fullWidth
-                          //   variant="filled"
-                          type="text"
-                          label="EatSmart Name in English"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.titleInEnglish}
-                          name="titleInEnglish"
-                          error={!!touched.name && !!errors.name}
-                          sx={{ gridColumn: "span 2" }}
-                        />
-                        {errors.titleInEnglish && touched.titleInEnglish ? (
+                      </Select> */}
+                        {errors.category && touched.category ? (
                           <span className="input-err-msg">
-                            {errors.titleInEnglish}
+                            {errors.category}
                           </span>
                         ) : null}
                       </Box>
-                      <Box className="childName">
-                        <TextField
-                          fullWidth
-                          //   variant="filled"
-                          type="text"
-                          label="اسم العضويه بالعربى"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.titleInArabic}
-                          name="titleInArabic"
-                          error={!!touched.name && !!errors.name}
-                          sx={{ gridColumn: "span 2" }}
-                        />
-                        {errors.titleInArabic && touched.titleInArabic ? (
-                          <span className="input-err-msg">
-                            {errors.titleInArabic}
-                          </span>
-                        ) : null}
+                      <Box className="containerNames">
+                        <Box className="childName">
+                          <TextField
+                            fullWidth
+                            //   variant="filled"
+                            type="text"
+                            label="EatSmart Name in English"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.titleInEnglish}
+                            name="titleInEnglish"
+                            error={!!touched.name && !!errors.name}
+                            sx={{ gridColumn: "span 2" }}
+                          />
+                          {errors.titleInEnglish && touched.titleInEnglish ? (
+                            <span className="input-err-msg">
+                              {errors.titleInEnglish}
+                            </span>
+                          ) : null}
+                        </Box>
+                        <Box className="childName">
+                          <TextField
+                            fullWidth
+                            //   variant="filled"
+                            type="text"
+                            label="اسم العضويه بالعربى"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.titleInArabic}
+                            name="titleInArabic"
+                            error={!!touched.name && !!errors.name}
+                            sx={{ gridColumn: "span 2" }}
+                          />
+                          {errors.titleInArabic && touched.titleInArabic ? (
+                            <span className="input-err-msg">
+                              {errors.titleInArabic}
+                            </span>
+                          ) : null}
+                        </Box>
+                        <Box className="childName">
+                          <TextField
+                            fullWidth
+                            type="string"
+                            label="Duration"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.duration}
+                            name="duration"
+                            error={!!touched.name && !!errors.name}
+                            sx={{ gridColumn: "span 2" }}
+                          />
+                          <br />
+                          {errors.duration && touched.duration ? (
+                            <span className="input-err-msg">
+                              {errors.duration}
+                            </span>
+                          ) : null}
+                        </Box>
+                        <Box className="childName">
+                          <TextField
+                            fullWidth
+                            type="number"
+                            label="Price"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.price}
+                            name="price"
+                            error={!!touched.name && !!errors.name}
+                            sx={{ gridColumn: "span 2" }}
+                          />
+                          <br />
+                          {errors.price && touched.price ? (
+                            <span className="input-err-msg">
+                              {errors.price}
+                            </span>
+                          ) : null}
+                        </Box>
+                        <Box className="childName">
+                          <TextField
+                            fullWidth
+                            type="number"
+                            label="Points"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            value={values.points}
+                            name="points"
+                            error={!!touched.name && !!errors.name}
+                            sx={{ gridColumn: "span 2" }}
+                          />
+                          <br />
+                          {errors.points && touched.points ? (
+                            <span className="input-err-msg">
+                              {errors.points}
+                            </span>
+                          ) : null}
+                        </Box>
                       </Box>
-                      <Box className="childName">
-                        <TextField
-                          fullWidth
-                          type="string"
-                          label="Duration"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.duration}
-                          name="duration"
-                          error={!!touched.name && !!errors.name}
-                          sx={{ gridColumn: "span 2" }}
-                        />
-                        <br />
-                        {errors.duration && touched.duration ? (
-                          <span className="input-err-msg">
-                            {errors.duration}
-                          </span>
-                        ) : null}
-                      </Box>
-                      <Box className="childName">
-                        <TextField
-                          fullWidth
-                          type="number"
-                          label="Price"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.price}
-                          name="price"
-                          error={!!touched.name && !!errors.name}
-                          sx={{ gridColumn: "span 2" }}
-                        />
-                        <br />
-                        {errors.price && touched.price ? (
-                          <span className="input-err-msg">
-                            {errors.price}
-                          </span>
-                        ) : null}
-                      </Box>
-                      <Box className="childName">
-                        <TextField
-                          fullWidth
-                          type="number"
-                          label="Points"
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          value={values.points}
-                          name="points"
-                          error={!!touched.name && !!errors.name}
-                          sx={{ gridColumn: "span 2" }}
-                        />
-                        <br />
-                        {errors.points && touched.points ? (
-                          <span className="input-err-msg">
-                            {errors.points}
-                          </span>
-                        ) : null}
-                      </Box>
-                    </Box>
 
-                    <Box display="flex" flexDirection="column">
-                      <TextField
-                        fullWidth
-                        multiline={true}
-                        type="text"
-                        label="EatSmart Description in English"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.descriptionInEnglish}
-                        name="descriptionInEnglish"
-                        error={!!touched.name && !!errors.name}
-                        sx={{ gridColumn: "span 2" }}
-                      />
-                      <br />
-                      {errors.descriptionInEnglish &&
-                      touched.descriptionInEnglish ? (
-                        <span className="input-err-msg">
-                          {errors.descriptionInEnglish}
-                        </span>
-                      ) : null}
-                    </Box>
-                    <Box display="flex" flexDirection="column">
-                      <TextField
-                        fullWidth
-                        multiline={true}
-                        type="text"
-                        label="وصف العضويه بالعربى"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.descriptionInArabic}
-                        name="descriptionInArabic"
-                        error={!!touched.name && !!errors.name}
-                        sx={{ gridColumn: "span 2" }}
-                      />
-                      <br />
-                      {errors.descriptionInArabic &&
-                      touched.descriptionInArabic ? (
-                        <span className="input-err-msg">
-                          {errors.descriptionInArabic}
-                        </span>
-                      ) : null}
-                    </Box>
+                      <Box display="flex" flexDirection="column">
+                        <TextField
+                          fullWidth
+                          multiline={true}
+                          type="text"
+                          label="EatSmart Description in English"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.descriptionInEnglish}
+                          name="descriptionInEnglish"
+                          error={!!touched.name && !!errors.name}
+                          sx={{ gridColumn: "span 2" }}
+                        />
+                        <br />
+                        {errors.descriptionInEnglish &&
+                          touched.descriptionInEnglish ? (
+                          <span className="input-err-msg">
+                            {errors.descriptionInEnglish}
+                          </span>
+                        ) : null}
+                      </Box>
+                      <Box display="flex" flexDirection="column">
+                        <TextField
+                          fullWidth
+                          multiline={true}
+                          type="text"
+                          label="وصف العضويه بالعربى"
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          value={values.descriptionInArabic}
+                          name="descriptionInArabic"
+                          error={!!touched.name && !!errors.name}
+                          sx={{ gridColumn: "span 2" }}
+                        />
+                        <br />
+                        {errors.descriptionInArabic &&
+                          touched.descriptionInArabic ? (
+                          <span className="input-err-msg">
+                            {errors.descriptionInArabic}
+                          </span>
+                        ) : null}
+                      </Box>
 
-                    {/* <Box
+                      {/* <Box
                       sx={{
                         width: "80% !important",
                         margin: "1rem auto !important",
@@ -1023,32 +1045,32 @@ const adminColumns = [...editorColumns , adminFields]
                         <span className="input-err-msg">{errors.image}</span>
                       ) : null}
                     </Box> */}
-                    <br />
-                    <Box className="newInstructorBtns">
-                      <Button
-                        onClick={() => {
-                          setEditDialog(false);
-                        }}
-                        sx={{
-                          backgroundColor: "rgb(244, 67, 54) !important",
-                          color: "white",
-                        }}
-                      >
-                        Cancel
-                      </Button>
-                      <Button
-                        type="submit"
-                        onClick={handleSubmit}
-                        sx={{
-                          backgroundColor: "rgb(0, 137, 46 ) !important",
-                          color: "white",
-                        }}
-                      >
-                        Update
-                      </Button>
-                    </Box>
-                    <br />
-                    {/* <Box className="imgs-preview">
+                      <br />
+                      <Box className="newInstructorBtns">
+                        <Button
+                          onClick={() => {
+                            setEditDialog(false);
+                          }}
+                          sx={{
+                            backgroundColor: "rgb(244, 67, 54) !important",
+                            color: "white",
+                          }}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          type="submit"
+                          onClick={handleSubmit}
+                          sx={{
+                            backgroundColor: "rgb(0, 137, 46 ) !important",
+                            color: "white",
+                          }}
+                        >
+                          Update
+                        </Button>
+                      </Box>
+                      <br />
+                      {/* <Box className="imgs-preview">
                       {imagesPreview.map((img) => (
                         <img
                           src={img}
@@ -1058,12 +1080,12 @@ const adminColumns = [...editorColumns , adminFields]
                         />
                       ))}
                     </Box> */}
-                  </Box>
-                </form>
-              )}
-            </Formik>
-          </DialogContent>
-        </Dialog>
+                    </Box>
+                  </form>
+                )}
+              </Formik>
+            </DialogContent>
+          </Dialog>
         ) : null}
         {deleteRow ? (
           <Dialog

@@ -1,28 +1,29 @@
-.membershipNames{
-    display :flex !important;
-    flex-direction :row !important;
+.membershipNames {
+    display: flex !important;
+    flex-direction: row !important;
     justify-content: space-between;
-    width:100% !important ;
+    width: 100% !important;
 }
 
-.membershipName{
-    display :flex !important;
-    flex-direction :column !important;
-    width:48% !important ;
+.membershipName {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 48% !important;
 }
 
-.newMembershipBtns{
+.newMembershipBtns {
     margin: auto !important;
     display: flex;
     flex-direction: row !important;
     justify-content: center;
+
     & button {
         margin: 0 1rem !important;
         font-size: medium;
     }
 }
 
-.editMembershipForm{
+.editMembershipForm {
     display: flex;
     margin-top: 1rem;
 }
@@ -39,3 +40,6 @@
     }
 } */
 
+.MuiFormLabel-root {
+    font-size: .9rem !important;
+}
