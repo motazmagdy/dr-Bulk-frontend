@@ -10,6 +10,7 @@ import { DataGrid, GridToolbarContainer } from "@mui/x-data-grid";
 import { Box, useTheme, TextField, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Button from "@mui/material/Button";
+import useAuthContext from "../../../Hooks/AuthContextHook";
 import AddIcon from "@mui/icons-material/Add";
 import { Formik } from "formik";
 import { tokens } from "../../../theme";
@@ -297,11 +298,11 @@ const EditToolbar = ({
   );
 };
 
-const Instructors = () => {
+const Instructors = ({instructors, setInstructors , getInstructors}) => {
+  const { state} = useAuthContext()
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { t } = useTranslation();
-  const [categories, setInstructors] = useState([]);
-  const [rows, setRows] = useState(categories);
+  const [rows, setRows] = useState(instructors);
   const [editDialog, setEditDialog] = useState("");
   const [deleteRow, setDeleteRow] = useState("");
   const [addingNewInstructor, setAddingNewInstructor] = useState(false);
@@ -320,16 +321,6 @@ const Instructors = () => {
   };
   const closeEditDialog = () => {
     setEditDialog("");
-  };
-
-  const getInstructors = () => {
-    axios
-      .get(`${serverApi}/api/instructors`)
-      .then((response) => {
-        // console.log(response.data.data);
-        setInstructors(response.data.data);
-      })
-      .catch((error) => console.log(error));
   };
 
   const editInstructor = (id, instructoreEditedData) => {
@@ -437,6 +428,82 @@ const Instructors = () => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const editorColumns =[{
+    field: "nameInEnglish",
+    headerName: "Name",
+    flex: 0.2,
+    renderCell: ({ row: { _id, name } }) => {
+      return <Typography key={_id}>{name.en}</Typography>;
+    },
+  },
+  {
+    field: "nameInArabic",
+    headerName: "اسم المدرب",
+    flex: 0.2,
+    renderCell: ({ row: { _id, name } }) => {
+      return <Typography key={_id}>{name.ar}</Typography>;
+    },
+  },
+  {
+    field: "phoneNumber",
+    headerName: "Phone Number",
+    flex: 0.1,
+  },
+  {
+    field: "edit",
+    headerName: "Edit",
+    flex: 0.2,
+    renderCell: ({ row: { _id, name, bio, phoneNumber , image } }) => {
+      return (
+        <Box
+          width="50%"
+          display="flex"
+          justifyContent="center"
+          borderRadius="2px"
+        >
+          <Button
+            type="submit"
+            style={{ backgroundColor: orange[500], color: "white" }}
+            variant="contained"
+            onClick={() => {
+              openEditDialog({ _id, name, bio, phoneNumber })
+              setImagesPreview(image)
+              setEditingImages(false)
+            }}
+              >
+            Edit <EditIcon sx={{ marginLeft: "8px" }} />
+          </Button>
+        </Box>
+      );
+    },
+  }]
+  const adminFields = {
+    field: "delete",
+    headerName: "Delete",
+    flex: 0.2,
+    renderCell: ({ row: { _id, name } }) => {
+      return (
+        <Box
+          width="50%"
+          display="flex"
+          justifyContent="center"
+          borderRadius="2px"
+        >
+          <Button
+            type="submit"
+            style={{ backgroundColor: red[500], color: "white" }}
+            variant="contained"
+            onClick={() => openDeleteAlert({ _id, name })}
+          >
+            Delete <DeleteIcon sx={{ marginLeft: "8px" }} />
+          </Button>
+        </Box>
+      );
+    },
+  }
+  const adminColumns = [...editorColumns , adminFields]
+
+
   const columns = [
     {
       field: "nameInEnglish",
@@ -573,12 +640,14 @@ const Instructors = () => {
       >
         <DataGrid
           disableRowSelectionOnClick
-          rows={categories}
+          rows={instructors}
           getRowId={(row) => row._id}
-          columns={columns}
-          slots={{
-            toolbar: EditToolbar,
-          }}
+          columns={state.userRole ==='admins' ? adminColumns : editorColumns }
+          slots={state.userRole === 'admins' ? { toolbar: EditToolbar} : null }
+          // columns={columns}
+          // slots={{
+          //   toolbar: EditToolbar,
+          // }}
           slotProps={{
             toolbar: {
               addNewInstructor,

@@ -2,6 +2,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 import { orange, red } from "@mui/material/colors";
 import Dialog from "@mui/material/Dialog";
+import useAuthContext from "../../../Hooks/AuthContextHook";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -373,10 +374,10 @@ const EditToolbar = ({
   );
 };
 
-const EatSmarts = () => {
+const EatSmarts = ({eatSmart, setEatSmarts , getEatSmarts}) => {
+  const { state } = useAuthContext()
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { t } = useTranslation();
-  const [eatSmart, setEatSmarts] = useState([]);
   const [rows, setRows] = useState(eatSmart);
   const [editDialog, setEditDialog] = useState("");
   const [deleteRow, setDeleteRow] = useState("");
@@ -395,15 +396,6 @@ const EatSmarts = () => {
   };
   const closeEditDialog = () => {
     setEditDialog("");
-  };
-
-  const getEatSmarts = () => {
-    axios
-      .get(`${serverApi}/api/eat-smart`)
-      .then((response) => {
-        setEatSmarts(response.data.data);
-      })
-      .catch((error) => console.log(error));
   };
 
   const editEatSmart = (id, eatsmartEditedData) => {
@@ -530,87 +522,167 @@ const EatSmarts = () => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const columns = [
-    {
-      field: "titleInEnglish",
-      headerName: "Title",
-      flex: 0.2,
-      renderCell: ({ row: { _id, title } }) => {
-        return <Typography key={_id}>{title.en}</Typography>;
-      },
+  const editorColumns =[{
+    field: "titleInEnglish",
+    headerName: "Title",
+    flex: 0.2,
+    renderCell: ({ row: { _id, title } }) => {
+      return <Typography key={_id}>{title.en}</Typography>;
     },
-    {
-      field: "title",
-      headerName: "اسم العضويه",
-      flex: 0.2,
-      renderCell: ({ row: { _id, title } }) => {
-        return <Typography key={_id}>{title.ar}</Typography>;
-      },
+  },
+  {
+    field: "title",
+    headerName: "اسم العضويه",
+    flex: 0.2,
+    renderCell: ({ row: { _id, title } }) => {
+      return <Typography key={_id}>{title.ar}</Typography>;
     },
-    {
-      field: "type",
-      headerName: "Type",
-      flex: 0.1,
-    },
-    {
-      field: "price",
-      headerName: "Price",
-      flex: 0.1,
-    },
-    {
-      field: "points",
-      headerName: "Points",
-      flex: 0.1,
-    },
-    {
-      field: "edit",
-      headerName: "Edit",
-      flex: 0.2,
-      renderCell: ({ row: { _id, title, description, price , duration , points , type  } }) => {
-        return (
-          <Box
-            width="50%"
-            display="flex"
-            justifyContent="center"
-            borderRadius="2px"
+  },
+  {
+    field: "type",
+    headerName: "Type",
+    flex: 0.1,
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    flex: 0.1,
+  },
+  {
+    field: "points",
+    headerName: "Points",
+    flex: 0.1,
+  },
+  {
+    field: "edit",
+    headerName: "Edit",
+    flex: 0.2,
+    renderCell: ({ row: { _id, title, description, price , duration , points , type  } }) => {
+      return (
+        <Box
+          width="50%"
+          display="flex"
+          justifyContent="center"
+          borderRadius="2px"
+        >
+          <Button
+            type="submit"
+            style={{ backgroundColor: orange[500], color: "white" }}
+            variant="contained"
+            onClick={() => openEditDialog({ _id, title, description, price , duration , points , type  })}
           >
-            <Button
-              type="submit"
-              style={{ backgroundColor: orange[500], color: "white" }}
-              variant="contained"
-              onClick={() => openEditDialog({ _id, title, description, price , duration , points , type  })}
-            >
-              Edit <EditIcon sx={{ marginLeft: "8px" }} />
-            </Button>
-          </Box>
-        );
-      },
+            Edit <EditIcon sx={{ marginLeft: "8px" }} />
+          </Button>
+        </Box>
+      );
     },
-    {
-      field: "delete",
-      headerName: "Delete",
-      flex: 0.2,
-      renderCell: ({ row: { _id, title } }) => {
-        return (
-          <Box
-            width="50%"
-            display="flex"
-            justifyContent="center"
-            borderRadius="2px"
-          >
-            <Button
-              type="submit"
-              style={{ backgroundColor: red[500], color: "white" }}
-              variant="contained"
-              onClick={() => openDeleteAlert({ _id, title })}
-            >
-              Delete <DeleteIcon sx={{ marginLeft: "8px" }} />
-            </Button>
-          </Box>
-        );
-      },
-    },
-  ];
+  }]
+const adminFields = {
+  field: "delete",
+  headerName: "Delete",
+  flex: 0.2,
+  renderCell: ({ row: { _id, title } }) => {
+    return (
+      <Box
+        width="50%"
+        display="flex"
+        justifyContent="center"
+        borderRadius="2px"
+      >
+        <Button
+          type="submit"
+          style={{ backgroundColor: red[500], color: "white" }}
+          variant="contained"
+          onClick={() => openDeleteAlert({ _id, title })}
+        >
+          Delete <DeleteIcon sx={{ marginLeft: "8px" }} />
+        </Button>
+      </Box>
+    );
+  },
+}
+const adminColumns = [...editorColumns , adminFields]
+  // const columns = [
+  //   {
+  //     field: "titleInEnglish",
+  //     headerName: "Title",
+  //     flex: 0.2,
+  //     renderCell: ({ row: { _id, title } }) => {
+  //       return <Typography key={_id}>{title.en}</Typography>;
+  //     },
+  //   },
+  //   {
+  //     field: "title",
+  //     headerName: "اسم العضويه",
+  //     flex: 0.2,
+  //     renderCell: ({ row: { _id, title } }) => {
+  //       return <Typography key={_id}>{title.ar}</Typography>;
+  //     },
+  //   },
+  //   {
+  //     field: "type",
+  //     headerName: "Type",
+  //     flex: 0.1,
+  //   },
+  //   {
+  //     field: "price",
+  //     headerName: "Price",
+  //     flex: 0.1,
+  //   },
+  //   {
+  //     field: "points",
+  //     headerName: "Points",
+  //     flex: 0.1,
+  //   },
+  //   {
+  //     field: "edit",
+  //     headerName: "Edit",
+  //     flex: 0.2,
+  //     renderCell: ({ row: { _id, title, description, price , duration , points , type  } }) => {
+  //       return (
+  //         <Box
+  //           width="50%"
+  //           display="flex"
+  //           justifyContent="center"
+  //           borderRadius="2px"
+  //         >
+  //           <Button
+  //             type="submit"
+  //             style={{ backgroundColor: orange[500], color: "white" }}
+  //             variant="contained"
+  //             onClick={() => openEditDialog({ _id, title, description, price , duration , points , type  })}
+  //           >
+  //             Edit <EditIcon sx={{ marginLeft: "8px" }} />
+  //           </Button>
+  //         </Box>
+  //       );
+  //     },
+  //   },
+  //   {
+  //     field: "delete",
+  //     headerName: "Delete",
+  //     flex: 0.2,
+  //     renderCell: ({ row: { _id, title } }) => {
+  //       return (
+  //         <Box
+  //           width="50%"
+  //           display="flex"
+  //           justifyContent="center"
+  //           borderRadius="2px"
+  //         >
+  //           <Button
+  //             type="submit"
+  //             style={{ backgroundColor: red[500], color: "white" }}
+  //             variant="contained"
+  //             onClick={() => openDeleteAlert({ _id, title })}
+  //           >
+  //             Delete <DeleteIcon sx={{ marginLeft: "8px" }} />
+  //           </Button>
+  //         </Box>
+  //       );
+  //     },
+  //   },
+  // ];
 
   return (
     <Box m="20px">
@@ -665,10 +737,12 @@ const EatSmarts = () => {
           disableRowSelectionOnClick
           rows={eatSmart}
           getRowId={(row) => row._id}
-          columns={columns}
-          slots={{
-            toolbar: EditToolbar,
-          }}
+          columns={state.userRole ==='admins' ? adminColumns : editorColumns }
+          slots={state.userRole === 'admins' ? { toolbar: EditToolbar} : null }
+          // columns={columns}
+          // slots={{
+          //   toolbar: EditToolbar,
+          // }}
           slotProps={{
             toolbar: {
               addNewEatSmart,

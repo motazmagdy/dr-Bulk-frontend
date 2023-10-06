@@ -30,7 +30,7 @@ const useLogin = () => {
           });
           setIsSubmitting(false);
           setLoginErrMsg(null);
-          role === "users" ? navigate(`/`) : navigate(`/admin`);
+          role ==="admins" ? navigate(`/admin`) : role ==="editors" ? navigate('/editors') :  navigate(`/`) 
         }
       })
       .catch((err) => {
