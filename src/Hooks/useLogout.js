@@ -18,7 +18,9 @@ const useLogout = () => {
           type : "LOGOUT" 
         })
         toast.success(t("Logged Out Successfully ! "))
-        loggedUser === "users" ? navigate("/") : navigate("/admin")
+        loggedUser === "users" ? navigate("/") : 
+        loggedUser === "admins" ? navigate("/admin") :
+        navigate('/editors')
     }
 
     return { logout }

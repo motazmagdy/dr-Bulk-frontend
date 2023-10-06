@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Box, useTheme, TextField , Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { tokens } from "../../../theme";
+import useAuthContext from "../../../Hooks/AuthContextHook";
 import DashboardHeader from "../../../Components/DashboardHeader/DashboardHeader";
 import axios from "axios";
 import './Clients.css'
@@ -26,19 +27,9 @@ const SearchToolbar = ({searchLetters,showVerifiedOnly,resetSearchValue}) => {
   };
 
 
-const Clients = () => {
-  const [users, setUsers] = useState([]);
-  const [filteredValues , setFilteredValues] = useState(users)
+const Clients = ({users, setUsers,getUsers,filteredValues , setFilteredValues}) => {
+  const { state } = useAuthContext()
   let searchValue = ""
-  const getUsers = () => {
-    axios
-      .get(`${serverApi}/api/users/all-users`)
-      .then((response) => {
-        setUsers(response.data.data);
-        setFilteredValues(response.data.data)
-      })
-      .catch((error) => console.log(error));
-  };
 
   const searchLetters = (event) => {
     searchValue = event.target.value
@@ -67,48 +58,105 @@ const Clients = () => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const columns = [
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 0.25,
-      renderCell: ({ row: { _id, email } }) => {
-        return <Typography key={_id}>{email}</Typography>;
-      }
-    },
-    {
-      field: "name",
-      headerName: "Name",
-      flex: 0.2,
-      renderCell: ({ row: { _id, name } }) => {
-        return <Typography key={_id}>{name}</Typography>;
-      }
-    },
-    {
-      field: "phoneNumber",
-      headerName: "Phone Number",
-      flex: 0.2,
-      renderCell: ({ row: { _id , phoneNumber} }) => {
-        return <Typography key={_id}>{phoneNumber}</Typography>;
-      },
-    },
-    {
-      field: "gender",
-      headerName: "Gender",
-      flex: 0.1,
-      renderCell: ({ row: { _id , gender } }) => {
-        return <Typography key={_id}>{gender ==="M" ? "Male" : "Female" }</Typography>;
-      },
-    },
-    {
-        field: "verified",
-        headerName: "Verified",
-        flex: 0.3,
-        renderCell: ({ row: { _id, verified } }) => {
-          return <Button key={_id}  className={verified ? 'user-status verified' : 'user-status not-verified'}>{verified?"Verified" :"Not Verified"}</Button>
-        }
+  const editorColumns =[{
+    field: "email",
+    headerName: "Email",
+    flex: 0.25,
+    renderCell: ({ row: { _id, email } }) => {
+      return <Typography key={_id}>{email}</Typography>;
     }
-  ];
+  },
+  {
+    field: "name",
+    headerName: "Name",
+    flex: 0.2,
+    renderCell: ({ row: { _id, name } }) => {
+      return <Typography key={_id}>{name}</Typography>;
+    }
+  },
+  {
+    field: "points",
+    headerName: "Points",
+    flex: 0.2,
+    renderCell: ({ row: { _id , points} }) => {
+      return <Typography key={_id}>{points}</Typography>;
+    },
+  },
+  {
+    field: "phoneNumber",
+    headerName: "Phone Number",
+    flex: 0.2,
+    renderCell: ({ row: { _id , phoneNumber} }) => {
+      return <Typography key={_id}>{phoneNumber}</Typography>;
+    },
+  }]
+const adminFields = [{
+  field: "gender",
+  headerName: "Gender",
+  flex: 0.1,
+  renderCell: ({ row: { _id , gender } }) => {
+    return <Typography key={_id}>{gender ==="M" ? "Male" : "Female" }</Typography>;
+  },
+},
+{
+    field: "verified",
+    headerName: "Verified",
+    flex: 0.3,
+    renderCell: ({ row: { _id, verified } }) => {
+      return <Button key={_id}  className={verified ? 'user-status verified' : 'user-status not-verified'}>{verified?"Verified" :"Not Verified"}</Button>
+    }
+}]
+const adminColumns = [...editorColumns , ...adminFields]
+  // const columns = [
+  //   {
+  //     field: "email",
+  //     headerName: "Email",
+  //     flex: 0.25,
+  //     renderCell: ({ row: { _id, email } }) => {
+  //       return <Typography key={_id}>{email}</Typography>;
+  //     }
+  //   },
+  //   {
+  //     field: "name",
+  //     headerName: "Name",
+  //     flex: 0.2,
+  //     renderCell: ({ row: { _id, name } }) => {
+  //       return <Typography key={_id}>{name}</Typography>;
+  //     }
+  //   },
+  //   {
+  //     field: "points",
+  //     headerName: "Points",
+  //     flex: 0.2,
+  //     renderCell: ({ row: { _id , points} }) => {
+  //       return <Typography key={_id}>{points}</Typography>;
+  //     },
+  //   },
+  //   {
+  //     field: "phoneNumber",
+  //     headerName: "Phone Number",
+  //     flex: 0.2,
+  //     renderCell: ({ row: { _id , phoneNumber} }) => {
+  //       return <Typography key={_id}>{phoneNumber}</Typography>;
+  //     },
+  //   },
+  //   {
+  //     field: "gender",
+  //     headerName: "Gender",
+  //     flex: 0.1,
+  //     renderCell: ({ row: { _id , gender } }) => {
+  //       return <Typography key={_id}>{gender ==="M" ? "Male" : "Female" }</Typography>;
+  //     },
+  //   },
+  //   {
+  //       field: "verified",
+  //       headerName: "Verified",
+  //       flex: 0.3,
+  //       renderCell: ({ row: { _id, verified } }) => {
+  //         return <Button key={_id}  className={verified ? 'user-status verified' : 'user-status not-verified'}>{verified?"Verified" :"Not Verified"}</Button>
+  //       }
+  //   }
+  // ];
 
   return (
     <Box m="20px">
@@ -158,10 +206,12 @@ const Clients = () => {
           // rows={rows.length === 0 ? users : rows}
           rows={filteredValues}
           getRowId={(row) => row._id}
-          columns={columns}
-          slots={{
-            toolbar: SearchToolbar,
-          }}
+          columns={state.userRole ==='admins' ? adminColumns : editorColumns }
+          slots={state.userRole === 'admins' ? { toolbar: SearchToolbar} : null }
+          // columns={columns}
+          // slots={{
+          //   toolbar: SearchToolbar,
+          // }}
           slotProps={{
             toolbar: { searchLetters , showVerifiedOnly , resetSearchValue},
           }}

@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { Formik } from "formik";
 import { tokens } from "../../../theme";
+import useAuthContext from "../../../Hooks/AuthContextHook";
 import axios from "axios";
 import { CategorySchema } from "../../../Schemas/CategorySchema";
 import DashboardHeader from "../../../Components/DashboardHeader/DashboardHeader";
@@ -140,11 +141,12 @@ const EditToolbar = ({addNewCategory,addingNew,setAddingNew}) => {
   );
 };
 
-const Categories = () => {
+const Categories = ({categories, getCategories}) => {
 
+  const { state } = useAuthContext()
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { t } = useTranslation();
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
   const [rows, setRows] = useState(categories);
   const [editDialog, setEditDialog] = useState("");
   const [deleteRow,setDeleteRow] = useState("")
@@ -163,15 +165,6 @@ const Categories = () => {
   const closeEditDialog =()=>{
     setEditDialog("")
   }
-
-  const getCategories = () => {
-    axios
-      .get(`${serverApi}/api/categories`)
-      .then((response) => {
-        setCategories(response.data.data);
-      })
-      .catch((error) => console.log(error));
-  };
 
   const editCategory = (id , newName)=>{
     const newCategoryName = {
@@ -263,72 +256,137 @@ const Categories = () => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const columns = [
-    {
-      field: "name",
-      headerName: "Name",
-      flex: 0.3,
-      renderCell: ({ row: { _id, name } }) => {
-        return <Typography key={_id}>{name.en}</Typography>;
-      }
-    },
-    {
-      field: "nameInArabic",
-      headerName: "اسم الفئه",
-      flex: 0.3,
-      renderCell: ({ row: { _id, name } }) => {
-        return <Typography key={_id}>{name.ar}</Typography>;
-      }
-    },
-    {
-      field: "edit",
-      headerName: "Edit",
-      flex: 0.2,
-      renderCell: ({ row: { _id , name} }) => {
-        return (
-          <Box
-            width="50%"
-            display="flex"
-            justifyContent="center"
-            borderRadius="2px"
+  const editorColumns = [{
+    field: "name",
+    headerName: "Name",
+    flex: 0.3,
+    renderCell: ({ row: { _id, name } }) => {
+      return <Typography key={_id}>{name.en}</Typography>;
+    }
+  },
+  {
+    field: "nameInArabic",
+    headerName: "اسم الفئه",
+    flex: 0.3,
+    renderCell: ({ row: { _id, name } }) => {
+      return <Typography key={_id}>{name.ar}</Typography>;
+    }
+  },
+  {
+    field: "edit",
+    headerName: "Edit",
+    flex: 0.2,
+    renderCell: ({ row: { _id , name} }) => {
+      return (
+        <Box
+          width="50%"
+          display="flex"
+          justifyContent="center"
+          borderRadius="2px"
+        >
+          <Button
+            type="submit"
+            style={{ backgroundColor: orange[500], color: "white" }}
+            variant="contained"
+            onClick={()=>openEditDialog({ _id , name })}
           >
-            <Button
-              type="submit"
-              style={{ backgroundColor: orange[500], color: "white" }}
-              variant="contained"
-              onClick={()=>openEditDialog({ _id , name })}
-            >
-                Edit <EditIcon sx={{ marginLeft: '8px' }}/>
-            </Button>
-          </Box>
-        );
-      },
+              Edit <EditIcon sx={{ marginLeft: '8px' }}/>
+          </Button>
+        </Box>
+      );
     },
-    {
-      field: "delete",
-      headerName: "Delete",
-      flex: 0.2,
-      renderCell: ({ row: { _id , name } }) => {
-        return (
-          <Box
-            width="50%"
-            display="flex"
-            justifyContent="center"
-            borderRadius="2px"
-          >
-            <Button
-              type="submit"
-              style={{ backgroundColor: red[500], color: "white" }}
-              variant="contained"
-              onClick={()=>openDeleteAlert({ _id , name })}
-            >
-              Delete <DeleteIcon sx={{ marginLeft: '8px' }} />
-            </Button>
-          </Box>
-        );
-      },
-    },
-  ];
+  }]
+  const adminFields = {  field: "delete",
+  headerName: "Delete",
+  flex: 0.2,
+  renderCell: ({ row: { _id , name } }) => {
+    return (
+      <Box
+        width="50%"
+        display="flex"
+        justifyContent="center"
+        borderRadius="2px"
+      >
+        <Button
+          type="submit"
+          style={{ backgroundColor: red[500], color: "white" }}
+          variant="contained"
+          onClick={()=>openDeleteAlert({ _id , name })}
+        >
+          Delete <DeleteIcon sx={{ marginLeft: '8px' }} />
+        </Button>
+      </Box>
+    );
+  },
+  }
+  const adminColumns = [...editorColumns , adminFields]
+
+
+  // const columns = [
+  //   {
+  //     field: "name",
+  //     headerName: "Name",
+  //     flex: 0.3,
+  //     renderCell: ({ row: { _id, name } }) => {
+  //       return <Typography key={_id}>{name.en}</Typography>;
+  //     }
+  //   },
+  //   {
+  //     field: "nameInArabic",
+  //     headerName: "اسم الفئه",
+  //     flex: 0.3,
+  //     renderCell: ({ row: { _id, name } }) => {
+  //       return <Typography key={_id}>{name.ar}</Typography>;
+  //     }
+  //   },
+  //   {
+  //     field: "edit",
+  //     headerName: "Edit",
+  //     flex: 0.2,
+  //     renderCell: ({ row: { _id , name} }) => {
+  //       return (
+  //         <Box
+  //           width="50%"
+  //           display="flex"
+  //           justifyContent="center"
+  //           borderRadius="2px"
+  //         >
+  //           <Button
+  //             type="submit"
+  //             style={{ backgroundColor: orange[500], color: "white" }}
+  //             variant="contained"
+  //             onClick={()=>openEditDialog({ _id , name })}
+  //           >
+  //               Edit <EditIcon sx={{ marginLeft: '8px' }}/>
+  //           </Button>
+  //         </Box>
+  //       );
+  //     },
+  //   },
+  //    {  field: "delete",
+  //     headerName: "Delete",
+  //     flex: 0.2,
+  //     renderCell: ({ row: { _id , name } }) => {
+  //       return (
+  //         <Box
+  //           width="50%"
+  //           display="flex"
+  //           justifyContent="center"
+  //           borderRadius="2px"
+  //         >
+  //           <Button
+  //             type="submit"
+  //             style={{ backgroundColor: red[500], color: "white" }}
+  //             variant="contained"
+  //             onClick={()=>openDeleteAlert({ _id , name })}
+  //           >
+  //             Delete <DeleteIcon sx={{ marginLeft: '8px' }} />
+  //           </Button>
+  //         </Box>
+  //       );
+  //     },
+  //     },
+  // ];
 
   return (
     <Box m="20px">
@@ -378,10 +436,8 @@ const Categories = () => {
           // checkboxSelection
           rows={categories}
           getRowId={(row) => row._id}
-          columns={columns}
-          slots={{
-            toolbar: EditToolbar,
-          }}
+          columns={state.userRole ==='admins' ? adminColumns : editorColumns }
+          slots={state.userRole === 'admins' ? { toolbar: EditToolbar} : null }
           slotProps={{
             toolbar: { addNewCategory, getCategories, addingNew, setAddingNew },
           }}

@@ -22,7 +22,7 @@ import DashboardHeader from "../../../Components/DashboardHeader/DashboardHeader
 import React, { useState, useEffect } from "react";
 import { NewProductSchema } from "../../../Schemas/NewProductSchema";
 import { UpdateProductSchema } from "../../../Schemas/UpdateProductSchema"
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import useAuthContext from "../../../Hooks/AuthContextHook";
 import { toast } from "react-toastify";
 const serverApi = process.env.REACT_APP_DR_BULK_API;
 
@@ -358,9 +358,9 @@ const EditToolbar = ({
   );
 };
 
-const Products = () => {
+const Products = ({products, setProducts , getProducts}) => {
+  const { state } = useAuthContext()
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const [products, setProducts] = useState([]);
   const [productsNumber, setProductsNumber] = useState(0);
   const [editingProduct, setEditingProduct] = useState(false);
   const [deletingProduct, setDeletingProduct] = useState(false);
@@ -368,17 +368,6 @@ const Products = () => {
   const [theCategories, setTheCategories ] = useState([])
   const [imagesPreview, setImagesPreview] = useState([]);
   const [editingImages , setEditingImages] = useState(false)
-
-  const getProducts = () => {
-    axios
-      .get(`${serverApi}/api/products?page={3}&limit={50}`)
-      .then((response) => {
-        // console.log(response.data.data);
-        setProductsNumber(response.data.results);
-        setProducts(response.data.data);
-      })
-      .catch((error) => console.log(error));
-  };
 
     const editProduct = (id, newData) => {
         const updatedData = {
@@ -535,87 +524,86 @@ const Products = () => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const columns = [
-    {
-      field: "title",
-      headerName: "Title",
-      flex: 0.2,
-      renderCell: ({ row: { _id, title } }) => {
-        return <Typography key={_id}>{title.en}</Typography>;
-      },
+  const editorColumns = [{
+    field: "title",
+    headerName: "Title",
+    flex: 0.2,
+    renderCell: ({ row: { _id, title } }) => {
+      return <Typography key={_id}>{title.en}</Typography>;
     },
-    {
-      field: "nameInArabic",
-      headerName: "اسم المنتج",
-      flex: 0.2,
-      renderCell: ({ row: { _id, title } }) => {
-        return <Typography key={_id}>{title.ar}</Typography>;
-      },
+  },
+  {
+    field: "nameInArabic",
+    headerName: "اسم المنتج",
+    flex: 0.2,
+    renderCell: ({ row: { _id, title } }) => {
+      return <Typography key={_id}>{title.ar}</Typography>;
     },
-    {
-      field: "price",
-      headerName: "Price",
-      flex: 0.1,
+  },
+  {
+    field: "price",
+    headerName: "Price",
+    flex: 0.1,
+  },
+  {
+    field: "categoryInEnglish",
+    headerName: "Category",
+    flex: 0.2,
+    renderCell: ({ row: { _id, category } }) => {
+      return <Typography key={_id}>{category.name.en}</Typography>;
     },
-    {
-      field: "categoryInEnglish",
-      headerName: "Category",
-      flex: 0.2,
-      renderCell: ({ row: { _id, category } }) => {
-        return <Typography key={_id}>{category.name.en}</Typography>;
-      },
+  },
+  {
+    field: "categoryInArabic",
+    headerName: "الفئة",
+    flex: 0.2,
+    renderCell: ({ row: { _id, category } }) => {
+      return <Typography key={_id}>{category.name.ar}</Typography>;
     },
-    {
-      field: "categoryInArabic",
-      headerName: "الفئة",
-      flex: 0.2,
-      renderCell: ({ row: { _id, category } }) => {
-        return <Typography key={_id}>{category.name.ar}</Typography>;
-      },
+  },
+  {
+    field: "image",
+    headerName: "Thumbnail",
+    flex: 0.2,
+    renderCell: ({ row: { _id, images } }) => {
+      if ( images ){
+          const formattedImagePath = images[0]?.replace(/\\/g, '/').replace('public/', '');
+          return <img key={_id} className="prodThumbnail" src={`${serverApi}/${formattedImagePath}`} />;
+      } else {
+          return null
+      }
     },
-    {
-      field: "image",
-      headerName: "Thumbnail",
-      flex: 0.2,
-      renderCell: ({ row: { _id, images } }) => {
-        if ( images ){
-            const formattedImagePath = images[0]?.replace(/\\/g, '/').replace('public/', '');
-            return <img key={_id} className="prodThumbnail" src={`${serverApi}/${formattedImagePath}`} />;
-        } else {
-            return null
-        }
-      },
-    },
-    {
-      field: "edit",
-      headerName: "Edit",
-      flex: 0.2,
-      renderCell: ({ row:{ _id, title, category, description, price, points, images} }) => {
-        return (
-          <Box
-            // width="50%"
-            margin="auto"
-            display="flex"
-            justifyContent="center"
-            borderRadius="2px"
+  },
+  {
+    field: "edit",
+    headerName: "Edit",
+    flex: 0.2,
+    renderCell: ({ row:{ _id, title, category, description, price, points, images} }) => {
+      return (
+        <Box
+          // width="50%"
+          margin="auto"
+          display="flex"
+          justifyContent="center"
+          borderRadius="2px"
+        >
+          <Button
+            type="submit"
+            style={{ backgroundColor: orange[500], color: "white" }}
+            variant="contained"
+            onClick={() =>{
+                setEditingProduct({_id, title, category, description, price, points, images})
+                setImagesPreview(images)
+            }
+            }
           >
-            <Button
-              type="submit"
-              style={{ backgroundColor: orange[500], color: "white" }}
-              variant="contained"
-              onClick={() =>{
-                  setEditingProduct({_id, title, category, description, price, points, images})
-                  setImagesPreview(images)
-              }
-              }
-            >
-              Edit <EditIcon sx={{ marginLeft: "8px" }} />
-            </Button>
-          </Box>
-        );
-      },
+            Edit <EditIcon sx={{ marginLeft: "8px" }} />
+          </Button>
+        </Box>
+      );
     },
-    {
+  }]
+  const adminFields = {
       field: "delete",
       headerName: "Delete",
       flex: 0.2,
@@ -639,16 +627,18 @@ const Products = () => {
           </Box>
         );
       },
-    },
-  ];
+    }
+  const adminColumns = [...editorColumns , adminFields]
+
+  // const columns = [
+  //   ,
+  //   ,
+  // ];
 //   console.log(products);
 // console.log(editingImages);
   return (
     <Box m="20px">
       <DashboardHeader title="Products" subtitle="Managing the Products" />
-      <Typography variant="h5">
-        Available products : {productsNumber}
-      </Typography>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -694,10 +684,8 @@ const Products = () => {
           disableRowSelectionOnClick
           rows={products}
           getRowId={(row) => row._id}
-          columns={columns}
-          slots={{
-            toolbar: EditToolbar,
-          }}
+          columns={state.userRole ==='admins' ? adminColumns : editorColumns }
+          slots={state.userRole === 'admins' ? { toolbar: EditToolbar} : null }
           slotProps={{
             toolbar: {
               addNewProduct,

@@ -1,12 +1,14 @@
-import { lazy, Suspense } from "react"
-import { Routes, Route, Navigate } from "react-router-dom"
-import RoutesSpinner from "./Components/Spinners/RoutesSpinner"
+import { lazy, Suspense } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import RoutesSpinner from "./Components/Spinners/RoutesSpinner";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import useAuthContext from "./Hooks/AuthContextHook";
-const UserRouter = lazy(() => import("./Pages/User/UserRouter"))
-const AdminLogin = lazy(() => import("./Pages/Admin/Login/Login"))
-const AdminHome = lazy(() => import("./Pages/Admin/AdminHome/AdminHome"))
+const UserLogin = lazy(()=>import("./Pages/User/Login/Login"));
+const EditorLogin = lazy(()=>import ("./Pages/Editor/Login/Login"));
+const UserRouter = lazy(() => import("./Pages/User/UserRouter"));
+const AdminLogin = lazy(() => import("./Pages/Admin/Login/Login"));
+const AdminHome = lazy(() => import("./Pages/Admin/AdminHome/AdminHome"));
 
 const Router = () => {
   const [theme, colorMode] = useMode();
@@ -18,10 +20,12 @@ const Router = () => {
           path="/admin/login"
           element={
             state.userRole ? (
-              state.userRole !== "admins" ? (
-                <Navigate to="/" />
-              ) : (
+              state.userRole === "admins" ? (
                 <Navigate to="/admin" />
+              ) : state.userRole === "editors" ? (
+                <Navigate to="/editors" />
+              ) : (
+                <Navigate to="/" />
               )
             ) : (
               <AdminLogin />
@@ -43,9 +47,55 @@ const Router = () => {
             </ColorModeContext.Provider>
           }
         />
-        <Route path="/*" element={state.userRole !== "admins" ? <UserRouter /> : <Navigate to="/admin" />} />
+        <Route
+          path="/editors/login"
+          element={
+            state.userRole ? (
+              state.userRole === "editors" ? (
+                <Navigate to="/editors" />
+              ) : state.userRole === "admins" ? (
+                <Navigate to="/admin" />
+              ) : (
+                <Navigate to="/" />
+              )
+            ) : (
+              <EditorLogin />
+            )
+          }
+        />
+        <Route
+          path="/editors/*"
+          element={
+            <ColorModeContext.Provider value={colorMode}>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                {state.userRole === "editors" ? (
+                  <AdminHome />
+                ) : (
+                  <Navigate to="/editors/login" />
+                )}
+              </ThemeProvider>
+            </ColorModeContext.Provider>
+          }
+        />
+        <Route
+          path="/*"
+          element={
+            state.userRole ? (
+              state.userRole === "admins" ? (
+                <Navigate to="/admin" />
+              ) : state.userRole === "editors" ? (
+                <Navigate to="/editors" />
+              ) : (
+                <UserRouter />
+              )
+            ) : (
+              <UserLogin />
+            )
+          }
+        />
       </Routes>
     </Suspense>
   );
-}
-export default Router
+};
+export default Router;
