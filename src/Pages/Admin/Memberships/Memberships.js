@@ -522,7 +522,8 @@ const Memberships = ({memberships, setMemberships , getMemberships}) => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const editorColumns =[ {
+  const editorColumns =[
+     {
     field: "titleInEnglish",
     headerName: "Title",
     flex: 0.2,
@@ -541,11 +542,6 @@ const Memberships = ({memberships, setMemberships , getMemberships}) => {
   {
     field: "type",
     headerName: "Type",
-    flex: 0.1,
-  },
-  {
-    field: "price",
-    headerName: "Price",
     flex: 0.1,
   },
   {
@@ -577,7 +573,12 @@ const Memberships = ({memberships, setMemberships , getMemberships}) => {
       );
     },
   }]
-  const adminFields = {
+  const adminFields = [
+    {
+      field: "price",
+      headerName: "Price",
+      flex: 0.1,
+    },  {
     field: "delete",
     headerName: "Delete",
     flex: 0.2,
@@ -600,8 +601,8 @@ const Memberships = ({memberships, setMemberships , getMemberships}) => {
         </Box>
       );
     },
-  }
-  const adminColumns = [...editorColumns , adminFields]
+  }]
+  const adminColumns = [...editorColumns , ...adminFields]
   // const columns = [
   //   {
   //     field: "titleInEnglish",
@@ -906,7 +907,8 @@ const Memberships = ({memberships, setMemberships , getMemberships}) => {
                           </span>
                         ) : null}
                       </Box>
-                      <Box className="childName">
+                      { state.userRole === "admins" ?
+                        <Box className="childName">
                         <TextField
                           fullWidth
                           type="number"
@@ -924,7 +926,7 @@ const Memberships = ({memberships, setMemberships , getMemberships}) => {
                             {errors.price}
                           </span>
                         ) : null}
-                      </Box>
+                      </Box> : null}
                       <Box className="childName">
                         <TextField
                           fullWidth

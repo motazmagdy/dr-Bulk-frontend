@@ -21,7 +21,6 @@ const AdminHome = () => {
     const [filteredValues, setFilteredValues] = useState(users);
 
   const getCategories = () => {
-    console.log("getCategories Run");
     axios
       .get(`${serverApi}/api/categories`)
       .then((response) => {
