@@ -555,11 +555,6 @@ const EatSmarts = ({eatSmart, setEatSmarts , getEatSmarts}) => {
     flex: 0.1,
   },
   {
-    field: "price",
-    headerName: "Price",
-    flex: 0.1,
-  },
-  {
     field: "points",
     headerName: "Points",
     flex: 0.1,
@@ -588,7 +583,13 @@ const EatSmarts = ({eatSmart, setEatSmarts , getEatSmarts}) => {
       );
     },
   }]
-const adminFields = {
+const adminFields = [
+  {
+    field: "price",
+    headerName: "Price",
+    flex: 0.1,
+  },
+  ,{
   field: "delete",
   headerName: "Delete",
   flex: 0.2,
@@ -611,8 +612,8 @@ const adminFields = {
       </Box>
     );
   },
-}
-const adminColumns = [...editorColumns , adminFields]
+}]
+const adminColumns = [...editorColumns , ...adminFields]
   // const columns = [
   //   {
   //     field: "titleInEnglish",
@@ -924,6 +925,7 @@ const adminColumns = [...editorColumns , adminFields]
                             </span>
                           ) : null}
                         </Box>
+                        {state.userRole === "admins" ? 
                         <Box className="childName">
                           <TextField
                             fullWidth
@@ -943,6 +945,7 @@ const adminColumns = [...editorColumns , adminFields]
                             </span>
                           ) : null}
                         </Box>
+                        : null }
                         <Box className="childName">
                           <TextField
                             fullWidth

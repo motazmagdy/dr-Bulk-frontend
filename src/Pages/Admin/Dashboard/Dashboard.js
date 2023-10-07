@@ -125,7 +125,7 @@ const Dashboard = () => {
         </Box> */}
 
         {/* ROW 2 */}
-        <Box
+        {/* <Box
           gridColumn="span 8"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
@@ -163,9 +163,9 @@ const Dashboard = () => {
           </Box>
           {/* <Box height="250px" m="-20px 0 0 0">
             <LineChart isDashboard={true} />
-          </Box> */}
-        </Box>
-        <Box
+          </Box> 
+        </Box> */}
+        {/* <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
@@ -182,7 +182,7 @@ const Dashboard = () => {
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
               Recent Transactions
             </Typography>
-          </Box>
+          </Box> */}
           {/* {mockTransactions.map((transaction, i) => (
             <Box
               key={`${transaction.txId}-${i}`}
@@ -214,7 +214,7 @@ const Dashboard = () => {
               </Box>
             </Box>
           ))} */}
-        </Box>
+        {/* </Box> */}
 
         {/* ROW 3 */}
         {/* <Box

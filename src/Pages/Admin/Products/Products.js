@@ -370,12 +370,15 @@ const Products = ({products, setProducts , getProducts}) => {
   const [editingImages , setEditingImages] = useState(false)
 
     const editProduct = (id, newData) => {
+      const selectedCategory = theCategories.filter((category)=>
+      newData.category === category.categoryEnglish
+      )
         const updatedData = {
             title : {
                 en:newData.titleInEnglish,
                 ar:newData.titleInArabic,
             },
-            category: newData.category,
+            category: selectedCategory[0].id,
             description : {
                 en:newData.descriptionInEnglish,
                 ar:newData.descriptionInArabic,
@@ -383,6 +386,7 @@ const Products = ({products, setProducts , getProducts}) => {
             price : newData.price,
             points : newData.points,
         }
+        console.log(updatedData);
 
       axios
         .put(`${serverApi}/api/products/${id}`, updatedData , {
@@ -450,6 +454,7 @@ const Products = ({products, setProducts , getProducts}) => {
 
   useEffect(() =>{
         getProducts();
+        getCategories();
   }, [addingNewProduct,editingProduct,deletingProduct]);
 
   const addNewProduct = (product) => {
@@ -524,7 +529,8 @@ const Products = ({products, setProducts , getProducts}) => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const editorColumns = [{
+  const editorColumns = [
+    {
     field: "title",
     headerName: "Title",
     flex: 0.2,
@@ -539,11 +545,6 @@ const Products = ({products, setProducts , getProducts}) => {
     renderCell: ({ row: { _id, title } }) => {
       return <Typography key={_id}>{title.ar}</Typography>;
     },
-  },
-  {
-    field: "price",
-    headerName: "Price",
-    flex: 0.1,
   },
   {
     field: "categoryInEnglish",
@@ -603,7 +604,12 @@ const Products = ({products, setProducts , getProducts}) => {
       );
     },
   }]
-  const adminFields = {
+  const adminFields = [
+    {
+      field: "price",
+      headerName: "Price",
+      flex: 0.1,
+    },{
       field: "delete",
       headerName: "Delete",
       flex: 0.2,
@@ -627,8 +633,8 @@ const Products = ({products, setProducts , getProducts}) => {
           </Box>
         );
       },
-    }
-  const adminColumns = [...editorColumns , adminFields]
+    }]
+  const adminColumns = [...editorColumns , ...adminFields]
 
   // const columns = [
   //   ,
@@ -703,7 +709,8 @@ const Products = ({products, setProducts , getProducts}) => {
           }}
         //   editMode="row"
         />
-        {/* {console.log("editingProduct" , editingProduct)} */}
+        {/* {console.log("editingProduct" , editingProduct)}
+        {console.log("thr categories" , theCategories)} */}
         {editingProduct ? (
           <Dialog
             open={editingProduct ? true : false}
@@ -734,7 +741,7 @@ const Products = ({products, setProducts , getProducts}) => {
                 initialValues={{
                   titleInEnglish: editingProduct.title.en,
                   titleInArabic: editingProduct.title.ar,
-                  category: editingProduct.category._id,
+                  category: editingProduct.category,
                   descriptionInEnglish: editingProduct.description.en,
                   descriptionInArabic: editingProduct.description.ar,
                   price: editingProduct.price,
@@ -782,16 +789,17 @@ const Products = ({products, setProducts , getProducts}) => {
                         </InputLabel>
                         <Select
                           onChange={(e) => {
-                            const selectedCategory = e.target.value;
-                            setFieldValue("category", selectedCategory);
+                            const selectedCategoryValue = e.target.value;
+                            setFieldValue("category", selectedCategoryValue);
                           }}
-                          value={values.category}
+                          value={values.category.name?.en ? values.category.name.en : values.category}
                           name="categories"
                           sx={{ width: "100%" }}
                         >
                           {theCategories.map((category) => {
+                            // console.log("value from mapping",category);
                             return (
-                              <MenuItem key={category.id} value={category.id}>
+                              <MenuItem key={category.id} value={category.categoryEnglish}>
                                 {category.categoryEnglish} {" - "}
                                 {category.categoryArabic}
                               </MenuItem>
@@ -887,6 +895,7 @@ const Products = ({products, setProducts , getProducts}) => {
                           </span>
                         ) : null}
                       </Box>
+                      {state.userRole === "admins" ?
                       <Box display="flex" flexDirection="column">
                         <TextField
                           fullWidth
@@ -904,7 +913,7 @@ const Products = ({products, setProducts , getProducts}) => {
                         {errors.price && touched.price ? (
                           <span className="input-err-msg">{errors.price}</span>
                         ) : null}
-                      </Box>
+                      </Box> : null }
                       <Box display="flex" flexDirection="column">
                         <TextField
                           fullWidth
