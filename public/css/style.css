@@ -837,11 +837,16 @@ button.btn {
     font-family: FontAwesome;
     display: block;
     position: absolute;
-    left: 0;
     font-size: 14px;
     padding-top: 0px;
     color: var(--custom-yellow);
     content: "\f10c";
+}
+.angle-right-en li:before{
+    left:0;
+}
+.angle-right-ar li:before{
+    right:0;
 }
 
 .arrow-right li:after {
@@ -1799,6 +1804,10 @@ img {
     font-weight: 400;
 }
 
+.footer-ar{
+    direction: rtl;
+}
+
 .footer-title {
     margin-bottom: 55px;
     color: #fff;
@@ -1825,8 +1834,14 @@ img {
     text-transform: uppercase;
     letter-spacing: 0px;
     font-weight: 400;
-    margin-left: 30px;
     margin-top: 1px;
+}
+
+.footer-ul-en ul li a{
+    margin-left: 30px;
+}
+.footer-ul-ar ul li a{
+    margin-right: 30px;
 }
 
 .footer-widget ul li a:hover {
@@ -2065,7 +2080,6 @@ a:active {
     padding-right: 0px;
     position: absolute;
     bottom: 8px;
-    right: 0;
     font-size: 30px;
     color: var(--custom-yellow);
 }
@@ -2077,8 +2091,13 @@ a:active {
 }
 
 .plan-content ul li {
-    margin-left: 25px;
     line-height: 38px;
+}
+.plan-content-en ul li {
+    margin-left: 25px;
+} 
+.plan-content-ar ul li {
+    margin-right: 25px;
 }
 
 /*--------------------------

@@ -1,3 +1,11 @@
+.align-in-english{
+    right:0px ;
+}
+
+.align-in-arabic{
+    left:0px ;
+}
+
 .section-title h1,
 .about-section h1 {
     display: inline-block;
