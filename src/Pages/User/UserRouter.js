@@ -42,6 +42,7 @@ const UserRouter = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/plans-pricing/gym-membership" element={<Memberships handleRouting={handleRouting} />} />
         <Route path="/plans-pricing/private-training" element={<VIPMemberships handleRouting={handleRouting} />} />
         <Route path="instructors" element={<Instructors />} />
