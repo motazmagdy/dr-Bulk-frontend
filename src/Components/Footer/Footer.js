@@ -10,7 +10,7 @@ const Footer = () => {
     return (
         <div className="footer" dir="ltr">
             <div className="container">
-                <div className="row">
+                <div className={`row ${i18n.dir() === "rtl" ? "footer-ar" : null } `}>
                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                         <div className="footer-widget">
                             <h3 className="footer-title">{t("Contact Information")}</h3>
@@ -30,9 +30,9 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className=" col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div className="footer-widget">
+                        <div className={`footer-widget ${i18n.dir() === "ltr" ? "footer-ul-en" : "footer-ul-ar"}`}>
                             <h3 className="footer-title">{t("Quick Links")}</h3>
-                            <ul className="angle angle-right">
+                            <ul className={`angle angle-right ${i18n.dir() === "rtl" ? "footer-ar-align" : null }`}>
                                 <li><Link to="/">{t("Home")}</Link></li>
                                 <li><Link to="/plans-pricing/gym-membership">{t("Gym Membership")}</Link></li>
                                 <li><Link to="/plans-pricing/private-training">{t("Private Training")}</Link></li>

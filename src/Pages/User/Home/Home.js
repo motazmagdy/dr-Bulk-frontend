@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel2';
+import { useTranslation } from 'react-i18next';
 import './Home.css'
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const Home = () => {
+
+const { i18n } = useTranslation()
+
     useEffect(() => {
         AOS.init({ duration: 2000 });
     }, [])
@@ -154,10 +158,10 @@ const Home = () => {
                             <div className="plan-block">
                                 <div className="plan-header">
                                     <h3>Weekly Plan</h3>
-                                    <p className="plan-price">$99.99</p>
+                                    <p className={i18n.dir() === "ltr" ? "plan-price align-in-english" :"plan-price align-in-arabic"}>$99.99</p>
                                 </div>
-                                <div className="plan-content">
-                                    <ul className="angle angle-right">
+                                <div className={`plan-content ${i18n.dir() === "ltr" ? "plan-content-en" :"plan-content-ar" } `}>
+                                    <ul className={`angle angle-right ${i18n.dir() === "ltr" ? "angle-right-en" : "angle-right-ar" } `}>
                                         <li>8 lifestyle-based meal plans </li>
                                         <li>Nutritional data to srightport macro-nutrient</li>
                                         <li>Access to over 1000+ healthy recipes</li>
@@ -171,10 +175,10 @@ const Home = () => {
                             <div className="plan-block">
                                 <div className="plan-header">
                                     <h3>Monthly Plan </h3>
-                                    <p className="plan-price">$199.99</p>
+                                    <p className={i18n.dir() === "ltr" ? "plan-price align-in-english" :"plan-price align-in-arabic"}>$199.99</p>
                                 </div>
-                                <div className="plan-content">
-                                    <ul className="angle angle-right">
+                                <div className={`plan-content ${i18n.dir() === "ltr" ? "plan-content-en" :"plan-content-ar" } `}>
+                                    <ul className={`angle angle-right ${i18n.dir() === "ltr" ? "angle-right-en" : "angle-right-ar" } `}>
                                         <li>12 lifestyle-based meal plans </li>
                                         <li>Nutritional data to srightport calorie counting</li>
                                         <li>Swap to suit your personal taste and lifestyle</li>

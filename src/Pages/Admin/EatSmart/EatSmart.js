@@ -424,8 +424,11 @@ const EatSmarts = ({eatSmart, setEatSmarts , getEatSmarts}) => {
       },
       points: eatsmartEditedData.points
     };
+    const accessApi = state.userRole === 'editors' ?
+                      `${serverApi}/api/eat-smart/editor/${id}`:
+                      `${serverApi}/api/eat-smart/${id}` 
     axios
-      .put(`${serverApi}/api/eat-smart/${id}`, eatsmartNewData, {
+      .put(accessApi, eatsmartNewData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
@@ -589,7 +592,7 @@ const adminFields = [
     headerName: "Price",
     flex: 0.1,
   },
-  ,{
+  {
   field: "delete",
   headerName: "Delete",
   flex: 0.2,

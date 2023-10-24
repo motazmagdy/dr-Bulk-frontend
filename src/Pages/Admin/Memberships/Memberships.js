@@ -413,8 +413,11 @@ const Memberships = ({memberships, setMemberships , getMemberships}) => {
           },
           points: membershipEditedData.points
     };
+    const accessApi = state.userRole === 'editors' ?
+    `${serverApi}/api/memberships/editor/${id}` :
+    `${serverApi}/api/memberships/${id}`
     axios
-      .put(`${serverApi}/api/memberships/${id}`, membershipNewData, {
+      .put(accessApi, membershipNewData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },

@@ -386,10 +386,14 @@ const Products = ({products, setProducts , getProducts}) => {
             price : newData.price,
             points : newData.points,
         }
-        console.log(updatedData);
+        // console.log(updatedData);
+
+      const serverEditApi = state.userRole ==="editors" ? 
+      `${serverApi}/api/products/editor/${id}` :
+      `${serverApi}/api/products/${id}`
 
       axios
-        .put(`${serverApi}/api/products/${id}`, updatedData , {
+        .put(serverEditApi, updatedData , {
           headers:{
             'Authorization': `Bearer ${localStorage.getItem("Token")}`,
           },
@@ -808,6 +812,7 @@ const Products = ({products, setProducts , getProducts}) => {
                         </Select>
                         {errors.category && touched.category ? (
                           <span className="input-err-msg">
+                            {console.log(errors.category)}
                             {errors.category}
                           </span>
                         ) : null}
