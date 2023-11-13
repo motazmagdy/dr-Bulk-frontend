@@ -7,6 +7,7 @@ import Instructors from "./Instructors/Instructors";
 import ChangePassword from "./ChangePassword/ChangePassword";
 import Memberships from "./Memberships/Memberships";
 import EatSmarts from "./EatSmart/EatSmart";
+import AboutUs from "./AboutUs/AboutUs";
 import Clients from "./Clients/Clients";
 
 const AdminRouter = ({getCategories ,categories, setCategories,
@@ -14,7 +15,8 @@ const AdminRouter = ({getCategories ,categories, setCategories,
     getInstructors, instructors ,setInstructors,
     getMemberships, memberships ,setMemberships,
     getEatSmarts, eatSmart ,setEatSmarts,
-    getUsers, users , setUsers, filteredValues, setFilteredValues}) => {
+    getUsers, users , setUsers, filteredValues, setFilteredValues,
+    aboutUs ,setAboutUs}) => {
 
   return (
     <Routes>
@@ -56,6 +58,10 @@ const AdminRouter = ({getCategories ,categories, setCategories,
       <Route
         path="/eat-smart"
         element={<EatSmarts eatSmart={eatSmart} setEatSmarts={setEatSmarts} getEatSmarts={getEatSmarts}/>}
+      />
+      <Route
+        path="/about-us"
+        element={<AboutUs aboutUs={aboutUs} setAboutUs={setAboutUs}/>}
       />
       <Route
         path="/clients"

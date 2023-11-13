@@ -187,6 +187,13 @@ const EditorSidebar = () => {
               setSelected={setSelected}
             />
             <Item
+              title={t("Eat-Smart")}
+              to="/admin/eat-smart"
+              icon={<FlatwareIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
               title="Change Password"
               to="/editors/change-password"
               icon={<SyncLockIcon />}
