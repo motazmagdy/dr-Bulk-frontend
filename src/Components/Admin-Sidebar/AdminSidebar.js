@@ -19,6 +19,7 @@ import useLogout from "../../Hooks/useLogout";
 import B from "../../Assets/PngLogo/Dark.png";
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import InfoIcon from '@mui/icons-material/Info';
 
 const Item = ({ title, to, icon, selected, setSelected, handleLogout }) => {
   const theme = useTheme();
@@ -176,6 +177,13 @@ const AdminSidebar = () => {
               title={t("Eat-Smart")}
               to="/admin/eat-smart"
               icon={<FlatwareIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title={t("About Us")}
+              to="/admin/about-us"
+              icon={<InfoIcon />}
               selected={selected}
               setSelected={setSelected}
             />

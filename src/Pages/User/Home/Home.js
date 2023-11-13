@@ -1,19 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import OwlCarousel from 'react-owl-carousel2';
 import { useTranslation } from 'react-i18next';
 import './Home.css'
-
-import AOS from 'aos';
+import axios from "axios";
+import { toast } from "react-toastify";
 import 'aos/dist/aos.css';
+import AOS from 'aos';
+const serverApi = process.env.REACT_APP_DR_BULK_API;
 
 const Home = () => {
 
 const { i18n } = useTranslation()
+const { t } = useTranslation();
+const [about , setAbout] = useState('')
+const [spotlight , setSpotlight] = useState('')
+
+    const getAbout = ()=>{
+        axios.get(`${serverApi}/api/about`)
+        .then((res) =>{
+            i18n.dir() === 'ltr' ? setSpotlight(res.data.data.drBulkSpotlit.en) :
+            setSpotlight(res.data.data.drBulkSpotlit.ar)
+            i18n.dir() === 'ltr' ? setAbout(res.data.data.gymAbout.en) :
+            setAbout(res.data.data.gymAbout.ar)
+        }).catch((err) => {
+            if (err.response.data.message) {
+              toast.error(t(err.response.data.message));
+            } else {
+              err.response.data.errors.forEach((err) => {
+                toast.error(t(err.msg));
+              });
+            }
+          })
+        
+    }
 
     useEffect(() => {
         AOS.init({ duration: 2000 });
-    }, [])
+        getAbout()
+    }, [i18n.dir()])
 
     const options = {
         items: 1,
@@ -198,18 +223,20 @@ const { i18n } = useTranslation()
                         <div className="col-lg-6  col-md-6 col-sm-12 col-xs-12">
                             <div className="about-section">
                                 <h1>About Us</h1>
-                                <p>Vestibulum quis massa nunroin tincidunt imper odio congue felis Perrnon porttiultricies aurasitame. </p>
-                                <div className="row">
-                                    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 mt20">
+                                {/* <p>Vestibulum quis massa nunroin tincidunt imper odio congue felis Perrnon porttiultricies aurasitame. </p> */}
+                                <p>{about}</p>
+                                <div className="row about">
+                                    <div className="col-xs-12 mt20">
                                         <h3>Dr bulk spotlight</h3>
-                                        <p>Sed accumsan libero quis lectus tempusmus liberoesw phare enimroin elementum.</p>
+                                        {/* <p>Sed accumsan libero quis lectus tempusmus liberoesw phare enimroin elementum.</p> */}
+                                        <p>{spotlight}</p>
                                         <Link to='/' className="btn bulk-dark-btn">More About Me</Link>
                                     </div>
-                                    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 mt20">
+                                    {/* <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 mt20">
                                         <h3>GETTING STARTED</h3>
                                         <p>Sed accumsan libero quis lectus fermentum ac faucibus tempusn enimroin elementum.</p>
                                         <Link to='/' className="btn bulk-btn">get-started</Link>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

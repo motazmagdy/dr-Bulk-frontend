@@ -18,6 +18,7 @@ const AdminHome = () => {
     const [memberships, setMemberships] = useState([]);
     const [eatSmart, setEatSmarts] = useState([]);
     const [users, setUsers] = useState([]);
+    const [aboutUs, setAboutUs] = useState([]);
     const [filteredValues, setFilteredValues] = useState(users);
 
   const getCategories = () => {
@@ -73,7 +74,20 @@ const AdminHome = () => {
       })
       .catch((error) => console.log(error));
   };
-
+  const getAboutUs = () =>{
+    axios
+    .get(`${serverApi}/api/about` ,{
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("Token")}`,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      setAboutUs(response.data.data);
+      // setFilteredValues(response.data.data)
+    })
+    .catch((error) => console.log(error));
+  }
   useEffect(() => {
     getCategories();
     getProducts();
@@ -81,6 +95,7 @@ const AdminHome = () => {
     getMemberships();
     getEatSmarts();
     getUsers();
+    getAboutUs();
   }, []);
 
   return (
@@ -100,6 +115,7 @@ const AdminHome = () => {
         getMemberships={getMemberships} memberships={memberships} setMemberships={setMemberships}
         getEatSmarts={getEatSmarts} eatSmart={eatSmart} setEatSmarts={setEatSmarts}
         getUsers={getUsers} users={users}  setUsers={setUsers} filteredValues={filteredValues} setFilteredValues={setFilteredValues}
+        aboutUs={aboutUs} setAboutUs={setAboutUs}
         /> : 
         <EditorRouter 
         getCategories={getCategories} categories={categories} setCategories={setCategories}
@@ -108,6 +124,7 @@ const AdminHome = () => {
         getMemberships={getMemberships} memberships={memberships} setMemberships={setMemberships}
         getEatSmarts={getEatSmarts} eatSmart={eatSmart} setEatSmarts={setEatSmarts}
         getUsers={getUsers} users={users}  setUsers={setUsers} filteredValues={filteredValues} setFilteredValues={setFilteredValues}
+        aboutUs={aboutUs} setAboutUs={setAboutUs}
         />}
       </main>
     </div>

@@ -17,6 +17,7 @@ import SyncLockIcon from '@mui/icons-material/SyncLock';
 import LogoutIcon from '@mui/icons-material/Logout';
 import useLogout from "../../Hooks/useLogout";
 import B from "../../Assets/PngLogo/Dark.png";
+import InfoIcon from '@mui/icons-material/Info';
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
@@ -183,6 +184,20 @@ const EditorSidebar = () => {
               title={t("Clients")}
               to="/editors/clients"
               icon={<PeopleAltIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title={t("Eat-Smart")}
+              to="/editors/eat-smart"
+              icon={<FlatwareIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+             <Item
+              title={t("About Us")}
+              to="/editors/about-us"
+              icon={<InfoIcon />}
               selected={selected}
               setSelected={setSelected}
             />

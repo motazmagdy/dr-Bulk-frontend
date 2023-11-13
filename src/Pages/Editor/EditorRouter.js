@@ -8,6 +8,7 @@ import ChangePassword from "../Admin/ChangePassword/ChangePassword";
 import Memberships from "../Admin/Memberships/Memberships";
 import EatSmarts from "../Admin/EatSmart/EatSmart";
 import Clients from "../Admin/Clients/Clients";
+import AboutUs from "../Admin/AboutUs/AboutUs";
 
 const EditorRouter = ({
   getCategories,
@@ -30,6 +31,8 @@ const EditorRouter = ({
   setUsers,
   filteredValues,
   setFilteredValues,
+  aboutUs ,
+  setAboutUs
 }) => {
   return (
     <Routes>
@@ -83,6 +86,10 @@ const EditorRouter = ({
             getEatSmarts={getEatSmarts}
           />
         }
+      />
+      <Route
+        path="/about-us"
+        element={<AboutUs aboutUs={aboutUs} setAboutUs={setAboutUs}/>}
       />
       <Route
         path="/clients"
