@@ -331,9 +331,11 @@ const Instructors = ({instructors, setInstructors , getInstructors}) => {
     formData.append("bio[en]" , instructoreEditedData.bioInEnglish)
     formData.append("bio[ar]" , instructoreEditedData.bioInArabic)
     formData.set("phoneNumber", instructoreEditedData.phoneNumber);
-    instructoreEditedData.image.forEach((image) => {
-      formData.append(`image`, image);
-    });
+    if(instructoreEditedData.image){
+      instructoreEditedData.image.forEach((image) => {
+        formData.append(`image`, image);
+      });
+    }
 
     axios
       .put(`${serverApi}/api/instructors/${id}`, formData, {

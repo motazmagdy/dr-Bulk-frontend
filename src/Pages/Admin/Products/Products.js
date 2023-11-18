@@ -370,15 +370,12 @@ const Products = ({products, setProducts , getProducts}) => {
   const [editingImages , setEditingImages] = useState(false)
 
     const editProduct = (id, newData) => {
-      const selectedCategory = theCategories.filter((category)=>
-      newData.category === category.categoryEnglish
-      )
         const updatedData = {
             title : {
                 en:newData.titleInEnglish,
                 ar:newData.titleInArabic,
             },
-            category: selectedCategory[0].id,
+            category: newData.category.id,
             description : {
                 en:newData.descriptionInEnglish,
                 ar:newData.descriptionInArabic,
@@ -597,7 +594,10 @@ const Products = ({products, setProducts , getProducts}) => {
             style={{ backgroundColor: orange[500], color: "white" }}
             variant="contained"
             onClick={() =>{
-                setEditingProduct({_id, title, category, description, price, points, images})
+                const currentCategory = theCategories.filter((cat)=>{
+                  return cat.id === category._id
+                })
+                setEditingProduct({_id, title, category:currentCategory[0], description, price, points, images})
                 setImagesPreview(images)
             }
             }
@@ -792,24 +792,26 @@ const Products = ({products, setProducts , getProducts}) => {
                           Choose the Category
                         </InputLabel>
                         <Select
-                          onChange={(e) => {
-                            const selectedCategoryValue = e.target.value;
-                            setFieldValue("category", selectedCategoryValue);
-                          }}
-                          value={values.category.name?.en ? values.category.name.en : values.category}
-                          name="categories"
-                          sx={{ width: "100%" }}
-                        >
-                          {theCategories.map((category) => {
-                            // console.log("value from mapping",category);
-                            return (
-                              <MenuItem key={category.id} value={category.categoryEnglish}>
-                                {category.categoryEnglish} {" - "}
-                                {category.categoryArabic}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
+                            onChange={(e) => {
+                              const selectedCategoryValue = e.target.value;
+                              const newCategory =theCategories.filter((categ)=>{
+                                return categ.categoryEnglish === selectedCategoryValue
+                              })
+                              setFieldValue("category", newCategory[0]);
+                            }}
+                            value={values.category.categoryEnglish}
+                            name="categories"
+                            sx={{ width: "100%" }}
+                          >
+                            {theCategories.map((category) => {
+                              return (
+                                <MenuItem key={category?.id} value={category.categoryEnglish}>
+                                  {category.categoryEnglish} {" - "}
+                                  {category.categoryArabic}
+                                </MenuItem>
+                              );
+                            })}
+                          </Select>
                         {errors.category && touched.category ? (
                           <span className="input-err-msg">
                             {console.log(errors.category)}
