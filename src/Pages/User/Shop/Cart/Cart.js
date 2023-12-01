@@ -5,12 +5,13 @@ import { useTranslation } from 'react-i18next'
 import RoutesSpinner from '../../../../Components/Spinners/RoutesSpinner'
 import axios from 'axios'
 import './Cart.css'
+import { toast } from "react-toastify";
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 
 const Cart = ({ handleRouting }) => {
   const { t, i18n } = useTranslation()
-  const { cartItems, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem } = useCart()
+  const { cartItems, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem, removeAllCart } = useCart()
   let [itemsDetails, setItemsDetails] = useState([])
   const loading = useRef(true)
 
@@ -49,7 +50,8 @@ const Cart = ({ handleRouting }) => {
       .then(res => {
         console.log(res)
         if (res.status === 200) {
-
+          toast.success(t("Order done successfully"));
+          removeAllCart()
         }
       })
       .catch(err => console.log(err))
