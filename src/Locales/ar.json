@@ -82,5 +82,8 @@
   "Total Price": "السعر الكلي",
   "Order Now": "اطلب الآن",
   "Cart is empty. Go to": "سلة المنتجات فارغة. الذهاب إلى",
-  "Store": "صفحة التسوق"
+  "Store": "صفحة التسوق",
+  "Order done successfully": "تم إضافة طلبك بنجاح",
+  "You have booked the membership successfully": "تم الحجز بنجاح",
+  "You have booked eat smart session successfully": "تم الحجز بنجاح"
 }

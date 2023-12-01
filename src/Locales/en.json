@@ -81,5 +81,8 @@
   "Total Price": "Total Price",
   "Order Now": "Order Now",
   "Cart is empty. Go to": "Cart is empty. Go to",
-  "Store": "Store"
+  "Store": "Store",
+  "Order done successfully": "Order done successfully",
+  "You have booked the membership successfully": "You have booked the membership successfully",
+  "You have booked eat smart session successfully": "You have booked eat smart session successfully"
 }

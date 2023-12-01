@@ -1,10 +1,13 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import '../Memberships.css'
+import { toast } from 'react-toastify'
+import axios from 'axios'
+const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
-const MembershipItem = ({ membership , handleRouting}) => {
-    const { t , i18n } = useTranslation()
-    const { _id: id , duration, price, type, points } = membership
+const MembershipItem = ({ membership, handleRouting }) => {
+    const { t, i18n } = useTranslation()
+    const { _id: id, duration, price, type, points } = membership
     const title = i18n.dir() === "ltr" ? membership.title.en : membership.title.ar
     const description = i18n.dir() === "ltr" ? membership.description.en : membership.description.ar
 
@@ -20,6 +23,24 @@ const MembershipItem = ({ membership , handleRouting}) => {
         typeBg = { backgroundColor: 'lightblue' }
     } else if (type == 'VIP') {
         typeBg = { backgroundColor: 'darksalmon' }
+    }
+
+    const bookMembership = () => {
+        const paymentMethod = 'COD'
+        // const startsAt = Date  // TODO: send startsAt if user has the feature of adding starting date 
+
+        axios.post(`${DR_BULK_API}/api/book-membership`, { membershipId: id, paymentMethod }, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("Token")}`,
+            },
+        })
+            .then(res => {
+                console.log(res)
+                if (res.status === 200) {
+                    toast.success(t("You have booked the membership successfully"));
+                }
+            })
+            .catch(err => console.log(err))
     }
 
     return (
@@ -38,9 +59,13 @@ const MembershipItem = ({ membership , handleRouting}) => {
                     </div>
                 </h6>
                 <p className="card-text">{description}</p>
-                <button onClick={()=>handleRouting(type === "VIP" ? 'private-training': 'book-membership' ,id)} 
-                // to={`book-membership/${id}`} 
-                className="btn bulk-dark-btn">{t("Book Now")}</button>
+                <button
+                    type="submit"
+                    // onClick={()=>handleRouting(type === "VIP" ? 'private-training': 'book-membership' ,id)} 
+                    onClick={() => handleRouting(bookMembership)}
+                    // to={`book-membership/${id}`} 
+                    className="btn bulk-dark-btn">{t("Book Now")}
+                </button>
             </div>
         </>
     )

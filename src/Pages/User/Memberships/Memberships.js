@@ -68,7 +68,7 @@ const Memberships = ({ handleRouting }) => {
                     <div className='container py-5 memberships'>
                         <div className="row">
                             <div className="col-12 Normal">
-                                <h3>{t("Memberships")} {t("Normal")} </h3>
+                                <h3>{t("Normal")} {t("Memberships")}</h3>
                             </div>
                             {
                                 arr.Normal.map(n => {
@@ -84,7 +84,7 @@ const Memberships = ({ handleRouting }) => {
                         </div>
                         <div className="row">
                             <div className="col-12 Normal">
-                                <h3>{t("Memberships")} {t("Silver")}</h3>
+                                <h3>{t("Silver")} {t("Memberships")}</h3>
                             </div>
                             {
                                 arr.Silver.map(b => {
@@ -100,7 +100,7 @@ const Memberships = ({ handleRouting }) => {
                         </div>
                         <div className="row">
                             <div className="col-12 Normal">
-                                <h3>{t("Memberships")} {t("Gold")}</h3>
+                                <h3>{t("Gold")} {t("Memberships")}</h3>
                             </div>
                             {
                                 arr.Gold.map(g => {
@@ -116,7 +116,7 @@ const Memberships = ({ handleRouting }) => {
                         </div>
                         <div className="row">
                             <div className="col-12 Normal">
-                                <h3>{t("Memberships")} {t("Diamond")}</h3>
+                                <h3>{t("Diamond")} {t("Memberships")}</h3>
                             </div>
                             {
                                 arr.Diamond.map(d => {

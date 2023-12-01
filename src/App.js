@@ -7,7 +7,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from './Context/AuthContext';
 import { useContext } from 'react';
-import Footer from './Components/Footer/Footer';
 import CartProvider from './Context/CartContext';
 
 function App() {
