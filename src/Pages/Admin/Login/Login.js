@@ -8,11 +8,11 @@ import "./Login.css";
 const AdminLogin = () => {
 
   const { t, i18n } = useTranslation()
-  const { login , isSubmitting , setIsSubmitting , loginErrMsg }  = useLogin()
+  const { login, isSubmitting, setIsSubmitting, loginErrMsg } = useLogin()
 
 
   const loginUser = (userData) => {
-    login(userData , "admins")
+    login(userData, "admins")
   }
 
   return (
@@ -24,7 +24,7 @@ const AdminLogin = () => {
       onSubmit={(values, actions) => {
         setIsSubmitting(true);
         loginUser(values)
-        actions.resetForm()
+        // actions.resetForm()
       }}
       validationSchema={AdminLoginSchema}
     >
@@ -45,7 +45,7 @@ const AdminLogin = () => {
                 }
                 type="email"
                 id="email"
-              placeholder={t("Enter Your Email")}
+                placeholder={t("Enter Your Email")}
               />
               {props.errors.email && props.touched.email ? (
                 <p className="input-err-msg">{t(props.errors.email)}</p>
@@ -64,7 +64,7 @@ const AdminLogin = () => {
                 }
                 type="password"
                 id="password"
-              placeholder={t("Enter Your Password")}
+                placeholder={t("Enter Your Password")}
               />
               {props.errors.password && props.touched.password ? (
                 <p className="input-err-msg">{t(props.errors.password)}</p>
