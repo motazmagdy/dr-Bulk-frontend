@@ -25,14 +25,18 @@ const UserRouter = () => {
   const navigate = useNavigate();
 
   // const handleRouting = ( route , id )=>{
-  const handleRouting = (func) => {
+  const handleRouting = (func, previousUrl) => {
     if (state.userRole === "users") {
       // navigate(`${route}/${id}`)
       func()
     } else {
       toast.warning('Please Login First !')
       setTimeout(() => {
-        navigate('/login')
+        navigate('/login', {
+          state: {
+            previousUrl
+          }
+        })
       }, 3000)
     }
   }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useAuthContext from "../Hooks/AuthContextHook";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -10,6 +10,9 @@ const useLogin = () => {
   const { t } = useTranslation();
   const { dispatch } = useAuthContext();
   const navigate = useNavigate();
+
+  const location = useLocation()
+  const previousUrl = location.state.previousUrl.pathname
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loginErrMsg, setLoginErrMsg] = useState("");
@@ -24,13 +27,13 @@ const useLogin = () => {
           localStorage.setItem("User_Role", role);
           localStorage.setItem("User_Name", userData.email);
           dispatch({
-            type:  "USER_LOGIN",
+            type: "USER_LOGIN",
             payload: role,
             userName: userData.email,
           });
           setIsSubmitting(false);
           setLoginErrMsg(null);
-          role ==="admins" ? navigate(`/admin`) : role ==="editors" ? navigate('/editors') :  navigate(`/`) 
+          role === "admins" ? navigate(`/admin`) : role === "editors" ? navigate('/editors') : navigate(previousUrl)
         }
       })
       .catch((err) => {

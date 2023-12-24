@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
@@ -10,6 +10,7 @@ const EatSmartItem = ({ eatSmartPlan, handleRouting }) => {
     const { _id: id, type, duration, price, points } = eatSmartPlan
     const title = i18n.dir() === "ltr" ? eatSmartPlan.title.en : eatSmartPlan.title.ar
     const description = i18n.dir() === "ltr" ? eatSmartPlan.description.en : eatSmartPlan.description.ar
+    const previousUrl = useLocation()
 
     const bookEatSmart = () => {
         const paymentMethod = 'COD'
@@ -51,7 +52,7 @@ const EatSmartItem = ({ eatSmartPlan, handleRouting }) => {
                     <p>{description}</p>
                     <button
                         type="submit"
-                        onClick={() => handleRouting(bookEatSmart)}
+                        onClick={() => handleRouting(bookEatSmart, previousUrl)}
                         className="btn bulk-dark-btn">{t("Book Now")}
                     </button>
                 </div>

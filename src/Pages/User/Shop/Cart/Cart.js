@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useCart } from '../../../../Context/CartContext'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import RoutesSpinner from '../../../../Components/Spinners/RoutesSpinner'
 import axios from 'axios'
@@ -14,6 +14,7 @@ const Cart = ({ handleRouting }) => {
   const { cartItems, getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem, removeAllCart } = useCart()
   let [itemsDetails, setItemsDetails] = useState([])
   const loading = useRef(true)
+  const previousUrl = useLocation()
 
   if (!cartItems.length) {
     loading.current = false
@@ -137,23 +138,15 @@ const Cart = ({ handleRouting }) => {
               <td></td>
               <td>{t("Total Price")}</td>
               <td>
-                {/* {cartItems.reduce((itemQuantity, item) => {
-                    const i = itemsDetails.find(
-                      (itemD) => itemD._id === item.id
-                    );
-
-                    return itemQuantity + item.quantity * (i?.price || 0);
-                  }, 0)} */}
                 {bill}{" "}
                 $
               </td>
-              <td className="order-btn-row">
+              <td colSpan={2} className="order-btn-row">
                 {/* {state.userRole === "users" ? */}
                 <button
                   type="submit"
                   className="btn bulk-dark-btn"
-                  // onClick={() => {handleRouting("/", null)}}
-                  onClick={() => { handleRouting(createOrder) }}
+                  onClick={() => { handleRouting(createOrder, previousUrl) }}
                 >
                   {t("Order Now")}
                 </button>

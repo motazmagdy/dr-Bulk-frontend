@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import '../Memberships.css'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const MembershipItem = ({ membership, handleRouting }) => {
@@ -10,6 +11,7 @@ const MembershipItem = ({ membership, handleRouting }) => {
     const { _id: id, duration, price, type, points } = membership
     const title = i18n.dir() === "ltr" ? membership.title.en : membership.title.ar
     const description = i18n.dir() === "ltr" ? membership.description.en : membership.description.ar
+    const previousUrl = useLocation()
 
     let typeBg = {}
     // if(type=='Normal'){
@@ -62,7 +64,7 @@ const MembershipItem = ({ membership, handleRouting }) => {
                 <button
                     type="submit"
                     // onClick={()=>handleRouting(type === "VIP" ? 'private-training': 'book-membership' ,id)} 
-                    onClick={() => handleRouting(bookMembership)}
+                    onClick={() => handleRouting(bookMembership, previousUrl)}
                     // to={`book-membership/${id}`} 
                     className="btn bulk-dark-btn">{t("Book Now")}
                 </button>
