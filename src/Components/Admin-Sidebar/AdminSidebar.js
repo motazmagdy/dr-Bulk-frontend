@@ -20,6 +20,9 @@ import B from "../../Assets/PngLogo/Dark.png";
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import InfoIcon from '@mui/icons-material/Info';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import AddCardIcon from '@mui/icons-material/AddCard';
+import FoodBankIcon from '@mui/icons-material/FoodBank';
 
 const Item = ({ title, to, icon, selected, setSelected, handleLogout }) => {
   const theme = useTheme();
@@ -181,9 +184,23 @@ const AdminSidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title={t("About Us")}
-              to="/admin/about-us"
-              icon={<InfoIcon />}
+              title={t("Orders")}
+              to="/admin/orders"
+              icon={<ListAltIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title={t("Booked Memberships")}
+              to="/admin/booked-memberships"
+              icon={<AddCardIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title={t("Booked Eatsmart")}
+              to="/admin/booked-eatsmart"
+              icon={<FoodBankIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -191,6 +208,13 @@ const AdminSidebar = () => {
               title={t("Clients")}
               to="/admin/clients"
               icon={<PeopleAltIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title={t("About Us")}
+              to="/admin/about-us"
+              icon={<InfoIcon />}
               selected={selected}
               setSelected={setSelected}
             />

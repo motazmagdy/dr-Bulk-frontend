@@ -9,6 +9,9 @@ import Memberships from "./Memberships/Memberships";
 import EatSmarts from "./EatSmart/EatSmart";
 import AboutUs from "./AboutUs/AboutUs";
 import Clients from "./Clients/Clients";
+import Orders from "./Orders/Orders";
+import BookedMemberships from "./Booked Memberships/Booked Memberships";
+import BookedEatsmart from "./Booked Eatsmart/Booked Eatsmart";
 
 const AdminRouter = ({getCategories ,categories, setCategories,
     getProducts ,products, setProducts,
@@ -16,7 +19,10 @@ const AdminRouter = ({getCategories ,categories, setCategories,
     getMemberships, memberships ,setMemberships,
     getEatSmarts, eatSmart ,setEatSmarts,
     getUsers, users , setUsers, filteredValues, setFilteredValues,
-    aboutUs ,setAboutUs}) => {
+    aboutUs ,setAboutUs , getOrders , orders , setOrders ,
+    bookedMembership , setBookedMemberships , getBookedMemberships ,
+    bookedEatsmart , setBookedEatsmart , getBookedEatsmart  
+  }) => {
 
   return (
     <Routes>
@@ -58,6 +64,18 @@ const AdminRouter = ({getCategories ,categories, setCategories,
       <Route
         path="/eat-smart"
         element={<EatSmarts eatSmart={eatSmart} setEatSmarts={setEatSmarts} getEatSmarts={getEatSmarts}/>}
+      />
+      <Route
+        path="/orders"
+        element={<Orders orders={orders} setOrders={setOrders} getOrders={getOrders}/>}
+      />
+      <Route
+        path="/booked-memberships"
+        element={<BookedMemberships bookedMembership={bookedMembership} setBookedMemberships={setBookedMemberships} getBookedMemberships={getBookedMemberships}/>}
+      />
+      <Route
+        path="/booked-eatsmart"
+        element={<BookedEatsmart bookedEatsmart={bookedEatsmart} setBookedEatsmart={setBookedEatsmart} getBookedEatsmart={getBookedEatsmart}/>}
       />
       <Route
         path="/about-us"
