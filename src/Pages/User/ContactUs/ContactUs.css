@@ -1,3 +1,15 @@
+.footer-widget form {
+    text-align: left;
+    margin: auto;
+    width: 100%;
+}
+
+@media (max-width:576px) {
+    .footer-widget form {
+        width: 70%;
+    }
+}
+
 .contact-us {
     padding: 50px 0;
 }
@@ -14,18 +26,24 @@
 }
 
 .contact-us .map {
-    width: 900px;
+    width: 100%;
     margin: auto;
     margin-top: 60px;
 }
 
 .contact-us .map iframe {
-    width: 900px;
-    height: 450px;
+    width: 90%;
+    height: 75vh;
     border: 0;
+    margin: auto;
+    display: block;
 }
 
-.contact-us .map {}
+@media (max-width:992px) {
+    .contact-us .map iframe {
+        height: 50vh;
+    }
+}
 
 
 :root {

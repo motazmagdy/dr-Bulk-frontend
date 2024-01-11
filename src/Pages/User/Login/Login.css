@@ -4,6 +4,12 @@
     width: 40%;
 }
 
+@media (max-width:992px) {
+    .form {
+        width: 70%;
+    }
+}
+
 .form-btns {
     display: flex;
     justify-content: space-evenly;
