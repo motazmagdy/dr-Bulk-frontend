@@ -1,6 +1,13 @@
-.cart-page table {
+.table-responsive-lg {
     margin: 50px 0;
+}
 
+.table-responsive-lg :is(th, td) {
+    white-space: nowrap;
+    padding: 10px !important;
+}
+
+.cart-page table {
     background-color: var(--custom-body-background);
 }
 
@@ -35,8 +42,8 @@
 }
 
 .cart-page .total-price td {
-    padding-top: 20px;
-    padding-bottom: 22px;
+    padding-top: 35px !important;
+    padding-bottom: 35px !important;
 }
 
 /* .cartLoginWarn {
@@ -139,12 +146,15 @@
 }
 
 .order-btn-row .btn {
-    width: 146px;
-    padding: 10px 20px;
+    /* width: 146px; */
+    /* padding: 10px 20px; */
 
     position: absolute;
-    top: 10px;
-    left: -20px;
+    top: 25%;
+    left: 4%;
+
+    font-size: clamp(8px, 1vw, 14px);
+    padding: clamp(2px, 1vw, 10px) clamp(0px, 1vw, 20px);
 }
 
 
