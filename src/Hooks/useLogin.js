@@ -12,7 +12,7 @@ const useLogin = () => {
   const navigate = useNavigate();
 
   const location = useLocation()
-  const previousUrl = location.state.previousUrl.pathname
+  const previousUrl = location.state ? location.state.previousUrl.pathname : "/"
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loginErrMsg, setLoginErrMsg] = useState("");
