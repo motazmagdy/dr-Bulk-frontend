@@ -84,5 +84,17 @@
   "Store": "Store",
   "Order done successfully": "Order done successfully",
   "You have booked the membership successfully": "You have booked the membership successfully",
-  "You have booked eat smart session successfully": "You have booked eat smart session successfully"
+  "You have booked eat smart session successfully": "You have booked eat smart session successfully",
+  "My Orders" : "My Orders" ,
+  "Order Placed" :"Order Placed",
+  "Total" : "Total" ,
+  "Payment Method" : "Payment Method",
+  "Status" :"Status" ,
+  "Product Name" :"Product Name"  ,
+  "Quantity" : "Quantity" ,
+  "pending" : "Pending",
+  "at" : "at",
+  "COD" : "COD" ,
+  "CC" : "CC"
+  
 }

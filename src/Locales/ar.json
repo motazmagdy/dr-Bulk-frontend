@@ -85,5 +85,16 @@
   "Store": "صفحة التسوق",
   "Order done successfully": "تم إضافة طلبك بنجاح",
   "You have booked the membership successfully": "تم الحجز بنجاح",
-  "You have booked eat smart session successfully": "تم الحجز بنجاح"
+  "You have booked eat smart session successfully": "تم الحجز بنجاح",
+  "My Orders" : "طلباتى" ,
+  "Order Placed" : "وقت الطلب",
+  "Total" : "الاجمالى",
+  "Payment Method" : "طريقة الدفع",
+  "Status" : "الحالة",
+  "Product Name" : "اسم المنتج",
+  "Quantity" : "الكميه",
+  "pending" : "قيد التنفيذ",
+  "at" : "فى" ,
+  "COD" : "الدفع عند الاستلام" ,
+  "CC" : "الدفع اونلاين"
 }

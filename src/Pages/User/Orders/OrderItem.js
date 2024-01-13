@@ -22,29 +22,28 @@ const OrderItem = ({ order }) => {
             <div className="post-block product-item">
                 <div className="post-content">
                     <div>
-                        <p>Order Placed</p>
-                        <p>{createdAt.slice(0,10)} at {createdAt.slice(12,16)} </p>
+                        <p>{t("Order Placed")}</p>
+                        <p>{createdAt.slice(0,10)} {t("at")} {createdAt.slice(12,16)} </p>
                     </div>
                     <div>
-                        <p>Total</p>
+                        <p>{t("Total")}</p>
                         <p>{bill}</p>
                     </div>
                     <div>
-                        <p>Payment Method</p>
-                        <p>{paymentMethod}</p>
+                        <p>{t("Payment Method")}</p>
+                        <p>{t(paymentMethod)}</p>
                     </div>
                     <div>
-                        <p>Status</p>
-                        <p>{status}</p>
+                        <p>{t("Status")}</p>
+                        <p>{t(status)}</p>
                     </div>
                 </div>
                 {items?.map((item)=>{
                     return (
                             <div className='order-item'>
-                                <p><b>Product Name : </b>{item?.productId}</p>
-                                <p><b>Quantity : </b>{item?.quantity}</p>
+                                <p><b>{t("Product Name")} : </b>{item?.productId}</p>
+                                <p><b>{t("Quantity")} : </b>{item?.quantity}</p>
                             </div>
-
                     )
                 })}
             </div>
