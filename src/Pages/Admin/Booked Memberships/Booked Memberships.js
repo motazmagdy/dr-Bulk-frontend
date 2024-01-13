@@ -24,6 +24,14 @@ const BookedMemberships = ({bookedMembership, setBookedMemberships,getBookedMemb
     }
   },
   {
+    field: "Membership",
+    headerName: "Membership",
+    flex: 0.15,
+    renderCell: ({ row: { _id , membershipId} }) => {
+      return <Typography key={_id}>{membershipId?.title?.en}</Typography>;
+    },
+  },
+  {
     field: "Email",
     headerName: "Email",
     flex: 0.25,
@@ -34,25 +42,9 @@ const BookedMemberships = ({bookedMembership, setBookedMemberships,getBookedMemb
   {
     field: "Phone Number",
     headerName: "Phone Number",
-    flex: 0.2,
+    flex: 0.1,
     renderCell: ({ row: { _id , userId} }) => {
       return <Typography key={_id}>{userId?.phoneNumber}</Typography>;
-    },
-  },
-  // {
-  //   field: "Items",
-  //   headerName: "Items",
-  //   flex: 0.1,
-  //   renderCell: ({ row: { _id , items} }) => {
-  //     return <Typography key={_id}>{items?.length}</Typography>;
-  //   }
-  // },
-  {
-    field: "Bill",
-    headerName: "Bill",
-    flex: 0.1,
-    renderCell: ({ row: { _id , bill} }) => {
-      return <Typography key={_id}>{bill}</Typography>;
     },
   },
   {
@@ -62,16 +54,7 @@ const BookedMemberships = ({bookedMembership, setBookedMemberships,getBookedMemb
     renderCell: ({ row: { _id , paymentMethod} }) => {
       return <Typography key={_id}>{paymentMethod}</Typography>;
     },
-  },
-  {
-    field: "Status",
-    headerName: "Status",
-    flex: 0.1,
-    renderCell: ({ row: { _id , status} }) => {
-      return <Typography key={_id}>{status}</Typography>;
-    },
-  },
-
+  }
 ]
   return (
     <Box m="20px">

@@ -1,13 +1,24 @@
 import React , { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Box, useTheme, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { tokens } from "../../../theme";
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import useAuthContext from "../../../Hooks/AuthContextHook";
 import DashboardHeader from "../../../Components/DashboardHeader/DashboardHeader";
-const serverApi = process.env.REACT_APP_DR_BULK_API;
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import "./Orders.css" ;
 
 const Orders = ({orders, setOrders,getOrders}) => {
-  const { state } = useAuthContext()
+
+  const isNonMobile = useMediaQuery("(min-width:600px)");
+  const [viewDetails, setViewDetails] = useState("");
+  const openViewDetails= (order) => {
+    setViewDetails(order);
+  };
 
   useEffect(() => {
     getOrders();
@@ -40,14 +51,6 @@ const Orders = ({orders, setOrders,getOrders}) => {
     },
   },
   {
-    field: "Items",
-    headerName: "Items",
-    flex: 0.1,
-    renderCell: ({ row: { _id , items} }) => {
-      return <Typography key={_id}>{items?.length}</Typography>;
-    }
-  },
-  {
     field: "Bill",
     headerName: "Bill",
     flex: 0.1,
@@ -69,6 +72,31 @@ const Orders = ({orders, setOrders,getOrders}) => {
     flex: 0.1,
     renderCell: ({ row: { _id , status} }) => {
       return <Typography key={_id}>{status}</Typography>;
+    },
+  },
+  {
+    field: "Details",
+    headerName: "Details",
+    flex: 0.1,
+    renderCell: ({ row: { _id, items  } }) => {
+      return (
+        <Box
+          width="50%"
+          display="flex"
+          justifyContent="center"
+          borderRadius="2px"
+          margin='auto'
+        >
+          <Button
+            type="submit"
+            style={{ backgroundColor: '#837d7d', color: "white" }}
+            variant="contained"
+            onClick={() => openViewDetails({ _id, items  })}
+          >
+            View <ReceiptLongIcon sx={{ marginLeft: "8px" }} />
+          </Button>
+        </Box>
+      );
     },
   },
 
@@ -122,6 +150,63 @@ const Orders = ({orders, setOrders,getOrders}) => {
           getRowId={(row) => row._id}
           columns={editorColumns}
         />
+        {viewDetails ? (
+          <Dialog
+            open={viewDetails ? true : false}
+            sx={{
+              "& .MuiPaper-root": {
+                width: "100%",
+                maxWidth: "1000px",
+              },
+              "& .MuiBox-root": {
+                flexDirection: "row",
+                flexWrap: "wrap",
+              },
+              "& .MuiBox-root > .MuiBox-root": {
+                width: "100%",
+                margin: "0.5rem 0",
+              },
+            }}
+            onClose={() => setViewDetails(false)}
+          >
+            <DialogTitle>Order Details</DialogTitle>
+            <DialogContent>
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      mb={2}
+                      gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+                      sx={{
+                        "& > div": {
+                          gridColumn: isNonMobile ? undefined : "span 4",
+                        },
+                      }}
+>
+                        {viewDetails?.items?.map((item)=>{
+                           return   <Box className="containerNames" key={item?._id}>
+                                            <Typography><b>Product Name : </b>{item?.productId}</Typography>
+                                            <Typography><b>Quantity : </b>{item?.quantity}</Typography>
+                              </Box>
+                        })}
+                      <br />
+                      <Box className="newInstructorBtns">
+                        <Button
+                          onClick={() => {
+                            setViewDetails(false);
+                          }}
+                          sx={{
+                            backgroundColor: "rgb(244, 67, 54) !important",
+                            color: "white",
+                          }}
+                        >
+                          Cancel
+                        </Button>
+                      </Box>
+                      <br />
+                    </Box>
+            </DialogContent>
+          </Dialog>
+        ) : null}
       </Box>
     </Box>
   );

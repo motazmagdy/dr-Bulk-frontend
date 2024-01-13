@@ -24,6 +24,14 @@ const BookedEatsmart = ({bookedEatsmart, setBookedEatsmart,getBookedEatsmart}) =
     }
   },
   {
+    field: "Eat smart",
+    headerName: "Eat smart",
+    flex: 0.2,
+    renderCell: ({ row: { _id , eatSmartId} }) => {
+      return <Typography key={_id}>{eatSmartId?.title?.en}</Typography>;
+    },
+  },
+  {
     field: "Email",
     headerName: "Email",
     flex: 0.25,
@@ -39,22 +47,6 @@ const BookedEatsmart = ({bookedEatsmart, setBookedEatsmart,getBookedEatsmart}) =
       return <Typography key={_id}>{userId?.phoneNumber}</Typography>;
     },
   },
-  // {
-  //   field: "Items",
-  //   headerName: "Items",
-  //   flex: 0.1,
-  //   renderCell: ({ row: { _id , items} }) => {
-  //     return <Typography key={_id}>{items?.length}</Typography>;
-  //   }
-  // },
-  {
-    field: "Bill",
-    headerName: "Bill",
-    flex: 0.1,
-    renderCell: ({ row: { _id , bill} }) => {
-      return <Typography key={_id}>{bill}</Typography>;
-    },
-  },
   {
     field: "Payment Method",
     headerName: "Payment Method",
@@ -63,15 +55,6 @@ const BookedEatsmart = ({bookedEatsmart, setBookedEatsmart,getBookedEatsmart}) =
       return <Typography key={_id}>{paymentMethod}</Typography>;
     },
   },
-  {
-    field: "Status",
-    headerName: "Status",
-    flex: 0.1,
-    renderCell: ({ row: { _id , status} }) => {
-      return <Typography key={_id}>{status}</Typography>;
-    },
-  },
-
 ]
   return (
     <Box m="20px">
