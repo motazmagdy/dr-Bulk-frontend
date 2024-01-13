@@ -48,7 +48,24 @@
     padding-block: 20px;
     padding-inline: 20px;
     border-bottom: 1px solid #F0F2F2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    .post-img{
+        width:25% ;
+        height: auto;
+    }
     p{
         margin: 0;
+    }
+}
+
+@media screen and ( max-width:550px ){
+    .order-item{
+        flex-direction: column;
+        align-items: center;
+        .post-img{
+            width:50% !important;
+        }
     }
 }

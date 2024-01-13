@@ -1,5 +1,30 @@
 .containerNames{
-    background-color: #ebebeb !important;
+    background: white !important;
     padding: 1rem !important;
-    display: initial !important;
+    border-radius: 8px !important ;
+    display: flex !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap:20px !important ;
+    .item-img{
+        width: 30% !important;
+    }
+    .item-info{
+        width: 40% !important;
+        margin-block-start: 34px !important;
+    }
+}
+
+@media screen and ( max-width:550px ){
+    .containerNames{
+        flex-direction: column !important;
+        align-items: center !important;
+        gap:0px !important ;
+        .item-img{
+            width:80% !important;
+        }
+        .item-info{
+            width: 80% !important;
+        }
+    }
 }

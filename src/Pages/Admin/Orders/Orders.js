@@ -11,6 +11,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import "./Orders.css" ;
+const DR_BULK_API = process.env.REACT_APP_DR_BULK_API ;
 
 const Orders = ({orders, setOrders,getOrders}) => {
 
@@ -157,6 +158,7 @@ const Orders = ({orders, setOrders,getOrders}) => {
               "& .MuiPaper-root": {
                 width: "100%",
                 maxWidth: "1000px",
+                backgroundColor: '#ebebeb'
               },
               "& .MuiBox-root": {
                 flexDirection: "row",
@@ -184,8 +186,14 @@ const Orders = ({orders, setOrders,getOrders}) => {
 >
                         {viewDetails?.items?.map((item)=>{
                            return   <Box className="containerNames" key={item?._id}>
-                                            <Typography><b>Product Name : </b>{item?.productId}</Typography>
+                                        <Box className="item-img">
+                                          <img src={item?.productId?.images[0]?.replace('public\\uploads\\', DR_BULK_API + '/uploads/')} alt="product" className="img-responsive" />
+                                        </Box>
+                                        <Box className="item-info">
+                                            <Typography><b>Product Name : </b>{item?.productId?.title?.en}</Typography>
                                             <Typography><b>Quantity : </b>{item?.quantity}</Typography>
+                                            <Typography><b>Price : </b>{item?.productId?.price}</Typography>
+                                        </Box>
                               </Box>
                         })}
                       <br />

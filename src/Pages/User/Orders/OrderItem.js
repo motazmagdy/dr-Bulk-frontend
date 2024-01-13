@@ -9,12 +9,7 @@ const OrderItem = ({ order }) => {
     const { t , i18n } = useTranslation()
     const { state } = useAuthContext()
     const navigate  = useNavigate()
-    // console.log("instrcutor" , instructor);
     const { _id: id, createdAt , bill , status , paymentMethod , items } = order
-    // const name = i18n.dir() === "ltr" ?  order.name.en :  order.name.ar
-    // const bio = i18n.dir() === "ltr" ?  order.bio.en :  order.bio.ar
-    
-    // const { getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem } = useCart()
 
     return (
         <>
@@ -41,8 +36,19 @@ const OrderItem = ({ order }) => {
                 {items?.map((item)=>{
                     return (
                             <div className='order-item' key={item?._id}>
-                                <p><b>{t("Product Name")} : </b>{item?.productId}</p>
-                                <p><b>{t("Quantity")} : </b>{item?.quantity}</p>
+                                <div className="post-img">
+                                    <Link to={`/orders`} className="imghover">
+                                        <img src={item?.productId?.images[0]?.replace('public\\uploads\\', DR_BULK_API + '/uploads/')} alt="product" className="img-responsive" />
+                                    </Link>
+                                </div>
+                                <div>
+                                    <p><b>{t("Product Name")} : </b>
+                                    {i18n.dir() === 'ltr' ? 
+                                        item?.productId?.title?.en :
+                                        item?.productId?.title?.ar}</p>
+                                    <p><b>{t("Quantity")} : </b>{item?.quantity}</p>
+                                    <p><b>{t("Price")} : </b>{item?.productId?.price}</p>
+                                </div>
                             </div>
                     )
                 })}
