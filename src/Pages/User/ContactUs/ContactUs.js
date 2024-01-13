@@ -12,7 +12,7 @@ const ContactUs = () => {
                     <h3 className="footer-title">{t("Contact us")}</h3>
                 </div>
 
-                <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-auto">
+                <div className="col-lg-4 col-md-8 col-sm-8 col-xs-12 m-auto">
                     <div className="footer-widget">
                         <form>
                             <div className="form-group">
