@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import useAuthContext from "../../Hooks/AuthContextHook";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
+import { Orders } from "./Orders/Orders";
 const Home = lazy(() => import("./Home/Home"))
 const Memberships = lazy(() => import("./Memberships/Memberships"))
 const VIPMemberships = lazy(() => import("./Memberships/VIPMemberships/VIPMemberships"))
@@ -56,6 +57,10 @@ const UserRouter = () => {
         <Route
           path="cart"
           element={<Cart handleRouting={handleRouting} />}
+        />
+        <Route
+          path="orders"
+          element={<Orders handleRouting={handleRouting} />}
         />
         <Route
           path="signup"

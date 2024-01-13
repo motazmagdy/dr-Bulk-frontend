@@ -129,16 +129,21 @@ const Header = () => {
                       </button>
                     ) : null}
                   </div> */}
-                  <div className="user-action">
+                  <div className="user-action d-flex">
                     {!state.userRole ? (
                       <button className="bulk-dark-btn btn signup-item" onClick={() => navigate('/signup')}>
                         {" "}<b>{t("Signup")}</b>
                       </button>
                     ) : null}
                     {state.userRole ? (
-                      <button className="bulk-dark-btn btn" onClick={handleLogout}>
-                        <b>{t("Logout")}</b>
-                      </button>
+                      <>
+                        <button className="bulk-dark-btn btn"  onClick={() => navigate('/orders')}>
+                        {t("Orders")}
+                        </button>
+                        <button className="bulk-dark-btn btn" onClick={handleLogout}>
+                          <b>{t("Logout")}</b>
+                        </button>
+                      </>
                     ) : null}
                   </div>
 
