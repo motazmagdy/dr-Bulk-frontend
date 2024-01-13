@@ -40,7 +40,7 @@ const OrderItem = ({ order }) => {
                 </div>
                 {items?.map((item)=>{
                     return (
-                            <div className='order-item'>
+                            <div className='order-item' key={item?._id}>
                                 <p><b>{t("Product Name")} : </b>{item?.productId}</p>
                                 <p><b>{t("Quantity")} : </b>{item?.quantity}</p>
                             </div>
