@@ -136,7 +136,7 @@ li.nav-item:hover a {
   flex-direction: row;
   align-items: center;
 
-  margin-left: 50px;
+  /* margin-left: 50px; */
 }
 
 .lang {

@@ -18,8 +18,11 @@ const AdminHome = () => {
     const [memberships, setMemberships] = useState([]);
     const [eatSmart, setEatSmarts] = useState([]);
     const [users, setUsers] = useState([]);
+    const [orders, setOrders] = useState([]);
     const [aboutUs, setAboutUs] = useState([]);
     const [filteredValues, setFilteredValues] = useState(users);
+    const [bookedMembership , setBookedMemberships] = useState([]);
+    const [bookedEatsmart , setBookedEatsmart] = useState([]);
 
   const getCategories = () => {
     axios
@@ -88,6 +91,42 @@ const AdminHome = () => {
     })
     .catch((error) => console.log(error));
   }
+  const getOrders = () =>{
+    axios
+      .get(`${serverApi}/api/orders` ,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+        },
+      })
+      .then((response) => {
+        setOrders(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  }
+  const getBookedMemberships = () =>{
+    axios
+      .get(`${serverApi}/api/book-membership` ,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+        },
+      })
+      .then((response) => {
+        setBookedMemberships(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  }
+  const getBookedEatsmart = () =>{
+    axios
+      .get(`${serverApi}/api/book-eat-smart` ,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+        },
+      })
+      .then((response) => {
+        setBookedEatsmart(response.data.data);
+      })
+      .catch((error) => console.log(error));
+  }
   useEffect(() => {
     getCategories();
     getProducts();
@@ -96,6 +135,9 @@ const AdminHome = () => {
     getEatSmarts();
     getUsers();
     getAboutUs();
+    getOrders();
+    getBookedMemberships();
+    getBookedEatsmart();
   }, []);
 
   return (
@@ -116,7 +158,10 @@ const AdminHome = () => {
         getEatSmarts={getEatSmarts} eatSmart={eatSmart} setEatSmarts={setEatSmarts}
         getUsers={getUsers} users={users}  setUsers={setUsers} filteredValues={filteredValues} setFilteredValues={setFilteredValues}
         aboutUs={aboutUs} setAboutUs={setAboutUs}
-        /> : 
+        getOrders={getOrders} orders={orders} setOrders={setOrders}
+        bookedMembership={bookedMembership} setBookedMemberships={setBookedMemberships} getBookedMemberships={getBookedMemberships}
+        bookedEatsmart={bookedEatsmart} setBookedEatsmart={setBookedEatsmart} getBookedEatsmart={getBookedEatsmart}
+         /> : 
         <EditorRouter 
         getCategories={getCategories} categories={categories} setCategories={setCategories}
         getProducts={getProducts} products={products} setProducts={setProducts}

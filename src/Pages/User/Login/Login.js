@@ -74,7 +74,7 @@ const UserLogin = () => {
               ) : null}
             </div>
             <p className="redirect-user">
-              {t("Dont' have an account .")}
+              {t("Don't have an account .")}
               <Link to="/signup">{t("Sign up Here")} </Link>{" "}
             </p>
             <div className="form-btns">
