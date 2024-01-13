@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from './Context/AuthContext';
 import { useContext } from 'react';
 import CartProvider from './Context/CartContext';
+import MembershipsProvider from './Context/MembershipsContext';
 
 function App() {
 
@@ -18,7 +19,9 @@ function App() {
   return (
     <div className="App">
       <CartProvider>
-        <Router />
+        <MembershipsProvider>
+          <Router />
+        </MembershipsProvider>
       </CartProvider>
 
       <ToastContainer

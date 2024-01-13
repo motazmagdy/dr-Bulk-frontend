@@ -1,9 +1,9 @@
-.align-in-english{
-    right:0px ;
+.align-in-english {
+    right: 0px;
 }
 
-.align-in-arabic{
-    left:0px ;
+.align-in-arabic {
+    left: 0px;
 }
 
 .section-title h1,
@@ -69,6 +69,22 @@
     100% {
         -webkit-transform: translateX(0%);
     }
+}
+
+/* memberships slider*/
+#memberships .slider .owl-carousel,
+#memberships .slider .owl-carousel .item {
+    height: auto;
+}
+
+#memberships {
+    padding-bottom: 20px;
+}
+
+/* eat smart plans */
+#eat-smart .service-block {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* last slider */
