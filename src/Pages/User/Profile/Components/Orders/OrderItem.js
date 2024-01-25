@@ -1,15 +1,13 @@
 import React from 'react'
-import useAuthContext from '../../../Hooks/AuthContextHook'
-import { Link , useNavigate } from 'react-router-dom'
+import useAuthContext from '../../../../../Hooks/AuthContextHook'
+import { Link } from 'react-router-dom'
 import './OrderItem.css'
 import { useTranslation } from 'react-i18next'
 const DR_BULK_API = process.env.REACT_APP_DR_BULK_API
 
 const OrderItem = ({ order }) => {
     const { t , i18n } = useTranslation()
-    const { state } = useAuthContext()
-    const navigate  = useNavigate()
-    const { _id: id, createdAt , bill , status , paymentMethod , items } = order
+    const { createdAt , bill , status , paymentMethod , items } = order
 
     return (
         <>

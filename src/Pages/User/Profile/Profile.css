@@ -1,0 +1,19 @@
+.tabs{
+    border: 1px solid #e2e2f7;
+}
+
+.tabs > div{
+    padding-block: 10px;
+    padding-inline: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+.tabs > .active{
+    background-color: #F0F2F2;
+}
+
+@media screen and (max-width:576px){
+    .tabs > div{
+        width: 100%;
+    }
+}

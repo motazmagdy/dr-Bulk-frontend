@@ -137,8 +137,8 @@ const Header = () => {
                     ) : null}
                     {state.userRole ? (
                       <>
-                        <button className="bulk-dark-btn btn"  onClick={() => navigate('/orders')}>
-                        {t("Orders")}
+                        <button className="bulk-dark-btn btn"  onClick={() => navigate('/profile')}>
+                        {t("Profile")}
                         </button>
                         <button className="bulk-dark-btn btn" onClick={handleLogout}>
                           <b>{t("Logout")}</b>

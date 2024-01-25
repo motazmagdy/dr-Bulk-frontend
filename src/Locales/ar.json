@@ -97,5 +97,13 @@
   "Membership Plans": "خطط العضوية",
   "More Details": "تفاصيل أكثر",
   "About Us": "من نحن",
-  "Dr bulk spotlight": "نبذة عن دكتور بالك"
+  "Dr bulk spotlight": "نبذة عن دكتور بالك", 
+  "Orders":"الطلبات",
+  "Profile" : "الحساب",
+  "My Profile" : "حسابى",
+  "Type":"النوع",
+  "Duration" : "المده",
+  "Membership Title" : "اسم الباقه",
+  "Title" : "الاسم",
+  "Points":"النقاط"
 }

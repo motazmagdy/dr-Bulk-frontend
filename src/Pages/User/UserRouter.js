@@ -5,7 +5,10 @@ import { toast } from "react-toastify";
 import useAuthContext from "../../Hooks/AuthContextHook";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
-import { Orders } from "./Orders/Orders";
+import { Orders } from "./Profile/Components/Orders/Orders";
+import { Profile } from "./Profile/Profile";
+import { BookedMemberships } from "./Profile/Components/BookedMemberships/BookedMemberships";
+import { BookedEatSmart } from "./Profile/Components/BookedEatSmart/BookedEatSmart";
 const Home = lazy(() => import("./Home/Home"))
 const Memberships = lazy(() => import("./Memberships/Memberships"))
 const VIPMemberships = lazy(() => import("./Memberships/VIPMemberships/VIPMemberships"))
@@ -59,9 +62,13 @@ const UserRouter = () => {
           element={<Cart handleRouting={handleRouting} />}
         />
         <Route
-          path="orders"
-          element={<Orders handleRouting={handleRouting} />}
-        />
+          path="profile"
+          element={<Profile />}
+        >
+          <Route path='orders' element={<Orders handleRouting={handleRouting} />}/>
+          <Route path='booked-memberships' element={<BookedMemberships handleRouting={handleRouting} />}/>
+          <Route path='booked-eat-smart' element={<BookedEatSmart handleRouting={handleRouting} />}/>
+        </Route>
         <Route
           path="signup"
           element={!state.userRole ? <UserSignUp /> : <Navigate to="/" />}
