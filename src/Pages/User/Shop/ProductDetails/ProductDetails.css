@@ -11,6 +11,10 @@
     top: -90px;
 }
 
+#carouselExampleIndicators .carousel-inner {
+    box-shadow: 0 5px 24px 6px rgba(0, 0, 0, 0.06);
+}
+
 
 .product-details .carousel-indicators {
     left: 0;
@@ -23,6 +27,10 @@
 .product-details .carousel-indicators button {
     width: 80px;
     max-height: 60px;
+}
+
+.product-details .carousel-indicators button img {
+    box-shadow: 0 5px 24px 6px rgba(0, 0, 0, 0.06);
 }
 
 .product-details .price {
@@ -49,6 +57,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        box-shadow: 0 5px 24px 6px rgba(0, 0, 0, 0.06);
     }
 }
 

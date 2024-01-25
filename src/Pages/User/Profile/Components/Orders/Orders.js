@@ -1,28 +1,28 @@
 
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next' ;
+import { useTranslation } from 'react-i18next';
 import RoutesSpinner from '../../../../../Components/Spinners/RoutesSpinner';
 import OrderItem from './OrderItem';
-const DR_BULK_API = process.env.REACT_APP_DR_BULK_API ;
+const DR_BULK_API = process.env.REACT_APP_DR_BULK_API;
 
-export const Orders = ()=>{
-    const [userOrders, setUserOrders] = useState([]) ;
-    const loading = useRef(true) ;
+export const Orders = () => {
+    const [userOrders, setUserOrders] = useState([]);
+    const loading = useRef(true);
 
     const getUserOrders = () => {
-        axios.get(`${DR_BULK_API}/api/orders/user-orders`,{
+        axios.get(`${DR_BULK_API}/api/orders/user-orders`, {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("Token")}`,
+                Authorization: `Bearer ${localStorage.getItem("Token")}`,
             },
-          })
+        })
             .then(res => {
                 setUserOrders(res?.data?.data)
                 loading.current = false
             })
             .catch(err => console.log(err))
     }
-    useEffect(() => { getUserOrders() }, []) ;
+    useEffect(() => { getUserOrders() }, []);
 
     return (
         <>

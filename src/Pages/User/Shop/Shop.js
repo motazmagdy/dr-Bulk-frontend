@@ -16,7 +16,7 @@ const Shop = () => {
     const loading = useRef(true)
 
     const getProductsPerPage = (currentPage = 1) => {
-        axios.get(`${DR_BULK_API}/api/products?page=${currentPage}&limit=3`)
+        axios.get(`${DR_BULK_API}/api/products?page=${currentPage}&limit=20`)
             .then(res => {
                 setProducts(res.data.data)
                 numberOfPages.current = res.data.pagination.numberOfPages
@@ -66,7 +66,7 @@ const Shop = () => {
                 </div>
             </div>
 
-            <div className="space-medium">
+            <div className="space-medium" id='shop'>
                 <div className="container">
                     <div className="row">
                         {
@@ -75,7 +75,7 @@ const Shop = () => {
                                 :
                                 products.map(product => {
                                     return (
-                                        <div key={product._id} className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                        <div key={product._id} className="col-lg-4 col-md-6 col-sm-10 m-auto">
                                             <ProductItem product={product} />
                                         </div>
                                     )

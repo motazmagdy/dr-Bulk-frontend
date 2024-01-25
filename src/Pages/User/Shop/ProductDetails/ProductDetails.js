@@ -13,7 +13,7 @@ const ProductDetails = () => {
     const [productDetails, setProductDetails] = useState({})
     const { getItemQuantity, increaseItemQuantity, decreaseItemQuantity, removeItem } = useCart()
     const loading = useRef(true)
-    const { t , i18n } = useTranslation()
+    const { t, i18n } = useTranslation()
 
     useEffect(() => {
         axios.get(`${DR_BULK_API}/api/products/${productId}`)
@@ -24,9 +24,11 @@ const ProductDetails = () => {
             .catch(err => console.log(err))
     }, [])
 
-    let { category, price, points, images } = productDetails
-    const title = i18n.dir() === "ltr" ? productDetails.title.en : productDetails.title.ar ;
-    const description = i18n.dir() === "ltr" ? productDetails.description.en : productDetails.description.ar ;
+    let { title, description, category, price, points, images } = productDetails
+    if (Object.keys(productDetails).length) {
+        title = i18n.dir() === "ltr" ? productDetails.title.en : productDetails.title.ar;
+        description = i18n.dir() === "ltr" ? productDetails.description.en : productDetails.description.ar;
+    }
 
     images = images?.map(img => img.replace('public\\uploads\\', DR_BULK_API + '/uploads/'))
 
@@ -36,9 +38,10 @@ const ProductDetails = () => {
                 loading.current ?
                     <RoutesSpinner />
                     :
-                    <div className="space-medium product-details">
+                    Object.keys(productDetails).length &&
+                    <div className="space-medium product-details" key={productId}>
                         <div className="container">
-                            <div className="row">
+                            <div className="row justify-content-between">
                                 <div className="col-lg-7 col-md-11 col-sm-11 col-xs-12">
                                     <div className="post-block">
                                         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
@@ -96,7 +99,7 @@ const ProductDetails = () => {
                                         <div className=" author-block">
                                             <div className="author-post-content ">
                                                 <div className="author-header">
-                                                    <h3><span className="title">ghhjhhf jhghjghj jkhkjhkjj {title}</span></h3>
+                                                    <h3><span className="title">{title}</span></h3>
                                                 </div>
                                                 <div className="author-meta ">{category.name.en}</div>
                                                 <div className="author-content">

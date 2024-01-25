@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom' ;
-import { useTranslation } from 'react-i18next' ;
-import "./Profile.css" ;
+import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import "./Profile.css";
 
-export const Profile = ()=>{
-    const [tab, setTab] = useState('') ;
-    const { t } = useTranslation() ;
+export const Profile = () => {
+    const [tab, setTab] = useState('');
+    const { t } = useTranslation();
     const navigate = useNavigate();
-    const location = useLocation() ;
+    const location = useLocation();
     const currentRoute = location.pathname.split("/")[2]
 
-    useEffect(()=>{
-        if(currentRoute){
+    useEffect(() => {
+        if (currentRoute) {
             setTab(currentRoute)
-        }else{
+        } else {
             setTab('orders')
             navigate('orders')
         }
-    },[location])
+    }, [location])
 
-    const changeTab = (theTab) =>{
+    const changeTab = (theTab) => {
         navigate(theTab);
         setTab(theTab);
     }
@@ -44,15 +44,15 @@ export const Profile = ()=>{
                 </div>
             </div>
 
-            <div className="space-medium">
+            <div className="space-medium" id='user-profile'>
                 <div className="container">
                     <div className="row">
                         <div className='col-12'>
                             <div className='tabs col-12 d-flex flex-sm-row justify-content-around  flex-column align-items-center'>
-                                <div className={`${ tab === 'orders' ? 'active' : '' } col-xs-12 col-4`} onClick={()=>changeTab('orders')}>{t("Orders")}</div>
-                                <div className={`${ tab === 'booked-memberships' ? 'active' : '' } col-xs-12 col-4`} onClick={()=>changeTab('booked-memberships')}>{t("Memberships")}</div>
-                                <div className={`${ tab === 'booked-eat-smart' ? 'active' : '' } col-xs-12 col-4`} onClick={()=>changeTab('booked-eat-smart')}>{t("Eat Smart")}</div>
-                              </div>
+                                <div className={`${tab === 'orders' ? 'active' : ''} col-xs-12 col-4`} onClick={() => changeTab('orders')}>{t("Orders")}</div>
+                                <div className={`${tab === 'booked-memberships' ? 'active' : ''} col-xs-12 col-4`} onClick={() => changeTab('booked-memberships')}>{t("Memberships")}</div>
+                                <div className={`${tab === 'booked-eat-smart' ? 'active' : ''} col-xs-12 col-4`} onClick={() => changeTab('booked-eat-smart')}>{t("Eat Smart")}</div>
+                            </div>
                         </div>
                         <Outlet />
                     </div>

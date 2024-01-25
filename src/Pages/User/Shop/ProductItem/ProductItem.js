@@ -28,7 +28,7 @@ const ProductItem = ({ product }) => {
         <>
             <div className="post-block product-item border border-1">
                 <div className="post-img">
-                    <Link to={`/shop/${id}`} className="imghover">
+                    <Link to={`/apparel/${id}`} className="imghover">
                         <img src={images[0]?.replace('public\\uploads\\', DR_BULK_API + '/uploads/')} alt="product" className="img-responsive" />
                     </Link>
                 </div>
@@ -37,7 +37,7 @@ const ProductItem = ({ product }) => {
                         <span className="meta-categories">{category}</span>
                         {/* <span className="meta-date">30 July, 2020</span> */}
                     </div>
-                    <h4><Link to={`/shop/${id}`} className="title">{title}</Link></h4>
+                    <h4><Link to={`/apparel/${id}`} className="title">{title}</Link></h4>
                     <div className="price-points">
                         <span className="price">{price} $</span>
                         <span className="points">{points} {points && <i className="fa fa-diamond" aria-hidden="true"></i>}</span>
